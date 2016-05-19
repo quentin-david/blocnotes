@@ -1,3 +1,7 @@
 qt_blocnotes_accueil:
     path:     /
     defaults: { _controller: QTBlocnotesBundle:Accueil:index }
+
+qt_blocnotes_utilisateur:
+    path:   /user/{userName}
+    defaults: {_controller: QTBlocnotesBundle:User:index}

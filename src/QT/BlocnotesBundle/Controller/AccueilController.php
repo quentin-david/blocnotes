@@ -4,7 +4,7 @@ namespace QT\BlocnotesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class AccueilController extends Controller
 {
     public function indexAction()
     {
