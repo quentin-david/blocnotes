@@ -1,0 +1,4 @@
+services:
+#    qt_blocnotes.example:
+#        class: QT\BlocnotesBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

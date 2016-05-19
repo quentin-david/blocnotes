@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}
+        	
+        {% endblock %}
+    </head>
+    
+    <body class="w3-theme-l5">
+    	<!-- Navbar -->
+		<div class="w3-top">
+ 			<ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
+ 			{% block menu %} {% endblock %}
+  			</ul>
+		</div>
+		
+		
+		<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> 
+        <!-- The Grid -->
+			<div class="w3-row">
+			
+   				<!-- Left Column -->
+   				<div class="w3-col m2">
+     			
+    	 			<!-- Profile -->
+      				<div class="w3-card-2 w3-round w3-white">
+      					{% block profile %} {% endblock %}
+      				</div>
+      				<br>
+      
+     				<!-- Accordion -->
+     				<div class="w3-card-2 w3-round">
+     					<div class="w3-accordion w3-white">
+     						{% block accordeon %} {% endblock %}
+        				</div>
+          			</div>   
+      				<br>
+          
+      				<!-- Alert Box -->
+      				<div class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+      					{% block alertbox %} {% endblock %}
+      				</div>
+    	
+    			</div>
+    			
+    			<!-- End Left Column -->
+    	
+    			<!-- contenu de la page -->
+    			<div class="w3-col m10">
+        			{% block contenu %} {% endblock %}
+    		    </div>
+ 		   </div>
+    	</div>
+    	
+        
+		<!-- Footer -->
+		<footer class="w3-container w3-theme-d3 w3-padding-hor-8">
+			<h5>Site test Quentin DAVID</h5>
+		</footer>
+ 
+ 		<!-- Javascripts -->
+		<script>
+			{% block javascripts %} {% endblock %}
+		</script>
+		     
+    </body>
+</html>

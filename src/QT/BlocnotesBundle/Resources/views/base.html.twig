@@ -1,0 +1,86 @@
+{% extends 'QTBlocnotesBundle::layout.html.twig' %}
+
+
+{% block title %}Page accueil{% endblock %}
+
+{% block stylesheets %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
+{% endblock %}
+    
+    
+{% block menu %}
+  	<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  	</li>
+  	<li><a href="{{ path('qt_blocnotes_accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
+  	<li class="w3-hide-small"><a href="{{ path('airpl') }}" class="w3-padding-large w3-hover-white" title="Airpl">Bloc-notes</a></li>
+  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings">Wikis</a></li>
+  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages">Logistique</a></li>
+  	<li class="w3-hide-small w3-dropdown-hover">
+    	<a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
+   		<div class="w3-dropdown-content w3-white w3-card-4">
+      		<a href="#">One new friend request</a>
+      		<a href="#">John Doe posted on your wall</a>
+      		<a href="#">Jane likes your post</a>
+    	</div>
+  	</li>
+  	<li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a></li>
+{% endblock %}
+		
+		
+    {% block profile %}
+        <div class="w3-container">
+         	<h4 class="w3-center">{{ app.user }}</h4>
+         	<p class="w3-center"><img src="{{ asset('pictures/img_avatar3.png') }}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         	<hr>
+         	<p><a href="{{ path('user', { 'userName': app.user }) }}">
+         		<i class="fa fa-pencil w3-margin-right w3-text-theme"></i></a> Admin
+         	</p>
+        </div>
+	{% endblock %}
+      
+	{% block accordeon %}
+        {{ render(controller('AppBundle:Accordeon:afficherAccordeon')) }}
+    {% endblock %}
+
+
+    {% block alertbox %}
+       <span onclick="this.parentElement.style.display='none'" class="w3-hover-text-grey w3-closebtn">
+       		<i class="fa fa-remove"></i>
+       </span>
+       <p><strong>Rappels</strong></p>
+       <p>10h00 audio TeleIR</p>
+	   <p>15h00 DI Gaia</p>
+    {% endblock %}
+
+
+
+{% block javascripts %}
+// Accordion
+	function myFunction(id) {
+    	var x = document.getElementById(id);
+    	if (x.className.indexOf("w3-show") == -1) {
+        	x.className += " w3-show";
+        	x.previousElementSibling.className += " w3-theme-d1";
+    	} else { 
+        	x.className = x.className.replace("w3-show", "");
+        	x.previousElementSibling.className = 
+        	x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    	}
+	}
+
+	// Used to toggle the menu on smaller screens when clicking on the menu button
+	function openNav() {
+    	var x = document.getElementById("navDemo");
+    	if (x.className.indexOf("w3-show") == -1) {
+       		x.className += " w3-show";
+    	} else { 
+        	x.className = x.className.replace(" w3-show", "");
+    	}
+	}
+{% endblock %}

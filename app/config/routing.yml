@@ -1,0 +1,4 @@
+qt_blocnotes:
+    resource: "@QTBlocnotesBundle/Resources/config/routing.yml"
+    prefix:   /
+
