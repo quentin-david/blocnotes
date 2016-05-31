@@ -1,5 +1,9 @@
 {% extends 'QTBlocnotesBundle::base.html.twig' %}
 
+{% block recherches %}
+	{{ form(formulaire_recherche, {'attr': {'class': 'formulaire'}}) }}
+{% endblock %}
+
 {% block contenu %}
 	<h2>Page d'accueil</h2>
     {% for topic in liste_topics %}

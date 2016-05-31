@@ -18,9 +18,11 @@
     	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   	</li>
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Airpl">Bloc-notes</a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings">Wikis</a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages">Logistique</a></li>
+  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
+	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
+	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
+  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
+  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="logistique">Logistique</a></li>
   	<li class="w3-hide-small w3-dropdown-hover">
     	<a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
    		<div class="w3-dropdown-content w3-white w3-card-4">
@@ -33,25 +35,25 @@
 {% endblock %}
 		
 		
-    {% block recherches %}
-        <div class="w3-container">
-         	<h4 class="w3-center">Recherches</h4>
-        </div>
-	{% endblock %}
-      
-	{% block lanceurs %}
-        {# render(controller('AppBundle:Accordeon:afficherAccordeon')) #}
-    {% endblock %}
+{% block recherches %}
+	<div class="w3-container">
+		<h4 class="w3-center">Recherches</h4>
+	</div>
+{% endblock %}
+  
+{% block lanceurs %}
+	{# render(controller('AppBundle:Accordeon:afficherAccordeon')) #}
+{% endblock %}
 
 
-    {% block alertbox %}
-       <span onclick="this.parentElement.style.display='none'" class="w3-hover-text-grey w3-closebtn">
-       		<i class="fa fa-remove"></i>
-       </span>
-       <p><strong>Rappels</strong></p>
-       <p>10h00 audio TeleIR</p>
-	   <p>15h00 DI Gaia</p>
-    {% endblock %}
+{% block alertbox %}
+   <span onclick="this.parentElement.style.display='none'" class="w3-hover-text-grey w3-closebtn">
+		<i class="fa fa-remove"></i>
+   </span>
+   <p><strong>Rappels</strong></p>
+   <p>10h00 audio TeleIR</p>
+   <p>15h00 DI Gaia</p>
+{% endblock %}
 
 
 
