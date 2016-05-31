@@ -3,6 +3,6 @@
 {% block contenu %}
 	<h2>Page d'accueil</h2>
     {% for topic in liste_topics %}
-      	{{ render(controller('AppBundle:Topic:afficherTopic', { 'num_topic':topic })) }}
+      	{{ render(controller('QTBlocnotesBundle:Topic:afficherTopic', { 'num_topic':topic })) }}
     {% endfor %}
 {% endblock %}

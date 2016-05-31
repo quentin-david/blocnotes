@@ -17,7 +17,7 @@
   	<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
     	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   	</li>
-  	<li><a href="{{ path('qt_blocnotes_accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
+  	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Airpl">Bloc-notes</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings">Wikis</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages">Logistique</a></li>
@@ -33,18 +33,13 @@
 {% endblock %}
 		
 		
-    {% block profile %}
+    {% block recherches %}
         <div class="w3-container">
-         	<h4 class="w3-center">{{ app.user }}</h4>
-         	<p class="w3-center"><img src="{{ asset('pictures/img_avatar3.png') }}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         	<hr>
-         	<p><a href="{{ path('qt_blocnotes_utilisateur', { 'userName': app.user }) }}">
-         		<i class="fa fa-pencil w3-margin-right w3-text-theme"></i></a> Admin
-         	</p>
+         	<h4 class="w3-center">Recherches</h4>
         </div>
 	{% endblock %}
       
-	{% block accordeon %}
+	{% block lanceurs %}
         {# render(controller('AppBundle:Accordeon:afficherAccordeon')) #}
     {% endblock %}
 

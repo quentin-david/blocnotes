@@ -16,6 +16,6 @@ class AccueilController extends Controller
     {
         // replace this example code with whatever you need
         $liste_topics = [1,2,3];
-        return $this->render('QTBlocnotes/accueil.html.twig', array('liste_topics' => $liste_topics));
+        return $this->render('QTBlocnotesBundle::accueil.html.twig', array('liste_topics' => $liste_topics));
     }
 }
