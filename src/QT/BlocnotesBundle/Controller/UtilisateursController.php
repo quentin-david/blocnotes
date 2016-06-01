@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,9 @@ class UtilisateursController extends Controller
      */
     public function indexAction(Request $request)
     {
+        //if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+        //    echo 'USER OK';
+        //}
         // replace this example code with whatever you need
         $liste_utilisateurs = [1,2,3];
         
@@ -38,6 +42,7 @@ class UtilisateursController extends Controller
             ->add('trigramme',    TextType::class)
             ->add('nomAffiche',    TextType::class)
             ->add('username',    TextType::class)
+            ->add('roles',  CollectionType::class )
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
@@ -46,7 +51,7 @@ class UtilisateursController extends Controller
             ->add('rechercher', SubmitType::class);   
         $formulaire_utilisateur = $formBuilder->getForm();
         
-        // 2) handle the submit (will only happen on POST)
+        // Enregistrement de l'utilisateur
         if($request->isMethod('POST')){
             $formulaire_utilisateur->handleRequest($request);
             if ($formulaire_utilisateur->isSubmitted() && $formulaire_utilisateur->isValid()) {

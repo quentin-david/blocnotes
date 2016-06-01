@@ -71,6 +71,11 @@ class Utilisateur implements UserInterface, \Serializable
      * @ORM\Column(name="password", type="string", length=100)
      */
     private $password;
+    
+    /**
+    * @ORM\Column(name="roles", type="array")
+    */
+    private $roles = array();
 
 
     /**
@@ -292,5 +297,19 @@ class Utilisateur implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
+    }
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     *
+     * @return Utilisateur
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }

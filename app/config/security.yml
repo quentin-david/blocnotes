@@ -2,16 +2,19 @@
 # http://symfony.com/doc/current/book/security.html
 security: 
     providers:
-        db_provider:
-            entity:
-                class: QT\BlocnotesBundle\Utilisateur
-                property: username
+        #db_provider:
+            #entity:
+                #class: QT\BlocnotesBundle\Utilisateur
+                #property: username
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
     
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         QT\BlocnotesBundle\Entity\Utilisateur: plaintext
-
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,7 +26,7 @@ security:
             anonymous: true
             # activate different ways to authenticate
 
-            #http_basic: ~
+            http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: ~
@@ -31,7 +34,11 @@ security:
             #provider: our_db_provider
             pattern:  ^/
             #http_basic: ~
-            provider: db_provider
+            #provider: db_provider
             
-    #access_control:
-        #- { path: ^/, roles: ROLE_ADMIN }
+    access_control:
+        - { path: ^/utilisateurs, roles: ROLE_ADMIN }
+        
+    role_hierarchy:
+        # Un admin hérite des droits d'auteur et de modérateur
+        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
