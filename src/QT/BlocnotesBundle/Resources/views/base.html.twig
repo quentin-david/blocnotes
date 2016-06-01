@@ -9,6 +9,7 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
 	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
 {% endblock %}
     
@@ -23,6 +24,12 @@
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="logistique">Logistique</a></li>
+	<li class="w3-hide-small w3-dropdown-hover">
+		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
+		<div class="w3-dropdown-content w3-white w3-card-4">
+      		<a href="{{ path('utilisateurs') }}">Utilisateurs</a>
+		</div>
+	</li>
   	<li class="w3-hide-small w3-dropdown-hover">
     	<a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
    		<div class="w3-dropdown-content w3-white w3-card-4">

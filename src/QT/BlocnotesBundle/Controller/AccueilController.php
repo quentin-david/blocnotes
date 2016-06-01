@@ -37,7 +37,7 @@ class AccueilController extends Controller
         
         return $this->render('QTBlocnotesBundle::accueil.html.twig', array(
                                         'liste_topics' => $liste_topics,
-                                        'formulaire_recherche' => $formulaire_recherche
+                                        'formulaire_recherche' => $formulaire_recherche->createView()
                             ));
     }
 }

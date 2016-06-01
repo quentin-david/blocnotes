@@ -3,9 +3,13 @@ accueil:
     defaults: { _controller: QTBlocnotesBundle:Accueil:listerTopic }
 
 utilisateur:
-    path:   /user/{userName}
-    defaults: {_controller: QTBlocnotesBundle:User:index}
+    path:   /utilisateur/{userName}
+    defaults: {_controller: QTBlocnotesBundle:Utilisateur:index}
     
 topic_edition:
     path:   /topic/edit/{num_topic}
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
+
+utilisateurs:
+    path:   /utilisateurs
+    defaults: {_controller: QTBlocnotesBundle:Utilisateurs:index}

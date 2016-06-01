@@ -2003,64 +2003,47 @@
         "homepage": "https://symfony.com"
     },
     {
-        "name": "kriswallsmith/assetic",
-        "version": "v1.3.2",
-        "version_normalized": "1.3.2.0",
+        "name": "doctrine/data-fixtures",
+        "version": "v1.1.1",
+        "version_normalized": "1.1.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/kriswallsmith/assetic.git",
-            "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5"
+            "url": "https://github.com/doctrine/data-fixtures.git",
+            "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/9928f7c4ad98b234e3559d1049abd13387f86db5",
-            "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5",
+            "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+            "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.1",
-            "symfony/process": "~2.1|~3.0"
+            "doctrine/common": "~2.2",
+            "php": ">=5.3.2"
         },
         "conflict": {
-            "twig/twig": "<1.23"
+            "doctrine/orm": "< 2.4"
         },
         "require-dev": {
-            "cssmin/cssmin": "3.0.1",
-            "joliclic/javascript-packer": "1.1",
-            "kamicane/packager": "1.0",
-            "leafo/lessphp": "^0.3.7",
-            "leafo/scssphp": "~0.1",
-            "mrclay/minify": "~2.2",
-            "patchwork/jsqueeze": "~1.0|~2.0",
-            "phpunit/phpunit": "~4.8",
-            "psr/log": "~1.0",
-            "ptachoire/cssembed": "~1.0",
-            "symfony/phpunit-bridge": "~2.7|~3.0",
-            "twig/twig": "~1.8|~2.0"
+            "doctrine/orm": "~2.4"
         },
         "suggest": {
-            "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
-            "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
-            "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
-            "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
-            "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
-            "twig/twig": "Assetic provides the integration with the Twig templating engine"
+            "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+            "doctrine/orm": "For loading ORM fixtures",
+            "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
         },
-        "time": "2015-11-12 13:51:40",
+        "time": "2015-03-30 12:14:13",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.4-dev"
+                "dev-master": "1.1.x-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "Assetic": "src/"
-            },
-            "files": [
-                "src/functions.php"
-            ]
+                "Doctrine\\Common\\DataFixtures": "lib/"
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -2068,70 +2051,48 @@
         ],
         "authors": [
             {
-                "name": "Kris Wallsmith",
-                "email": "kris.wallsmith@gmail.com",
-                "homepage": "http://kriswallsmith.net/"
+                "name": "Jonathan Wage",
+                "email": "jonwage@gmail.com"
             }
         ],
-        "description": "Asset Management for PHP",
-        "homepage": "https://github.com/kriswallsmith/assetic",
+        "description": "Data Fixtures for all Doctrine Object Managers",
+        "homepage": "http://www.doctrine-project.org",
         "keywords": [
-            "assets",
-            "compression",
-            "minification"
+            "database"
         ]
     },
     {
-        "name": "symfony/assetic-bundle",
-        "version": "v2.8.0",
-        "version_normalized": "2.8.0.0",
+        "name": "doctrine/doctrine-fixtures-bundle",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/assetic-bundle.git",
-            "reference": "aa5b4f8b712f38745928fa845ddb73300bb2af6d"
+            "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+            "reference": "0f1a2f91b349e10f5c343f75ab71d23aace5b029"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/assetic-bundle/zipball/aa5b4f8b712f38745928fa845ddb73300bb2af6d",
-            "reference": "aa5b4f8b712f38745928fa845ddb73300bb2af6d",
+            "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/0f1a2f91b349e10f5c343f75ab71d23aace5b029",
+            "reference": "0f1a2f91b349e10f5c343f75ab71d23aace5b029",
             "shasum": ""
         },
         "require": {
-            "kriswallsmith/assetic": "~1.3",
-            "php": ">=5.3.0",
-            "symfony/console": "~2.3|~3.0",
-            "symfony/dependency-injection": "~2.3|~3.0",
-            "symfony/framework-bundle": "~2.3|~3.0",
-            "symfony/yaml": "~2.3|~3.0"
+            "doctrine/data-fixtures": "~1.0",
+            "doctrine/doctrine-bundle": "~1.0",
+            "php": ">=5.3.2",
+            "symfony/doctrine-bridge": "~2.3|~3.0"
         },
-        "conflict": {
-            "kriswallsmith/spork": "<=0.2",
-            "twig/twig": "<1.20"
-        },
-        "require-dev": {
-            "kriswallsmith/spork": "~0.3",
-            "patchwork/jsqueeze": "~1.0",
-            "symfony/class-loader": "~2.3|~3.0",
-            "symfony/css-selector": "~2.3|~3.0",
-            "symfony/dom-crawler": "~2.3|~3.0",
-            "symfony/phpunit-bridge": "~2.7|~3.0",
-            "symfony/twig-bundle": "~2.3|~3.0"
-        },
-        "suggest": {
-            "kriswallsmith/spork": "to be able to dump assets in parallel",
-            "symfony/twig-bundle": "to use the Twig integration"
-        },
-        "time": "2015-12-28 13:12:39",
+        "time": "2015-11-04 21:23:23",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.7-dev"
+                "dev-master": "2.2.x-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
-                "Symfony\\Bundle\\AsseticBundle\\": ""
+                "Doctrine\\Bundle\\FixturesBundle\\": ""
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -2140,17 +2101,23 @@
         ],
         "authors": [
             {
-                "name": "Kris Wallsmith",
-                "email": "kris.wallsmith@gmail.com",
-                "homepage": "http://kriswallsmith.net/"
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Doctrine Project",
+                "homepage": "http://www.doctrine-project.org"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
             }
         ],
-        "description": "Integrates Assetic into Symfony2",
-        "homepage": "https://github.com/symfony/AsseticBundle",
+        "description": "Symfony DoctrineFixturesBundle",
+        "homepage": "http://www.doctrine-project.org",
         "keywords": [
-            "assets",
-            "compression",
-            "minification"
+            "Fixture",
+            "persistence"
         ]
     }
 ]

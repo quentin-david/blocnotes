@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+.formulaire {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+.formulaire button {
+    width: 95%;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px;
+}
+
+.formulaire input, select {
+    width: 75%;
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+}
+
+.formulaire label {
+    text-align: left;
+    display: inline-block;
+    float: left;
+    clear: left;
+}
+
+.btn_supprimer {
+    width: 25px;
+    /*background: url('DeleteRed.png') center no-repeat;*/
+}

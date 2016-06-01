@@ -1,0 +1,12 @@
+{% extends 'QTBlocnotesBundle::base.html.twig' %}
+
+{% block contenu %}
+    <h2>Nouvel utilisateur</h2>
+    {{ form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) }}
+    
+    
+	<h2>Liste des utilisateurs</h2>
+    {# for utilisateur in liste_utilisateurs %}
+      	{{ utilisateur.nom }}
+    {% endfor #}
+{% endblock %}

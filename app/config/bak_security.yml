@@ -2,14 +2,15 @@
 # http://symfony.com/doc/current/book/security.html
 security: 
     providers:
-        db_provider:
-            entity:
-                class: QT\BlocnotesBundle\Utilisateur
-                property: username
+        in_memory:
+            memory:
+                users:
+                    david: { password: erty, roles ['ROLE_ADMIN'] }
     
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        QT\BlocnotesBundle\Entity\Utilisateur: plaintext
+        #BlocnotesBundle\Entity\Utilisateur:
+            #algorithm: bcrypt
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
 
@@ -20,18 +21,15 @@ security:
             security: false
 
         main:
-            anonymous: true
+            anonymous: ~
             # activate different ways to authenticate
 
-            #http_basic: ~
+            http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #provider: our_db_provider
-            pattern:  ^/
-            #http_basic: ~
-            provider: db_provider
             
-    #access_control:
-        #- { path: ^/, roles: ROLE_ADMIN }
+    access_control:
+        - { path: ^/, roles: ROLE_ADMIN }
