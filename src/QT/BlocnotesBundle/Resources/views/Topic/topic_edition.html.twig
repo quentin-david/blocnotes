@@ -1,4 +1,4 @@
-{% extends 'QTBlocnotesBundle::base.html.twig' %}
+{% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
 {% block contenu %}
 	
 	<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
@@ -9,15 +9,16 @@
         <h4>Topic numéro : {{ num_topic }}</h4>
         <hr class="w3-clear">
           <div class="w3-row-padding w3-padding-bottom" style="margin:0 -16px">
-            <textarea id="topic_editor" name="topic_editor">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </textarea>
+						{{ form(formulaire, {'attr': {'class': 'formulaire'}}) }}
+            {#<textarea id="topic_editor" name="topic_editor">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </textarea>#}
         </div> 
       </div>
       <br>
       
 	<script type="text/javascript">
-		CKEDITOR.replace( 'topic_editor' );
+		CKEDITOR.replace( 'form_corps' );
 	</script>
       
 {% endblock %}

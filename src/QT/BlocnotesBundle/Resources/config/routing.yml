@@ -13,3 +13,7 @@ topic_edition:
 utilisateurs:
     path:   /utilisateurs
     defaults: {_controller: QTBlocnotesBundle:Utilisateurs:index}
+
+ajouter_domaine:
+    path:   /domaine
+    defaults: {_controller: QTBlocnotesBundle:Domaine:index}

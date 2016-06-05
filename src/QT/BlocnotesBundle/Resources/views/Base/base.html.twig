@@ -1,13 +1,13 @@
-{% extends 'QTBlocnotesBundle::layout.html.twig' %}
+{% extends 'QTBlocnotesBundle:Base:layout.html.twig' %}
 
 
 {% block title %}Page accueil{% endblock %}
 
 {% block stylesheets %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="{{ asset('css/w3.css') }}">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/base.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
 	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
@@ -23,11 +23,11 @@
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="logistique">Logistique</a></li>
 	<li class="w3-hide-small w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
-      		<a href="{{ path('utilisateurs') }}">Utilisateurs</a>
+			<a href="{{ path('utilisateurs') }}">Utilisateurs</a>
+			<a href="{{ path('ajouter_domaine') }}">Domaines</a>
 		</div>
 	</li>
   	<li class="w3-hide-small w3-dropdown-hover">

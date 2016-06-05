@@ -1,0 +1,32 @@
+{% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
+
+{% block contenu %}      
+    <div class="w3-col m6">
+        <h4>Ajout d'un nouveau domaine</h4>
+        <div>
+            {{ form(formulaire, {'attr': {'class': 'formulaire'}}) }}
+        </div>
+    </div>
+    
+    <div class="w3-col m4">
+        <h4>Stats des domaines</h4>
+        <ul>
+            {% for domaine in liste_domaines %}
+                <li>
+                    {{ domaine.id }} : {{ domaine.libelle }}
+                </li>
+            {% endfor%}
+        </ul>
+    </div>
+    
+    <div class="w3-col m10">
+        <h4>Liste des domaines</h4>
+        <ul>
+            {% for domaine in liste_domaines %}
+                <li>
+                    {{ domaine.libelle }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

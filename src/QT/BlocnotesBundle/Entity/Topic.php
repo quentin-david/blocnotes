@@ -22,9 +22,7 @@ class Topic
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="createur", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Utilisateur")
      */
     private $createur;
 
@@ -56,20 +54,19 @@ class Topic
      */
     private $dateModification;
 
+    
     /**
-     * @var int
-     *
-     * @ORM\Column(name="type", type="integer")
+     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Domaine")
      */
-    private $type;
+    private $domaine;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="reference", type="integer", nullable=true)
-     */
-    private $reference;
-
+    
+    public function __construct()
+    {
+        // Par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->dateCreation = new \Datetime();
+        $this->dateModification = new \Datetime();
+    }
 
     /**
      * Get id
@@ -81,29 +78,6 @@ class Topic
         return $this->id;
     }
 
-    /**
-     * Set createur
-     *
-     * @param string $createur
-     *
-     * @return Topic
-     */
-    public function setCreateur($createur)
-    {
-        $this->createur = $createur;
-
-        return $this;
-    }
-
-    /**
-     * Get createur
-     *
-     * @return string
-     */
-    public function getCreateur()
-    {
-        return $this->createur;
-    }
 
     /**
      * Set dateCreation
@@ -202,50 +176,50 @@ class Topic
     }
 
     /**
-     * Set type
+     * Set domaine
      *
-     * @param integer $type
+     * @param \QT\BlocnotesBundle\Entity\Domaine $domaine
      *
      * @return Topic
      */
-    public function setType($type)
+    public function setDomaine(\QT\BlocnotesBundle\Entity\Domaine $domaine = null)
     {
-        $this->type = $type;
+        $this->domaine = $domaine;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get domaine
      *
-     * @return int
+     * @return \QT\BlocnotesBundle\Entity\Domaine
      */
-    public function getType()
+    public function getDomaine()
     {
-        return $this->type;
+        return $this->domaine;
     }
 
     /**
-     * Set reference
+     * Set createur
      *
-     * @param integer $reference
+     * @param \QT\BlocnotesBundle\Entity\Utilisateur $createur
      *
      * @return Topic
      */
-    public function setReference($reference)
+    public function setCreateur(\QT\BlocnotesBundle\Entity\Utilisateur $createur = null)
     {
-        $this->reference = $reference;
+        $this->createur = $createur;
 
         return $this;
     }
 
     /**
-     * Get reference
+     * Get createur
      *
-     * @return int
+     * @return \QT\BlocnotesBundle\Entity\Utilisateur
      */
-    public function getReference()
+    public function getCreateur()
     {
-        return $this->reference;
+        return $this->createur;
     }
 }
