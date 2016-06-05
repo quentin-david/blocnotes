@@ -312,4 +312,12 @@ class Utilisateur implements UserInterface, \Serializable
 
         return $this;
     }
+    
+    /**
+     * QT essai 
+     */
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
 }

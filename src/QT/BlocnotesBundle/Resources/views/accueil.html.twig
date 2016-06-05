@@ -6,6 +6,6 @@
 
 {% block contenu %}
     {% for topic in liste_topics %}
-      	{{ render(controller('QTBlocnotesBundle:Topic:afficherTopic', { 'num_topic':topic })) }}
+      	{{ render(controller('QTBlocnotesBundle:Topic:afficherTopic', { 'topic' : topic })) }}
     {% endfor %}
 {% endblock %}

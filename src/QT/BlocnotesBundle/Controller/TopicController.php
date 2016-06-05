@@ -20,27 +20,31 @@ class TopicController extends Controller
 	/**
 	 *
 	 */
-    public function afficherTopicAction($num_topic)
+    public function afficherTopicAction($topic)
     {
         // replace this example code with whatever you need
-        return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array('num_topic' => $num_topic));
+        return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array('topic' => $topic));
     }
     
     /**
      * 
      */ 
-    public function editerTopicAction(Request $request, $num_topic)
+    public function editerTopicAction(Request $request, $num_topic=null)
     {
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
         
         // Objet Emplacement pour le formulaire
-        $topic = new Topic;
+        if($num_topic === null){
+			$topic = new Topic;
+		}else{
+			$topic = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic);
+		}
         
         //Creation de l'objet formulaire
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $topic);
         $formBuilder
-            ->add('titre', TextType::class, array('attr'=> array('value'=>'')))
+            ->add('titre', TextType::class)
 			->add('createur', EntityType::class, array('class' => 'QTBlocnotesBundle:Utilisateur', 'choice_label' => 'username'))
 			->add('domaine', EntityType::class, array('class' => 'QTBlocnotesBundle:Domaine', 'choice_label' => 'libelle'))
 			->add('corps', TextareaType::class)
@@ -61,8 +65,8 @@ class TopicController extends Controller
             }
         }
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
-											'num_topic' => $num_topic,
-											'formulaire' => $formulaire->createView(),							
+									'num_topic' => $num_topic,
+									'formulaire' => $formulaire->createView(),							
 							));
     }
 }

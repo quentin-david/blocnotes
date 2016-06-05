@@ -3,21 +3,24 @@
 	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left">
         <img src="img_avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">
-        	<a href="{{ path('topic_edition', {'num_topic': num_topic}) }}">
+        	<a href="{{ path('topic_edition', {'num_topic': topic.id}) }}">
         		<i class="fa fa-pencil w3-margin-right w3-text-theme"></i>
         	</a>
         </span>
-        <h4>Topic numéro : {{ num_topic }}</h4>
+        <h4>Topic {{ topic.id }} : {{ topic.titre }}</h4>
         <hr class="w4-clear" style="margin: 0px">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          {#<div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-              <img src="img_lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="img_nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
+          <div class="w3-row-padding" style="margin:0 -16px">
+			<div class="topic_corps">
+				{#<div class="w3-half">
+				  <img src="img_lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+				</div>
+				<div class="w3-half">
+				  <img src="img_nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
+				</div>#}
+				
+				{{ topic.corps|raw }}
 			</div>
-			</div>#} 
+		</div>
       </div>
       <br>
       
