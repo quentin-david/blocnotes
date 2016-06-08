@@ -20,7 +20,7 @@
     	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   	</li>
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
+  	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
   	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
@@ -44,9 +44,7 @@
 		
 		
 {% block recherches %}
-	<div class="w3-container">
-		<h4 class="w3-center">Recherches</h4>
-	</div>
+	
 {% endblock %}
   
 {% block lanceurs %}

@@ -1,0 +1,16 @@
+{% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
+
+{% block recherches %}
+	<h4 class="w3-center" style="margin: 0px">Recherches</h4>
+	{{ form(formulaire_recherche, {'attr': {'class': 'formulaire'}}) }}
+{% endblock %}
+
+{% block lanceurs %}
+	<h4 class="w3-center" style="margin: 0px">lanceurs</h4>
+{% endblock %}
+
+{% block contenu %}
+    {% for topic in liste_topics %}
+      	{{ render(controller('QTBlocnotesBundle:Topic:afficherTopic', { 'topic' : topic })) }}
+    {% endfor %}
+{% endblock %}

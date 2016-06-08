@@ -4,16 +4,12 @@ namespace QT\BlocnotesBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use QT\BlocnotesBundle\Entity\Topic;
 use QT\BlocnotesBundle\Entity\Utilisateur;
 use QT\BlocnotesBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use QT\BlocnotesBundle\Form\Type\TopicType;
 
 class TopicController extends Controller
 {
@@ -27,7 +23,7 @@ class TopicController extends Controller
     }
     
     /**
-     * 
+     * Editer ou creer un topic
      */ 
     public function editerTopicAction(Request $request, $num_topic=null)
     {
@@ -36,23 +32,13 @@ class TopicController extends Controller
         
         // Objet Emplacement pour le formulaire
         if($num_topic === null){
-			$topic = new Topic;
+			$topic = new Topic; // Creation
 		}else{
-			$topic = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic);
+			$topic = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic); //Edition
 		}
-        
-        //Creation de l'objet formulaire
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $topic);
-        $formBuilder
-            ->add('titre', TextType::class)
-			->add('createur', EntityType::class, array('class' => 'QTBlocnotesBundle:Utilisateur', 'choice_label' => 'username'))
-			->add('domaine', EntityType::class, array('class' => 'QTBlocnotesBundle:Domaine', 'choice_label' => 'libelle'))
-			->add('corps', TextareaType::class)
-            ->add('save', SubmitType::class);   
-        $formulaire = $formBuilder->getForm();
-         
-        // Liste des types d'emplacement avec le nombre d'emplacements pour chaque
-        $liste_domaines = $em->getRepository('QTBlocnotesBundle:Domaine')->findAll();        
+
+		// Creation du formulaire générique 
+		$formulaire = $this->createForm(TopicType::class, $topic);      
         
         //Enregistrement en base
         if($request->isMethod('POST')){
@@ -61,7 +47,7 @@ class TopicController extends Controller
                 $em->persist($topic);
                 $em->flush();
                 
-                return $this->redirectToRoute('accueil');
+                return $this->redirectToRoute('lister_topic', array('createur' => 1));
             }
         }
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
@@ -69,4 +55,5 @@ class TopicController extends Controller
 									'formulaire' => $formulaire->createView(),							
 							));
     }
+	
 }

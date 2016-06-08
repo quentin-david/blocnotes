@@ -1,11 +1,9 @@
 {% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
 
-{% block recherches %}
-	{{ form(formulaire_recherche, {'attr': {'class': 'formulaire'}}) }}
-{% endblock %}
-
 {% block contenu %}
-    {% for topic in liste_topics %}
-      	{{ render(controller('QTBlocnotesBundle:Topic:afficherTopic', { 'topic' : topic })) }}
-    {% endfor %}
+    <h2>ACCUEIL</h2>
+	<h4>Shortcuts</h4>
+	<ul>
+		<li><a href="{{ path('lister_topic') }}">Topics</a></li>
+	</ul>
 {% endblock %}

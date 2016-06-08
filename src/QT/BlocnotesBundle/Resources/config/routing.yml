@@ -1,14 +1,20 @@
 accueil:
     path:     /
-    defaults: { _controller: QTBlocnotesBundle:Accueil:listerTopic }
+    defaults: { _controller: QTBlocnotesBundle:Accueil:index }
 
 utilisateur:
     path:   /utilisateur/{userName}
     defaults: {_controller: QTBlocnotesBundle:Utilisateur:index}
+
+creer_topic:
+    path:   /topic/edit
+    defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
     
 topic_edition:
     path:   /topic/edit/{num_topic}
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
+    requirements:
+        num_topic: \d
 
 utilisateurs:
     path:   /utilisateurs
@@ -17,3 +23,7 @@ utilisateurs:
 ajouter_domaine:
     path:   /domaine
     defaults: {_controller: QTBlocnotesBundle:Domaine:index}
+    
+lister_topic:
+    path:   /topics
+    defaults: {_controller: QTBlocnotesBundle:TopicListe:listerTopic}
