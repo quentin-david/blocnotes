@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Entity\Topic;
-use QT\BlocnotesBundle\Entity\Domaine;
+use QT\AdminBundle\Entity\Domaine;
 use QT\BlocnotesBundle\Form\Type\TopicRechercheType;
 
 class TopicListeController extends Controller

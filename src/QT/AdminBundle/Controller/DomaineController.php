@@ -1,12 +1,12 @@
 <?php
-namespace QT\BlocnotesBundle\Controller;
+namespace QT\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use QT\BlocnotesBundle\Entity\Domaine;
+use QT\AdminBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
 
 class DomaineController extends Controller
@@ -32,7 +32,7 @@ class DomaineController extends Controller
         $formulaire = $formBuilder->getForm();
          
         // Liste des types d'emplacement avec le nombre d'emplacements pour chaque
-        $liste_domaines = $em->getRepository('QTBlocnotesBundle:Domaine')->findAll();        
+        $liste_domaines = $em->getRepository('QTAdminBundle:Domaine')->findAll();        
         
         //Enregistrement en base
         if($request->isMethod('POST')){
@@ -47,7 +47,7 @@ class DomaineController extends Controller
         
         
         //Génération du template
-        return $this->render('QTBlocnotesBundle:Gestion:domaine.html.twig', array(
+        return $this->render('QTAdminBundle::domaine.html.twig', array(
                                     'formulaire' => $formulaire->createView(),
                                     'liste_domaines' =>$liste_domaines
                             ));

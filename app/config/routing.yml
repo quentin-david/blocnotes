@@ -1,3 +1,11 @@
+qt_appli:
+    resource: "@QTAppliBundle/Resources/config/routing.yml"
+    prefix:   /
+
+qt_admin:
+    resource: "@QTAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
 qt_blocnotes:
     resource: "@QTBlocnotesBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,7 +1,5 @@
 <?php
-
-namespace QT\BlocnotesBundle\Controller;
-
+namespace QT\AdminBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -13,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use QT\BlocnotesBundle\Entity\Utilisateur;
+use QT\AdminBundle\Entity\Utilisateur;
 
 class UtilisateursController extends Controller
 {
@@ -22,14 +20,9 @@ class UtilisateursController extends Controller
      */
     public function indexAction(Request $request)
     {
-        //if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-        //    echo 'USER OK';
-        //}
-        // replace this example code with whatever you need
-        $liste_utilisateurs = [1,2,3];
-        
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
+        $liste_utilisateurs = $em->getRepository('QTAdminBundle:Utilisateur')->findAll();
         
         // Objet Emplacement pour le formulaire
         $utilisateur = new Utilisateur();
@@ -71,9 +64,9 @@ class UtilisateursController extends Controller
             }
         }
         
-        
-        return $this->render('QTBlocnotesBundle::utilisateurs.html.twig', array(
-                                        //'liste_utilisateurs' => $liste_utilisateurs,
+        // Execution du template d'affichage
+        return $this->render('QTAdminBundle::utilisateurs.html.twig', array(
+                                        'liste_utilisateurs' => $liste_utilisateurs,
                                         'formulaire_utilisateur' => $formulaire_utilisateur->createView()
                             ));
     }

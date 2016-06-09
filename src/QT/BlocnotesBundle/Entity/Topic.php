@@ -22,7 +22,7 @@ class Topic
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Utilisateur")
      */
     private $createur;
 
@@ -56,7 +56,7 @@ class Topic
 
     
     /**
-     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Domaine")
+     * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Domaine")
      */
     private $domaine;
 
@@ -182,7 +182,7 @@ class Topic
      *
      * @return Topic
      */
-    public function setDomaine(\QT\BlocnotesBundle\Entity\Domaine $domaine = null)
+    public function setDomaine(\QT\AdminBundle\Entity\Domaine $domaine = null)
     {
         $this->domaine = $domaine;
 
@@ -206,7 +206,7 @@ class Topic
      *
      * @return Topic
      */
-    public function setCreateur(\QT\BlocnotesBundle\Entity\Utilisateur $createur = null)
+    public function setCreateur(\QT\AdminBundle\Entity\Utilisateur $createur = null)
     {
         $this->createur = $createur;
 

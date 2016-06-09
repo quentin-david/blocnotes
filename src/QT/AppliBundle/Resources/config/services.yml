@@ -1,0 +1,4 @@
+services:
+#    qt_appli.example:
+#        class: QT\AppliBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

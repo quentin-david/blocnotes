@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\BlocnotesBundle\Entity;
+namespace QT\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Domaine
  *
  * @ORM\Table(name="domaine")
- * @ORM\Entity(repositoryClass="QT\BlocnotesBundle\Repository\DomaineRepository")
+ * @ORM\Entity(repositoryClass="QT\AdminBundle\Repository\DomaineRepository")
  */
 class Domaine
 {

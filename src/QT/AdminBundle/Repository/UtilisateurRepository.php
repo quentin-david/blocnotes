@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\BlocnotesBundle\Repository;
+namespace QT\AdminBundle\Repository;
 
 /**
  * UtilisateurRepository

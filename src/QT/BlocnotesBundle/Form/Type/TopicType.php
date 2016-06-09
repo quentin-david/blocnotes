@@ -17,8 +17,8 @@ class TopicType extends AbstractType
     {
         $builder 
             ->add('titre', TextType::class)
-			->add('createur', EntityType::class, array('class' => 'QTBlocnotesBundle:Utilisateur', 'choice_label' => 'username'))
-			->add('domaine', EntityType::class, array('class' => 'QTBlocnotesBundle:Domaine', 'choice_label' => 'libelle'))
+			->add('createur', EntityType::class, array('class' => 'QTAdminBundle:Utilisateur', 'choice_label' => 'username'))
+			->add('domaine', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle'))
 			->add('corps', TextareaType::class)
             ->add('save', SubmitType::class); 
     }

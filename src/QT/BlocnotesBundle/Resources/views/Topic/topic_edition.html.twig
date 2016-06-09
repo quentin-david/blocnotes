@@ -1,26 +1,20 @@
-{% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
 {% block contenu %}
 	
 	<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
 	
 	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left">
-		
-        <span class="w3-right w3-opacity">1 min</span>
-        <h4>Ajouter topic</h4>
-        <hr class="w3-clear" style="margin: 0px">
-          <div class="w3-row-padding w3-padding-bottom" style="margin:0 -16px">
-						
-						{# form(formulaire, {'attr': {'class': 'formulaire'}}) #}
-            {#<textarea id="topic_editor" name="topic_editor">#}
+
+          <div class="w3-row-padding w3-padding-bottom" style="margin: 10px -16px">
 						
 					{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 						
 						<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 100px">
 							{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 								{{ form_widget(formulaire.titre) }}
-							{# form_label(formulaire.createur, "Auteur", {'label_attr': {'class': 'col-sm-2 control-label'}}) #}
+							{{ form_label(formulaire.createur, "Auteur", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 								{{ form_widget(formulaire.createur) }}
-							{# form_label(formulaire.domaine, "Domaine", {'label_attr': {'class': 'col-sm-2 control-label'}}) #}
+							{{ form_label(formulaire.domaine, "Domaine", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 								{{ form_widget(formulaire.domaine) }}
 						</div>
 						

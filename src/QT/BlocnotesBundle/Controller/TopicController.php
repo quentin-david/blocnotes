@@ -5,8 +5,8 @@ namespace QT\BlocnotesBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use QT\BlocnotesBundle\Entity\Topic;
-use QT\BlocnotesBundle\Entity\Utilisateur;
-use QT\BlocnotesBundle\Entity\Domaine;
+use QT\AdminBundle\Entity\Utilisateur;
+use QT\AdminBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Form\Type\TopicType;
@@ -47,7 +47,7 @@ class TopicController extends Controller
                 $em->persist($topic);
                 $em->flush();
                 
-                return $this->redirectToRoute('lister_topic', array('createur' => 1));
+                return $this->redirectToRoute('lister_topic');
             }
         }
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(

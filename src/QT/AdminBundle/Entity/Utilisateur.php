@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\BlocnotesBundle\Entity;
+namespace QT\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur")
- * @ORM\Entity(repositoryClass="QT\BlocnotesBundle\Repository\UtilisateurRepository")
+ * @ORM\Entity(repositoryClass="QT\AdminBundle\Repository\UtilisateurRepository")
  */
 class Utilisateur implements UserInterface, \Serializable
 {

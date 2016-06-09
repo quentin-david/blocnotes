@@ -1,4 +1,4 @@
-{% extends 'QTBlocnotesBundle:Base:base.html.twig' %}
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
 
 {% block contenu %}
     <h2>Nouvel utilisateur</h2>
@@ -6,7 +6,7 @@
     
     
 	<h2>Liste des utilisateurs</h2>
-    {# for utilisateur in liste_utilisateurs %}
+    {% for utilisateur in liste_utilisateurs %}
       	{{ utilisateur.nom }}
-    {% endfor #}
+    {% endfor %}
 {% endblock %}
