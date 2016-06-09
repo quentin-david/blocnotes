@@ -1,10 +1,13 @@
 {% block contenu %}
 	
-	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left">
+	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom">
 		<div class="topic_header" style="height: 30px">
 			<span class="w3-right w3-opacity">
 				<a href="{{ path('topic_edition', {'num_topic': topic.id}) }}">
-					<i class="fa fa-pencil w3-margin-right w3-text-theme"></i>
+					<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+				</a>
+				<a href="{{ path('topic_suppression', {'num_topic': topic.id}) }}">
+					<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
 				</a>
 			</span>
 			<span style="margin: 2px">#{{ topic.id }} {{ topic.titre }}</span>
@@ -15,17 +18,11 @@
         <hr class="w4-clear" style="margin: 0px">
 		<div class="w3-row-padding" style="margin:0 -16px">
 		  <div class="topic_corps">
-			  {#<div class="w3-half">
-				<img src="img_lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-			  </div>
-			  <div class="w3-half">
-				<img src="img_nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-			  </div>#}
 			  
 			  {{ topic.corps|raw }}
 		  </div>
-	  </div>
+		</div>
       </div>
-      <br>
+      
       
 {% endblock %}

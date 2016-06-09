@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block lanceurs %}
-	<h4 class="w3-center" style="margin: 0px">lanceurs</h4>
-	<p><a href="{{ path('creer_topic') }}">Add</a></p>
+	<p><a href="{{ path('creer_topic') }}">
+		<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout">
+	</a></p>
 {% endblock %}
 
 {% block contenu %}

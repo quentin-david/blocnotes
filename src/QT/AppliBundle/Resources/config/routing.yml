@@ -16,6 +16,12 @@ topic_edition:
     requirements:
         num_topic: \d
 
+topic_suppression:
+    path:   /topic/suppr/{num_topic}
+    defaults: {_controller: QTBlocnotesBundle:Topic:supprimerTopic}
+    requirements:
+        num_topic: \d
+
 utilisateurs:
     path:   /utilisateurs
     defaults: {_controller: QTAdminBundle:Utilisateurs:index}

@@ -47,7 +47,8 @@ class TopicController extends Controller
                 $em->persist($topic);
                 $em->flush();
                 
-                return $this->redirectToRoute('lister_topic');
+				// Redirection vers les topics du meme domaine
+                return $this->redirectToRoute('lister_topic', array('topic_recherche[domaine]' => $request->get('topic')['domaine']));
             }
         }
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
@@ -55,5 +56,27 @@ class TopicController extends Controller
 									'formulaire' => $formulaire->createView(),							
 							));
     }
+	
+	
+	/**
+	 *
+	 */
+	public function supprimerTopicAction(Request $request,$num_topic)
+	{
+		//ENtity Manager
+        $em = $this->getDoctrine()->getManager();
+        
+        // Verification que le topic existe bien
+		if($request->isMethod('POST')){
+			$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic);
+			if($topic_a_supprimer != ''){
+				$em->remove($topic_a_supprimer);
+				$em->flush();
+			}
+			return $this->redirectToRoute('lister_topic');
+		}
+			// Redirection vers les topics du meme domaine
+            return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('num_topic' => $num_topic));
+	}
 	
 }

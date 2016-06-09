@@ -2,6 +2,9 @@
 
 namespace QT\BlocnotesBundle\Repository;
 
+use QT\BlocnotesBundle\Entity\Topic;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
+
 /**
  * TopicRepository
  *
@@ -10,4 +13,27 @@ namespace QT\BlocnotesBundle\Repository;
  */
 class TopicRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function search(Topic $search)
+    {
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addRootEntityFromClassMetadata('QT\BlocnotesBundle\Entity\Topic', 'p');
+       
+        $query = 'SELECT * FROM topic WHERE 1 ';
+        $params = array();
+
+        if ($search->getCreateur() != '') {
+            $query .= 'AND createur_id = :createur';
+            $params['createur'] = $search->getCreateur();
+        }
+        if ($search->getDomaine() != '') {
+            $query .= ' AND domaine_id = :domaine';
+            $params['domaine'] = $search->getDomaine();
+        }
+
+        // Nous pouvons ajouter nos autres champs de recherches ici
+
+        $request = $this->getEntityManager()->createNativeQuery($query, $rsm);
+        $request->setParameters($params);
+        return $request;
+    }
 }
