@@ -7,17 +7,17 @@ utilisateur:
     defaults: {_controller: QTBlocnotesBundle:Utilisateur:index}
 
 creer_topic:
-    path:   /topic/edit
+    path:   /topic/edit/{topic_type}
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
     
-topic_edition:
-    path:   /topic/edit/{num_topic}
+editer_topic:
+    path:   /topic/edit/{topic_type}/{topic_num}
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
     requirements:
         num_topic: \d
 
 topic_suppression:
-    path:   /topic/suppr/{num_topic}
+    path:   /topic/suppr/{topic_num}
     defaults: {_controller: QTBlocnotesBundle:Topic:supprimerTopic}
     requirements:
         num_topic: \d

@@ -6,8 +6,11 @@
 {% endblock %}
 
 {% block lanceurs %}
-	<p><a href="{{ path('creer_topic') }}">
-		<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout">
+	<p><a href="{{ path('creer_topic', {'topic_type': 'topic'}) }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Topic">
+		</a>
+		<a href="{{ path('creer_topic', {'topic_type': 'DI'}) }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout DI">
 	</a></p>
 {% endblock %}
 

@@ -10,6 +10,7 @@ use QT\AdminBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Form\Type\TopicType;
+use QT\BlocnotesBundle\Form\Type\TopicInterventionType;
 
 class TopicController extends Controller
 {
@@ -19,26 +20,42 @@ class TopicController extends Controller
     public function afficherTopicAction($topic)
     {
         // replace this example code with whatever you need
-        return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array('topic' => $topic));
+		if($topic->getIntervention() != ''){
+			return $this->render('QTBlocnotesBundle:Topic:topic_di.html.twig', array(
+										'topic' => $topic
+									));
+		}else{
+			return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array(
+										'topic' => $topic
+									));
+		}
     }
     
     /**
-     * Editer ou creer un topic
+     * Editer ou creer un topic/DI
      */ 
-    public function editerTopicAction(Request $request, $num_topic=null)
+    public function editerTopicAction(Request $request, $topic_num=null, $topic_type=null)
     {
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
         
         // Objet Emplacement pour le formulaire
-        if($num_topic === null){
+        if($topic_num === null){
 			$topic = new Topic; // Creation
 		}else{
-			$topic = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic); //Edition
+			$topic = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num); //Edition
 		}
 
-		// Creation du formulaire générique 
-		$formulaire = $this->createForm(TopicType::class, $topic);      
+		// Creation du formulaire générique de création d'un topic
+		// en fonction du type de topic
+		switch($topic_type){
+			case "topic":
+				$formulaire = $this->createForm(TopicType::class, $topic); // topic classique
+				break;
+			case "DI":
+				$formulaire = $this->createForm(TopicInterventionType::class, $topic); // DI
+				break;
+		}			
         
         //Enregistrement en base
         if($request->isMethod('POST')){
@@ -51,8 +68,10 @@ class TopicController extends Controller
                 return $this->redirectToRoute('lister_topic', array('topic_recherche[domaine]' => $request->get('topic')['domaine']));
             }
         }
+		// Affichage du template d'edition du topic/DI
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
-									'num_topic' => $num_topic,
+									'topic_num' => $topic_num,
+									'topic_type' => $topic_type,
 									'formulaire' => $formulaire->createView(),							
 							));
     }
@@ -61,14 +80,14 @@ class TopicController extends Controller
 	/**
 	 *
 	 */
-	public function supprimerTopicAction(Request $request,$num_topic)
+	public function supprimerTopicAction(Request $request,$topic_num)
 	{
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
         
         // Verification que le topic existe bien
 		if($request->isMethod('POST')){
-			$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($num_topic);
+			$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num);
 			if($topic_a_supprimer != ''){
 				$em->remove($topic_a_supprimer);
 				$em->flush();
@@ -76,7 +95,7 @@ class TopicController extends Controller
 			return $this->redirectToRoute('lister_topic');
 		}
 			// Redirection vers les topics du meme domaine
-            return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('num_topic' => $num_topic));
+            return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('topic_num' => $topic_num));
 	}
 	
 }

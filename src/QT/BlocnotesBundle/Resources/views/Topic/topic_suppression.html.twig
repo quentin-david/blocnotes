@@ -4,11 +4,11 @@
     <div class="w3-col m9">
         <h3>Suppression d'un topic </h3>
         <div>
-            Etes vous sur de vouloir supprimer 'l'objet <b>{{ num_topic }}</b>
+            Etes vous sur de vouloir supprimer 'l'objet <b>{{ topic_num }}</b>
         </div>
     </div>
     
-    <form action="{{ path('topic_suppression', {'num_topic': num_topic}) }}" method="post">
+    <form action="{{ path('topic_suppression', {'topic_num': topic_num}) }}" method="post">
         <a href="{{ path('lister_topic') }}" class="btn btn-default">
             Retour création topic
         </a>

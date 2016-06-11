@@ -4,15 +4,15 @@
 		<div class="topic_header" style="height: 30px">
 			{# Boutons edition/suppression #}
 			<span class="w3-right w3-opacity">
-				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'topic'}) }}">
-				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'DI'}) }}">
+					<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
 				</a>
 				<a href="{{ path('topic_suppression', {'topic_num': topic.id}) }}">
 					<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
 				</a>
 			</span>
 			{# ------- En-tête -------- #}
-			<span style="margin: 2px">#{{ topic.id }} {{ topic.titre }}</span>
+			<span style="margin: 2px"><strong>DI </strong>#{{ topic.intervention.numDi }} {{ topic.titre }}</span>
 			<span style="margin: 2px; position: absolute; right: 120px">{{ topic.createur }} ({{ topic.dateCreation|date('Y-m-d') }})</span>
 		</div>
 		
@@ -21,6 +21,12 @@
 		<div class="w3-row-padding" style="margin:0 -16px">
 		  <div class="topic_corps">
 			{# ---- Cartouche (DI) ---- #}
+			<div class="topic_cartouche">
+				<table>
+					<tr><td>DI : {{ topic.intervention.numDi }}</td></tr>
+					<tr><td>Date intervention {{ topic.intervention.dateIntervention|date('d/m/Y') }}<tr><td>
+				</table>
+			</div>
 			
 			{# ---- Texte ---- #}
 				{{ topic.corps|raw }}

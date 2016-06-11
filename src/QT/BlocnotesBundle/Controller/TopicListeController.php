@@ -22,14 +22,17 @@ class TopicListeController extends Controller
         $liste_topics = array();
         
         // Utilisation du formulaire générique défini dans BlocnotesBundle/Form/Type
+        // Désactivation du CSRF pour passer des paramètres GET au niveau des routes
         $formulaire_recherche = $this->createForm(TopicRechercheType::class, $topic, array('csrf_protection' => false));
         
         $em = $this->getDoctrine()->getManager();
+        // Par défaut affichage de tous les topics
         $liste_topics = $em->getRepository('QTBlocnotesBundle:Topic')->findAll();
         
+        // Récupération des valeurs passées par le formulaire de recherche
         $formulaire_recherche->handleRequest($request);
         if($formulaire_recherche->isValid()){
-            //Gestion des objets Topic
+            // SI des paramètres ont été passés
             if($formulaire_recherche->getData() != ''){
                 $query = $em->getRepository('QTBlocnotesBundle:Topic')->search($formulaire_recherche->getData());
                 $liste_topics = $query->getResult();

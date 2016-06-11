@@ -59,6 +59,11 @@ class Topic
      * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Domaine")
      */
     private $domaine;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Intervention", cascade={"persist"})
+     */
+    private $intervention;
 
     
     public function __construct()
@@ -221,5 +226,29 @@ class Topic
     public function getCreateur()
     {
         return $this->createur;
+    }
+
+    /**
+     * Set intervention
+     *
+     * @param \QT\BlocnotesBundle\Entity\Intervention $intervention
+     *
+     * @return Intervention
+     */
+    public function setIntervention(\QT\BlocnotesBundle\Entity\Intervention $intervention = null)
+    {
+        $this->intervention = $intervention;
+
+        return $this;
+    }
+
+    /**
+     * Get intervention
+     *
+     * @return \QT\BlocnotesBundle\Intervention
+     */
+    public function getIntervention()
+    {
+        return $this->intervention;
     }
 }
