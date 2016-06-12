@@ -41,20 +41,6 @@ class Utilisateur implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="trigramme", type="string", length=5)
-     */
-    private $trigramme;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_affiche", type="string", length=100)
-     */
-    private $nomAffiche;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="user_name", type="string", length=100, unique=true)
      */
     private $username;
@@ -76,6 +62,12 @@ class Utilisateur implements UserInterface, \Serializable
     * @ORM\Column(name="roles", type="array")
     */
     private $roles = array();
+    
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $listeRoles;
 
 
     /**
@@ -136,77 +128,6 @@ class Utilisateur implements UserInterface, \Serializable
         return $this->prenom;
     }
 
-    /**
-     * Set trigramme
-     *
-     * @param string $trigramme
-     *
-     * @return Utilisateur
-     */
-    public function setTrigramme($trigramme)
-    {
-        $this->trigramme = $trigramme;
-
-        return $this;
-    }
-
-    /**
-     * Get trigramme
-     *
-     * @return string
-     */
-    public function getTrigramme()
-    {
-        return $this->trigramme;
-    }
-
-    /**
-     * Set nomAffiche
-     *
-     * @param string $nomAffiche
-     *
-     * @return Utilisateur
-     */
-    public function setNomAffiche($nomAffiche)
-    {
-        $this->nomAffiche = $nomAffiche;
-
-        return $this;
-    }
-
-    /**
-     * Get nomAffiche
-     *
-     * @return string
-     */
-    public function getNomAffiche()
-    {
-        return $this->nomAffiche;
-    }
-
-    /**
-     * Set login
-     *
-     * @param string $login
-     *
-     * @return Utilisateur
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
 
     public function getPlainPassword()
     {
@@ -216,6 +137,20 @@ class Utilisateur implements UserInterface, \Serializable
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+    }
+    
+    /**
+     * QT essai pour transformer liste de roles en un tableau
+     */
+    public function getListeRoles()
+    {
+        return $this->listeRoles;
+        //return implode(",", $this->roles);
+    }
+
+    public function setListeRoles($listeRoles)
+    {
+        $this->listeRoles = $listeRoles;
     }
     
     /**
@@ -244,7 +179,8 @@ class Utilisateur implements UserInterface, \Serializable
     
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles;
+        //return array('ROLE_USER','ROLE_ADMIN');
     }
     
     public function getSalt()
@@ -306,7 +242,7 @@ class Utilisateur implements UserInterface, \Serializable
      *
      * @return Utilisateur
      */
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
 

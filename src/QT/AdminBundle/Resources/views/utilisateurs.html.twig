@@ -2,11 +2,28 @@
 
 {% block contenu %}
     <h2>Nouvel utilisateur</h2>
-    {{ form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) }}
-    
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) }}
+	{% else %}
+		<p>Zone réservée administrateur</p>
+    {% endif %}
     
 	<h2>Liste des utilisateurs</h2>
+	<table>
+		<tr><th>NOM</th><th>PRENOM</th><th>USERNAME</th><th>actions</th></tr>
     {% for utilisateur in liste_utilisateurs %}
-      	{{ utilisateur.nom }}
+      	<tr>
+			<td>{{ utilisateur.nom }}</td>
+			<td>{{ utilisateur.prenom }}</td>
+			<td>{{ utilisateur.username }}</td>
+			{% if is_granted('ROLE_ADMIN') %}
+				<td>
+					<a href="{{ path('editer_utilisateurs', {'utilisateur_num': utilisateur.id}) }}">
+						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+					</a>
+				</td>
+			{% endif %}
+		</tr>
     {% endfor %}
+	</table>
 {% endblock %}

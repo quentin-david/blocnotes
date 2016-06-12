@@ -1,5 +1,6 @@
 <?php
 namespace QT\AdminBundle\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -32,16 +33,15 @@ class UtilisateursController extends Controller
         $formBuilder
             ->add('nom',    TextType::class)
             ->add('prenom',    TextType::class)
-            ->add('trigramme',    TextType::class)
-            ->add('nomAffiche',    TextType::class)
             ->add('username',    TextType::class)
-            ->add('roles',  CollectionType::class )
+            ->add('listeRoles', TextType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('rechercher', SubmitType::class);   
+            ->add('rechercher', SubmitType::class);
+            
         $formulaire_utilisateur = $formBuilder->getForm();
         
         // Enregistrement de l'utilisateur
@@ -50,10 +50,13 @@ class UtilisateursController extends Controller
             if ($formulaire_utilisateur->isSubmitted() && $formulaire_utilisateur->isValid()) {
     
                 // 3) Encode the password (you could also do this via Doctrine listener)
-                $password = $this->get('security.password_encoder')
-                        ->encodePassword($utilisateur, $utilisateur->getPlainPassword());
+                $password = $this->get('security.password_encoder')->encodePassword($utilisateur, $utilisateur->getPlainPassword());
                 $utilisateur->setPassword($password);
-    
+                
+                // QT ajout du role
+                //$utilisateur->setRoles(array('ROLE_ADMIN'));
+                $utilisateur->setRoles(explode(",", $utilisateur->getListeRoles()));
+        
                 // 4) save the User!
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($utilisateur);
@@ -69,5 +72,13 @@ class UtilisateursController extends Controller
                                         'liste_utilisateurs' => $liste_utilisateurs,
                                         'formulaire_utilisateur' => $formulaire_utilisateur->createView()
                             ));
+    }
+    
+    
+    public function logoutAction(Request $request)
+    {
+        /*$session = $request->getSession();
+        $session->clear();
+        return $this->redirectToRoute('accueil');*/
     }
 }

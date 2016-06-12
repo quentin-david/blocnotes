@@ -84,8 +84,8 @@ class DateTimeToLocalizedStringTransformer extends BaseDateTimeTransformer
             return '';
         }
 
-        if (!$dateTime instanceof \DateTime && !$dateTime instanceof \DateTimeInterface) {
-            throw new TransformationFailedException('Expected a \DateTime or \DateTimeInterface.');
+        if (!$dateTime instanceof \DateTimeInterface) {
+            throw new TransformationFailedException('Expected a \DateTimeInterface.');
         }
 
         $value = $this->getIntlDateFormatter()->format($dateTime->getTimestamp());
@@ -126,7 +126,7 @@ class DateTimeToLocalizedStringTransformer extends BaseDateTimeTransformer
 
         try {
             // read timestamp into DateTime object - the formatter delivers in UTC
-            $dateTime = new \DateTime(sprintf('@%s UTC', $timestamp));
+            $dateTime = new \DateTime(sprintf('@%s', $timestamp));
         } catch (\Exception $e) {
             throw new TransformationFailedException($e->getMessage(), $e->getCode(), $e);
         }
