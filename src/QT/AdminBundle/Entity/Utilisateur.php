@@ -69,6 +69,11 @@ class Utilisateur implements UserInterface, \Serializable
      */
     private $listeRoles;
 
+    /**
+     * @ORM\OneToOne(targetEntity="QT\AdminBundle\Entity\Profil", cascade={"persist"})
+     */
+    private $profil;
+    
 
     /**
      * Get id
@@ -162,7 +167,9 @@ class Utilisateur implements UserInterface, \Serializable
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        if($password != ''){
+            $this->password = $password;
+        }
 
         return $this;
     }
@@ -255,5 +262,29 @@ class Utilisateur implements UserInterface, \Serializable
     public function __toString()
     {
         return (string) $this->getUsername();
+    }
+
+    /**
+     * Set profil
+     *
+     * @param \QT\AdminBundle\Entity\Profil $profil
+     *
+     * @return Utilisateur
+     */
+    public function setProfil(\QT\AdminBundle\Entity\Profil $profil = null)
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    /**
+     * Get profil
+     *
+     * @return \QT\AdminBundle\Entity\Profil
+     */
+    public function getProfil()
+    {
+        return $this->profil;
     }
 }

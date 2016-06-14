@@ -1,0 +1,19 @@
+creer_topic:
+    path:   /topic/edit/{topic_type}
+    defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
+    
+editer_topic:
+    path:   /topic/edit/{topic_type}/{topic_num}
+    defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
+    requirements:
+        num_topic: \d
+
+supprimer_topic:
+    path:   /topic/suppr/{topic_num}
+    defaults: {_controller: QTBlocnotesBundle:Topic:supprimerTopic}
+    requirements:
+        num_topic: \d
+        
+lister_topic:
+    path:   /topics
+    defaults: {_controller: QTBlocnotesBundle:TopicListe:listerTopic}

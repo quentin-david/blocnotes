@@ -61,6 +61,9 @@ class TopicController extends Controller
         if($request->isMethod('POST')){
             $formulaire->handleRequest($request);
             if($formulaire->isValid()){
+				$topic->setCreateur($this->getUser());
+				//$topic->getPj()->upload();
+				
                 $em->persist($topic);
                 $em->flush();
                 
@@ -84,10 +87,11 @@ class TopicController extends Controller
 	{
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
+		$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num);
         
         // Verification que le topic existe bien
 		if($request->isMethod('POST')){
-			$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num);
+			//$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num);
 			if($topic_a_supprimer != ''){
 				$em->remove($topic_a_supprimer);
 				$em->flush();
@@ -95,7 +99,7 @@ class TopicController extends Controller
 			return $this->redirectToRoute('lister_topic');
 		}
 			// Redirection vers les topics du meme domaine
-            return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('topic_num' => $topic_num));
+            return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('topic' => $topic_a_supprimer));
 	}
 	
 }

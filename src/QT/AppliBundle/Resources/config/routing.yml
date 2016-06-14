@@ -2,42 +2,6 @@ accueil:
     path:     /
     defaults: { _controller: QTAppliBundle:Accueil:index }
 
-utilisateur:
-    path:   /utilisateur/{userName}
-    defaults: {_controller: QTBlocnotesBundle:Utilisateur:index}
-
 logout:
     path: /logout
     #defaults: {_controller: QTAdminBundle:Utilisateurs:logout}
-    
-creer_topic:
-    path:   /topic/edit/{topic_type}
-    defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
-    
-editer_topic:
-    path:   /topic/edit/{topic_type}/{topic_num}
-    defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
-    requirements:
-        num_topic: \d
-
-topic_suppression:
-    path:   /topic/suppr/{topic_num}
-    defaults: {_controller: QTBlocnotesBundle:Topic:supprimerTopic}
-    requirements:
-        num_topic: \d
-
-creer_utilisateurs:
-    path:   /utilisateurs
-    defaults: {_controller: QTAdminBundle:Utilisateurs:index}
-    
-editer_utilisateurs:
-    path:   /utilisateurs/{utilisateur_num}
-    defaults: {_controller: QTAdminBundle:Utilisateurs:index}
-
-ajouter_domaine:
-    path:   /domaine
-    defaults: {_controller: QTAdminBundle:Domaine:index}
-    
-lister_topic:
-    path:   /topics
-    defaults: {_controller: QTBlocnotesBundle:TopicListe:listerTopic}

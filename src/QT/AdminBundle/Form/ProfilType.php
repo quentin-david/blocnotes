@@ -1,14 +1,12 @@
 <?php
 
-namespace QT\BlocnotesBundle\Form\Type;
+namespace QT\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class InterventionType extends AbstractType
+class ProfilType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,11 +15,7 @@ class InterventionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numDi', TextType::class)
-            ->add('dateIntervention', DateTimeType::class,array(
-                                        'widget' => 'single_text',
-                                        'date_format'=>"dd/MM/yyyy hh:mm",
-            ))
+            ->add('afficherDi')
         ;
     }
     
@@ -31,7 +25,7 @@ class InterventionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'QT\BlocnotesBundle\Entity\Intervention'
+            'data_class' => 'QT\AdminBundle\Entity\Profil'
         ));
     }
 }

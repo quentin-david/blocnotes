@@ -5,9 +5,9 @@
 			{# Boutons edition/suppression #}
 			<span class="w3-right w3-opacity">
 				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'topic'}) }}">
-				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+					<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
 				</a>
-				<a href="{{ path('topic_suppression', {'topic_num': topic.id}) }}">
+				<a href="{{ path('supprimer_topic', {'topic_num': topic.id}) }}">
 					<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
 				</a>
 			</span>
@@ -24,6 +24,12 @@
 			
 			{# ---- Texte ---- #}
 				{{ topic.corps|raw }}
+				
+			{# affichage de la piece jointe #}
+			<p>
+				Liste des PJs : 
+				{{ dump(topic.pj) }}
+			</p>
 		  </div>
 		</div>
       </div>

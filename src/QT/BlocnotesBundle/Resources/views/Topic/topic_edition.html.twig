@@ -7,13 +7,25 @@
           <div class="w3-row-padding w3-padding-bottom" style="margin: 10px -16px">						
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				
-				<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 100px">
-					{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-						{{ form_widget(formulaire.titre) }}
-					{{ form_label(formulaire.createur, "Auteur", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-						{{ form_widget(formulaire.createur) }}
-					{{ form_label(formulaire.domaine, "Domaine", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-						{{ form_widget(formulaire.domaine) }}
+				{% if topic_type == 'DI' %}
+				<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 130px">
+				{% else %}
+				<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 80px">
+				{% endif %}
+					<div class="w3-col m7"> {# cadre de gauche #}
+						{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+							{{ form_widget(formulaire.titre) }}
+						{{ form_label(formulaire.domaine, "Domaine", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+							{{ form_widget(formulaire.domaine) }}
+						{% if topic_type == 'DI' %}
+						{# form_label(formulaire.intervention, "DI", {'label_attr': {'class': 'col-sm-2 control-label'}}) #}
+							{{ form_widget(formulaire.intervention) }}
+						{% endif %}
+					</div>
+					<div class="w3-col m5"> {# cadre d'upload de fichier #}
+						{{ form_label(formulaire.pj, "PJ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+						{{ form_widget(formulaire.pj) }}
+					</div>
 				</div>
 				
 				<div id="topic_textarea" class="col-sm-10">

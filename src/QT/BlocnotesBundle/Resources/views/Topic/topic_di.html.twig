@@ -7,7 +7,7 @@
 				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'DI'}) }}">
 					<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
 				</a>
-				<a href="{{ path('topic_suppression', {'topic_num': topic.id}) }}">
+				<a href="{{ path('supprimer_topic', {'topic_num': topic.id}) }}">
 					<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
 				</a>
 			</span>
@@ -20,6 +20,7 @@
         <hr class="w4-clear" style="margin: 0px">
 		<div class="w3-row-padding" style="margin:0 -16px">
 		  <div class="topic_corps">
+			
 			{# ---- Cartouche (DI) ---- #}
 			<div class="topic_cartouche">
 				<table>

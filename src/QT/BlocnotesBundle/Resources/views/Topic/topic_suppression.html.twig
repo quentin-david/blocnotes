@@ -3,15 +3,17 @@
 {% block contenu %}      
     <div class="w3-col m9">
         <h3>Suppression d'un topic </h3>
-        <div>
-            Etes vous sur de vouloir supprimer 'l'objet <b>{{ topic_num }}</b>
-        </div>
+        <p>
+            Etes vous sur de vouloir supprimer 'l'objet <b>{{ topic.titre }}</b>
+        </p>
     </div>
     
-    <form action="{{ path('topic_suppression', {'topic_num': topic_num}) }}" method="post">
-        <a href="{{ path('lister_topic') }}" class="btn btn-default">
-            Retour création topic
-        </a>
-        <input type="submit" value="Supprimer" class="btn btn-danger" />
-    </form>
+    <div class="w3-col m9">
+        <form action="{{ path('supprimer_topic', {'topic_num': topic.id}) }}" method="post">
+            <a href="{{ path('lister_topic') }}" class="btn btn-default">
+                Retour création topic
+            </a>
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+        </form>
+    </div>
 {% endblock %}

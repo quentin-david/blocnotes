@@ -1,0 +1,12 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block contenu %}
+    <h2>Profil de l'utilisateur {{utilisateur.username}}</h2>
+		
+	<h4>Modifier mon MDP</h4>	
+	{{ form(formulaire_password, {'attr': {'class': 'formulaire'}}) }}
+    
+	<h4>Modifier mes parametres</h4>	
+	{{ form(formulaire_profil, {'attr': {'class': 'formulaire'}}) }}
+
+{% endblock %}
