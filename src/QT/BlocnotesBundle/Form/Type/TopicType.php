@@ -8,7 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-//use QT\BlocnotesBundle\Form\Type\PieceJointeType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
+use QT\AdminBundle\Form\DomaineType;
 
 /**
  * Formulaire de creation de topic
@@ -19,8 +21,11 @@ class TopicType extends AbstractType
     {
         $builder 
             ->add('titre', TextType::class)
-			//->add('createur', EntityType::class, array('class' => 'QTAdminBundle:Utilisateur', 'choice_label' => 'username'))
-			->add('domaine', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle'))
+			//->add('domaine', EntityType::class, array('class' => 'QTAdminBundle:Domaine','choice_label' => 'libelle'))
+			->add('domaines', CollectionType::class, array(
+							'entry_type' => DomaineType::class,
+							'allow_add'    => true,
+			))
 			->add('pj', PieceJointeType::class)
 			->add('corps', TextareaType::class)
             ->add('save', SubmitType::class); 

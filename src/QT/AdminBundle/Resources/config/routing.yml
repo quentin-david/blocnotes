@@ -1,10 +1,14 @@
-creer_utilisateurs:
+creer_utilisateur:
     path:   /utilisateurs
     defaults: {_controller: QTAdminBundle:Utilisateurs:index}
     
-editer_utilisateurs:
+editer_utilisateur:
     path:   /utilisateurs/{utilisateur_num}
     defaults: {_controller: QTAdminBundle:Utilisateurs:index}
+    
+supprimer_utilisateur:
+    path:   /utilisateurs/suppr/{utilisateur_num}
+    defaults: {_controller: QTAdminBundle:Utilisateurs:supprimerUtilisateur}
 
 ajouter_domaine:
     path:   /domaine

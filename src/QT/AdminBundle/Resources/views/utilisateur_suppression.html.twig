@@ -1,0 +1,19 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block contenu %}      
+    <div class="w3-col m9">
+        <h3>Suppression d'un utilisateur </h3>
+        <p>
+            Etes vous sur de vouloir supprimer l'utilisateur <b>{{ utilisateur.username }}</b>
+        </p>
+    </div>
+    
+    <div class="w3-col m9">
+        <form action="{{ path('supprimer_utilisateur', {'utilisateur_num': utilisateur.id}) }}" method="post">
+            <a href="{{ path('creer_utilisateur') }}" class="btn btn-default">
+                Retour création utilisateur
+            </a>
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+        </form>
+    </div>
+{% endblock %}

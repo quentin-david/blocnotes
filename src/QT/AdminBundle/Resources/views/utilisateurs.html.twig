@@ -1,29 +1,83 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
 
-{% block contenu %}
-    <h2>Nouvel utilisateur</h2>
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/liste_utilisateurs.css') }}">
+{% endblock %}
+
+{% block conteneur_gauche %}
+	{# On masque le champ de gauche #}	
+{% endblock %}
+
+{% block conteneur_droite %}
+	{# On masque le champ de gauche #}	
+{% endblock %}
+
+{% block contenu_full_page %}
+	{% if utilisateur == '' %}
+		<h2>Nouvel utilisateur</h2>
+	{% else %}
+		<h2>Edition de l'utilisateur : <b>{{ utilisateur.username }}</b></h2> 
+	{% endif %}
 	{% if is_granted('ROLE_ADMIN') %}
-		{{ form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) }}
+		{# form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) #}
+		{{ form_start(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) }}
+			<table>
+				<tr>
+					<td>{{ form_label(formulaire_utilisateur.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire_utilisateur.nom) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire_utilisateur.prenom, "Prenom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire_utilisateur.prenom) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire_utilisateur.username, "Username", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire_utilisateur.username) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire_utilisateur.listeRoles, "Roles", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire_utilisateur.listeRoles) }}</td>
+				</tr>
+				{#
+				<tr>
+					<td>{{ form_label(formulaire_utilisateur.plainPassword, "Password", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire_utilisateur.plainPassword) }}</td>
+				</tr>
+				#}
+			</table>
+					{{ form_widget(formulaire_utilisateur.Creer) }}
+
+					<a href="{{ path('creer_utilisateur') }}"><button type="button" class="cancel">Cancel</button></a>
+
+			
+		{{ form_end(formulaire_utilisateur) }}
 	{% else %}
 		<p>Zone réservée administrateur</p>
     {% endif %}
     
-	<h2>Liste des utilisateurs</h2>
-	<table>
-		<tr><th>NOM</th><th>PRENOM</th><th>USERNAME</th><th>actions</th></tr>
-    {% for utilisateur in liste_utilisateurs %}
-      	<tr>
-			<td>{{ utilisateur.nom }}</td>
-			<td>{{ utilisateur.prenom }}</td>
-			<td>{{ utilisateur.username }}</td>
-			{% if is_granted('ROLE_ADMIN') %}
-				<td>
-					<a href="{{ path('editer_utilisateurs', {'utilisateur_num': utilisateur.id}) }}">
-						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
-					</a>
-				</td>
-			{% endif %}
-		</tr>
-    {% endfor %}
-	</table>
+	<div class="liste_utilisateurs">
+		<h2>Liste des utilisateurs</h2>
+		<table>
+			<tr><th>NOM</th><th>PRENOM</th><th>USERNAME</th><th>ROLES</th><th>actions</th></tr>
+		{% for utilisateur in liste_utilisateurs %}
+			<tr>
+				<td>{{ utilisateur.nom }}</td>
+				<td>{{ utilisateur.prenom }}</td>
+				<td>{{ utilisateur.username }}</td>
+				<td>{{ utilisateur.listeRoles }}</td>
+				{% if is_granted('ROLE_ADMIN') %}
+					<td>
+						<a href="{{ path('editer_utilisateur', {'utilisateur_num': utilisateur.id}) }}">
+							<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+						</a>
+						<a href="{{ path('supprimer_utilisateur', {'utilisateur_num': utilisateur.id}) }}">
+							<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+						</a>
+					</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
 {% endblock %}

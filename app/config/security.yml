@@ -36,7 +36,7 @@ security:
                 target: /
             
     access_control:
-        #- { path: ^/utilisateurs, roles: ROLE_ADMIN }
+        - { path: ^/utilisateurs, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
         
     role_hierarchy:

@@ -74,6 +74,7 @@ class TopicController extends Controller
 		// Affichage du template d'edition du topic/DI
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
 									'topic_num' => $topic_num,
+									'topic' => $topic,
 									'topic_type' => $topic_type,
 									'formulaire' => $formulaire->createView(),							
 							));

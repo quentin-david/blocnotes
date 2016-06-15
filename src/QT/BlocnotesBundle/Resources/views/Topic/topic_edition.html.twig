@@ -1,5 +1,14 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
-{% block contenu %}
+
+{% block conteneur_gauche %}
+	{# On masque le champ de gauche #}	
+{% endblock %}
+
+{% block conteneur_droite %}
+	{# On masque le champ de gauche #}	
+{% endblock %}
+
+{% block contenu_full_page %}
 	
 	<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
 	
@@ -7,23 +16,40 @@
           <div class="w3-row-padding w3-padding-bottom" style="margin: 10px -16px">						
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				
-				{% if topic_type == 'DI' %}
-				<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 130px">
-				{% else %}
-				<div id="topic_formulaire" class="col-sm-10" style="margin-bottom: 80px">
-				{% endif %}
+				<div id="topic_formulaire" class="w3-row" style="margin-bottom: 10px">
 					<div class="w3-col m7"> {# cadre de gauche #}
-						{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-							{{ form_widget(formulaire.titre) }}
-						{{ form_label(formulaire.domaine, "Domaine", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-							{{ form_widget(formulaire.domaine) }}
-						{% if topic_type == 'DI' %}
-						{# form_label(formulaire.intervention, "DI", {'label_attr': {'class': 'col-sm-2 control-label'}}) #}
-							{{ form_widget(formulaire.intervention) }}
-						{% endif %}
+					<table>
+						<tr>
+							<td>{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.titre) }}</td>
+						</tr>
+						
+						{#<tr>
+							<td>{{ form_label(formulaire.domaines, "Domaiiiiines", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.domaines.libelle) }}</td>
+							<td><a href="#" id="add_category" class="btn btn-default">+</a></td>
+						</tr>
+						<tr>
+							<td>{{ form_label(formulaire.domaines, "Domaines", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.domaines.libelle) }}</td>
+							<td><a href="#" id="add_category" class="btn btn-default">++++</a></td>
+						</tr>#}
+
+						
+							
+							{% if topic_type == 'DI' %}
+						<tr>
+							<td>{{ form_label(formulaire.intervention.numDi, "DI", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.intervention.numDi) }}</td>
+						</tr>
+						<tr>
+							<td>{{ form_label(formulaire.intervention.dateIntervention, "Date intervention", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.intervention.dateIntervention) }}</td>
+						</tr>
+							{% endif %}
+					</table>
 					</div>
 					<div class="w3-col m5"> {# cadre d'upload de fichier #}
-						{{ form_label(formulaire.pj, "PJ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 						{{ form_widget(formulaire.pj) }}
 					</div>
 				</div>
@@ -38,12 +64,80 @@
       <br>
       
 	<script type="text/javascript">
-		{% if topic_type == 'topic' %}
-			CKEDITOR.replace( 'topic_corps' );
-		{% endif %}
-		{% if topic_type == 'DI' %}
-			CKEDITOR.replace( 'topic_intervention_corps' );
-		{% endif %}
+			{% if topic_type == 'topic' %}
+				CKEDITOR.replace( 'topic_corps' );
+			{% endif %}
+			{% if topic_type == 'DI' %}
+				CKEDITOR.replace( 'topic_intervention_corps' );
+			{% endif %}
 	</script>
-      
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	
+   {# Voici le script en question : #}
+   <script type="text/javascript">
+
+  $(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#topic_domaine');
+
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $('#add_category').click(function(e) {
+      addCategory($container);
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    if (index == 0) {
+      addCategory($container);
+    } else {
+      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire CategoryType
+    function addCategory($container) {
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var template = $container.attr('data-prototype')
+        .replace(/__name__label__/g, 'Catégorie n°' + (index+1))
+        .replace(/__name__/g,        index)
+      ;
+
+      // On crée un objet jquery qui contient ce template
+      var $prototype = $(template);
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+
+
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+      // Ajout du lien
+      $prototype.append($deleteLink);
+      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+  });
+</script>
+
 {% endblock %}

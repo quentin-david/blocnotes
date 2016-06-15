@@ -56,9 +56,9 @@ class Topic
 
     
     /**
-     * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Domaine")
+     * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"})
      */
-    private $domaine;
+    private $domaines;
     
     /**
      * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Intervention", cascade={"persist"})
@@ -185,29 +185,7 @@ class Topic
         return $this->dateModification;
     }
 
-    /**
-     * Set domaine
-     *
-     * @param \QT\BlocnotesBundle\Entity\Domaine $domaine
-     *
-     * @return Topic
-     */
-    public function setDomaine(\QT\AdminBundle\Entity\Domaine $domaine = null)
-    {
-        $this->domaine = $domaine;
 
-        return $this;
-    }
-
-    /**
-     * Get domaine
-     *
-     * @return \QT\BlocnotesBundle\Entity\Domaine
-     */
-    public function getDomaine()
-    {
-        return $this->domaine;
-    }
 
     /**
      * Set createur
@@ -279,5 +257,39 @@ class Topic
     public function getPj()
     {
         return $this->pj;
+    }
+
+    /**
+     * Add domaine
+     *
+     * @param \QT\AdminBundle\Entity\Domaine $domaine
+     *
+     * @return Topic
+     */
+    public function addDomaine(\QT\AdminBundle\Entity\Domaine $domaine)
+    {
+        $this->domaines[] = $domaine;
+
+        return $this;
+    }
+
+    /**
+     * Remove domaine
+     *
+     * @param \QT\AdminBundle\Entity\Domaine $domaine
+     */
+    public function removeDomaine(\QT\AdminBundle\Entity\Domaine $domaine)
+    {
+        $this->domaines->removeElement($domaine);
+    }
+
+    /**
+     * Get domaines
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDomaines()
+    {
+        return $this->domaines;
     }
 }

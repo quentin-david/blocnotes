@@ -46,7 +46,7 @@ class Utilisateur implements UserInterface, \Serializable
     private $username;
 
     /**
-     * @Assert\NotBlank()
+     * 
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -139,7 +139,7 @@ class Utilisateur implements UserInterface, \Serializable
         return $this->plainPassword;
     }
 
-    public function setPlainPassword($password)
+    public function setPlainPassword($password = null)
     {
         $this->plainPassword = $password;
     }
@@ -149,8 +149,11 @@ class Utilisateur implements UserInterface, \Serializable
      */
     public function getListeRoles()
     {
-        return $this->listeRoles;
-        //return implode(",", $this->roles);
+        if(is_string($this->listeRoles)){
+            return $this->listeRoles; //valeur textuelle du formulaire
+        }else{
+            return implode(",", $this->roles); //valeur stockée en base
+        }
     }
 
     public function setListeRoles($listeRoles)

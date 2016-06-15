@@ -15,7 +15,7 @@ class TopicRechercheType extends AbstractType
     {
         $builder 
             ->add('createur', EntityType::class, array('class' => 'QTAdminBundle:Utilisateur', 'choice_label' => 'username', 'placeholder' => '---', 'empty_data'  => null,'required' => false))
-            ->add('domaine', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle', 'placeholder' => '---', 'empty_data'  => null,'required' => false))
+            ->add('domaines', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle', 'placeholder' => '---', 'empty_data'  => null,'required' => false))
             ->add('rechercher', SubmitType::class)
             ->setMethod('GET');
     }

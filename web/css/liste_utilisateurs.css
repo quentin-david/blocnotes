@@ -1,0 +1,9 @@
+.liste_utilisateurs td {
+    border: 1px solid black;
+    text-align: center;
+    
+}
+
+.liste_utilisateurs a{
+    text-decoration: none;
+}

@@ -2,7 +2,8 @@
     background-color: #d9d9db;
 }
 
-.topic_corps table, th, td {
+.topic_corps td {
     background-color: #fcf4db;
     border: 1px solid black;
 }
+

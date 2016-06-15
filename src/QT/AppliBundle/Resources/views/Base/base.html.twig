@@ -12,43 +12,12 @@
 	<link rel="stylesheet" href="{{ asset('css/topic.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
 	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock %}
-    
-    
-{% block menu %}
-  	<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-    	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  	</li>
-  	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
-  	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
-	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
-	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
-	<li class="w3-hide-small w3-dropdown-hover">
-		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
-		<div class="w3-dropdown-content w3-white w3-card-4">
-			<a href="{{ path('creer_utilisateurs') }}">Utilisateurs</a>
-			<a href="{{ path('ajouter_domaine') }}">Domaines</a>
-		</div>
-	</li>
-  	<li class="w3-hide-small w3-dropdown-hover">
-    	<a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
-   		<div class="w3-dropdown-content w3-white w3-card-4">
-      		<a href="#">One new friend request</a>
-      		<a href="#">John Doe posted on your wall</a>
-      		<a href="#">Jane likes your post</a>
-    	</div>
-  	</li>
-  	<!-- <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a></li>-->
-	
-	<li class="w3-hide-small w3-right w3-dropdown-hover">
-		<a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
-		<div class="w3-dropdown-content w3-right w3-white w3-card-4" style="right: 2px">
-			<a href="{{ path('afficher_profil') }}">Mon profil</a>
-			<a href="{{ path('logout') }}">Logout</a>
-		</div>
-	</li>
-{% endblock %}
+
+{% block menu %}  
+	{{ include("QTAppliBundle:Modules:menu.html.twig") }}
+{% endblock %}    
 		
 		
 {% block recherches %}
@@ -57,6 +26,11 @@
   
 {% block lanceurs %}
 	{# render(controller('AppBundle:Accordeon:afficherAccordeon')) #}
+{% endblock %}
+
+{% block raccourcis %}
+	<div class="raccourci"><a href="{{ path('accueil')}}"><p>ACCUEIL</p></a></div>
+	<div class="raccourci"><a href="{{ path('lister_topic')}}"><p>TOPICS</p></a></div>
 {% endblock %}
 
 

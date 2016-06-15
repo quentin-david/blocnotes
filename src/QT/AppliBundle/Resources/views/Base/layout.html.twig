@@ -23,33 +23,55 @@
 			<div class="w3-row">
 			
    				<!-- Left Column -->
-   				<div class="w3-col m2" style="position:fixed; width:180px">
+				{% block conteneur_gauche %}
+   				<div class="w3-col m2 conteneur_colonne_gauche" style="position:fixed; width:180px">
      			
     	 			<!-- Recherches -->
-      				<div class="w3-card-2 w3-round w3-white">
+					{% block conteneur_recherches %}
+      				<div class="w3-card-2 w3-round w3-white colonne_gauche">
       					{% block recherches %} {% endblock %}
       				</div>
-      				<br>
+					{% endblock %}
+      				
       
      				<!-- Lanceurs -->
-     				<div class="w3-card-2 w3-round w3-white">
+					{% block conteneur_lanceurs %}
+     				<div class="w3-card-2 w3-round w3-white colonne_gauche lanceurs">
       					{% block lanceurs %} {% endblock %}
+      				</div>
+					{% endblock %}
+      				
+					
+					<!-- raccourcis -->
+					{% block conteneur_raccourcis %}
+     				<div class="w3-card-2 w3-round w3-white colonne_gauche liste_raccourcis">
+      					{% block raccourcis %} {% endblock %}
       				</div> 
-      				<br>
+					{% endblock %}
           
       				<!-- Alert Box -->
-      				<div class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+      				{#<div class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
       					{% block alertbox %} {% endblock %}
-      				</div>
+      				</div>#}
     	
     			</div>
-    			
+				{% endblock %}
     			<!-- End Left Column -->
+				
     	
     			<!-- contenu de la page -->
-    			<div class="w3-col m10" style="margin-left: 190px; padding-left: 10px">
+				{% block conteneur_droite %}
+    			<div class="w3-col" style="width: 87%; margin-left: 180px; padding-left: 10px">
         			{% block contenu %} {% endblock %}
     		    </div>
+				{% endblock %}
+				
+				<!-- contenu de la page pour l'edition (full largeur) -->
+				{% block conteneur_droite_full %}
+    			<div class="w3-col" style="width: 100%; padding-left: 10px">
+        			{% block contenu_full_page %} {% endblock %}
+    		    </div>
+				{% endblock %}
  		   </div>
     	</div>
     	

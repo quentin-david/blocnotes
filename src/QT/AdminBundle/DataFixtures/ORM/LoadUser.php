@@ -13,7 +13,7 @@ class LoadUser implements FixtureInterface
   public function load(ObjectManager $manager)
   {
     // Les noms d'utilisateurs à créer
-    $listNames = array('garry', 'jerry', 'anna');
+    $listNames = array('david');
 
     foreach ($listNames as $name) {
       // On crée l'utilisateur
@@ -30,7 +30,7 @@ class LoadUser implements FixtureInterface
       //$user->setSalt('');
 
       // On définit uniquement le role ROLE_USER qui est le role de base
-      $user->setRoles(array('ROLE_USER'));
+      $user->setRoles(array('ROLE_ADMIN'));
 
       // On le persiste
       $manager->persist($user);

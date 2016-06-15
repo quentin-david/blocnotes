@@ -25,9 +25,9 @@ class TopicRepository extends \Doctrine\ORM\EntityRepository
             $query .= 'AND createur_id = :createur';
             $params['createur'] = $search->getCreateur();
         }
-        if ($search->getDomaine() != '') {
-            $query .= ' AND domaine_id = :domaine';
-            $params['domaine'] = $search->getDomaine();
+        if ($search->getDomaines() != '') {
+            $query .= ' AND domaines_id = :domaines';
+            $params['domaines'] = $search->getDomaines();
         }
 
         // Nous pouvons ajouter nos autres champs de recherches ici

@@ -19,7 +19,7 @@ use QT\AdminBundle\Form\ProfilType;
 class ProfilController extends Controller
 {
     /**
-     * 
+     * Mise à jour des paramètre perso de l'utilisateur
      */
     public function indexAction(Request $request)
     {
@@ -31,18 +31,19 @@ class ProfilController extends Controller
         // Objet Emplacement pour le formulaire
         $utilisateur = $em->getRepository('QTAdminBundle:Utilisateur')->findOneBy(array('username' => $username));
         
-        //Creation de l'objet formulaire
+        //Creation de l'objet formulaire de changement de MDP
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $utilisateur);
         $formBuilder
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
+                'required' => false
             ))
             ->add('modifier', SubmitType::class);       
         $formulaire_password = $formBuilder->getForm();
         
-        //Creation de l'objet formulaire
+        //Creation de l'objet formulaire d'édition des paramètres de profil
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $utilisateur);
         $formBuilder
             ->add('profil', ProfilType::class)

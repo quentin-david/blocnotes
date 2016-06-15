@@ -5,17 +5,23 @@
     padding: 10px;
 }
 .formulaire button {
-    width: 95%;
+    width: 100%;
     background-color: #4CAF50;
     color: white;
     margin-top: 10px;
 }
 
+.formulaire .cancel {
+   background-color: #b70303; 
+}
+
 .formulaire input, select {
     width: 75%;
     display: inline-block;
-    float: left;
-    margin-left: 15px;
+    clear: both;
+    /*float: right;*/
+    right: 0px;
+    /*margin-left: 15px;*/
 }
 
 .formulaire label {
