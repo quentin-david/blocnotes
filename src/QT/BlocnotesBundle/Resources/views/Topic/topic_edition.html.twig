@@ -10,7 +10,7 @@
 
 {% block contenu_full_page %}
 	
-	<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
+	<script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
 	
 	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left">
           <div class="w3-row-padding w3-padding-bottom" style="margin: 10px -16px">						
@@ -23,17 +23,10 @@
 							<td>{{ form_label(formulaire.titre, "Titre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 							<td>{{ form_widget(formulaire.titre) }}</td>
 						</tr>
-						
-						{#<tr>
-							<td>{{ form_label(formulaire.domaines, "Domaiiiiines", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-							<td>{{ form_widget(formulaire.domaines.libelle) }}</td>
-							<td><a href="#" id="add_category" class="btn btn-default">+</a></td>
-						</tr>
 						<tr>
 							<td>{{ form_label(formulaire.domaines, "Domaines", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-							<td>{{ form_widget(formulaire.domaines.libelle) }}</td>
-							<td><a href="#" id="add_category" class="btn btn-default">++++</a></td>
-						</tr>#}
+							<td>{{ form_widget(formulaire.domaines) }}</td>
+						</tr>
 
 						
 							
@@ -57,7 +50,8 @@
 				<div id="topic_textarea" class="col-sm-10">
 					{{ form_widget(formulaire.corps) }}
 				</div>
-				{{ form_label(formulaire.save) }}
+				{{ form_widget(formulaire.save) }}
+				<a href="{{ path('lister_topic') }}"><button type="button" class="cancel">Cancel</button></a>
 			{{ form_end(formulaire) }}						
         </div> 
       </div>
@@ -71,73 +65,4 @@
 				CKEDITOR.replace( 'topic_intervention_corps' );
 			{% endif %}
 	</script>
-{% endblock %}
-
-{% block stylesheets %}
-	{{ parent() }}
-	
-   {# Voici le script en question : #}
-   <script type="text/javascript">
-
-  $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#topic_domaine');
-
-    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $container.find(':input').length;
-
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-    $('#add_category').click(function(e) {
-      addCategory($container);
-      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-      return false;
-    });
-
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
-      addCategory($container);
-    } else {
-      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-      $container.children('div').each(function() {
-        addDeleteLink($(this));
-      });
-    }
-
-    // La fonction qui ajoute un formulaire CategoryType
-    function addCategory($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
-      var template = $container.attr('data-prototype')
-        .replace(/__name__label__/g, 'Catégorie n°' + (index+1))
-        .replace(/__name__/g,        index)
-      ;
-
-      // On crée un objet jquery qui contient ce template
-      var $prototype = $(template);
-      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-      addDeleteLink($prototype);
-      // On ajoute le prototype modifié à la fin de la balise <div>
-      $container.append($prototype);
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-      index++;
-    }
-
-
-    // La fonction qui ajoute un lien de suppression d'une catégorie
-    function addDeleteLink($prototype) {
-      // Création du lien
-      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-      // Ajout du lien
-      $prototype.append($deleteLink);
-      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
-      $deleteLink.click(function(e) {
-        $prototype.remove();
-        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-        return false;
-      });
-    }
-  });
-</script>
-
 {% endblock %}

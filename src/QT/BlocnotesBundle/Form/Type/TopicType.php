@@ -22,9 +22,11 @@ class TopicType extends AbstractType
         $builder 
             ->add('titre', TextType::class)
 			//->add('domaine', EntityType::class, array('class' => 'QTAdminBundle:Domaine','choice_label' => 'libelle'))
-			->add('domaines', CollectionType::class, array(
-							'entry_type' => DomaineType::class,
-							'allow_add'    => true,
+			->add('domaines', EntityType::class, array(
+							'class' => 'QTAdminBundle:Domaine',
+							'choice_label' => 'libelle',
+							'multiple'     => true,
+							//'expanded' => true,
 			))
 			->add('pj', PieceJointeType::class)
 			->add('corps', TextareaType::class)

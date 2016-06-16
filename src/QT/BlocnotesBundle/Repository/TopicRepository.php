@@ -18,16 +18,27 @@ class TopicRepository extends \Doctrine\ORM\EntityRepository
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addRootEntityFromClassMetadata('QT\BlocnotesBundle\Entity\Topic', 'p');
        
-        $query = 'SELECT * FROM topic WHERE 1 ';
+        $query = 'SELECT * FROM topic, topic_domaine ';
+        //$query .= 'LEFT JOIN topic_domaine ';
+        //$query .= 'ON (topic_id) ';
+        $query .= 'WHERE topic.id = topic_domaine.topic_id ';
         $params = array();
 
         if ($search->getCreateur() != '') {
-            $query .= 'AND createur_id = :createur';
+            $query .= 'AND topic.createur_id = :createur ';
             $params['createur'] = $search->getCreateur();
         }
-        if ($search->getDomaines() != '') {
-            $query .= ' AND domaines_id = :domaines';
-            $params['domaines'] = $search->getDomaines();
+        if (sizeof($search->getDomaines()) != 0) {
+            $query .= "AND (";
+            foreach($search->getDomaines() as $domaine){
+                //$query .= ' AND topic_domaine.domaine_id = :domaines ';
+                if($search->getDomaines()[0] == $domaine){
+                    $query .= ' topic_domaine.domaine_id = '.$domaine->getId();
+                }else{
+                    $query .= ' OR topic_domaine.domaine_id = '.$domaine->getId();
+                }
+            }
+            $query .= ")";
         }
 
         // Nous pouvons ajouter nos autres champs de recherches ici

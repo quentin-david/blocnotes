@@ -20,7 +20,13 @@ class TopicInterventionType extends AbstractType
     {
         $builder 
             ->add('titre', TextType::class)
-			->add('domaines', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle'))
+			//->add('domaines', EntityType::class, array('class' => 'QTAdminBundle:Domaine', 'choice_label' => 'libelle'))
+			->add('domaines', EntityType::class, array(
+							'class' => 'QTAdminBundle:Domaine',
+							'choice_label' => 'libelle',
+							'multiple'     => true,
+							//'expanded' => true,
+			))
             ->add('intervention', InterventionType::class)
 			->add('pj', FileType::class)
 			->add('corps', TextareaType::class)

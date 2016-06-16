@@ -31,7 +31,7 @@ class DomaineController extends Controller
             ->add('save', SubmitType::class);   
         $formulaire = $formBuilder->getForm();
          
-        // Liste des types d'emplacement avec le nombre d'emplacements pour chaque
+        // Liste les domaines
         $liste_domaines = $em->getRepository('QTAdminBundle:Domaine')->findAll();        
         
         //Enregistrement en base

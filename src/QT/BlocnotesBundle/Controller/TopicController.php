@@ -19,7 +19,7 @@ class TopicController extends Controller
 	 */
     public function afficherTopicAction($topic)
     {
-        // replace this example code with whatever you need
+        // execution du template topic ou DI
 		if($topic->getIntervention() != ''){
 			return $this->render('QTBlocnotesBundle:Topic:topic_di.html.twig', array(
 										'topic' => $topic
@@ -68,7 +68,7 @@ class TopicController extends Controller
                 $em->flush();
                 
 				// Redirection vers les topics du meme domaine
-                return $this->redirectToRoute('lister_topic', array('topic_recherche[domaine]' => $request->get('topic')['domaine']));
+                return $this->redirectToRoute('lister_topic', array('topic_recherche[domaines]' => $request->get('topic')['domaines']));
             }
         }
 		// Affichage du template d'edition du topic/DI
@@ -82,7 +82,7 @@ class TopicController extends Controller
 	
 	
 	/**
-	 *
+	 * Suppression du topic (avec demande de confirmation)
 	 */
 	public function supprimerTopicAction(Request $request,$topic_num)
 	{

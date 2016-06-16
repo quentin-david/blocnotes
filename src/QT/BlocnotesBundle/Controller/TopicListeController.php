@@ -34,8 +34,9 @@ class TopicListeController extends Controller
         if($formulaire_recherche->isValid()){
             // SI des paramètres ont été passés
             if($formulaire_recherche->getData() != ''){
+                // Methode par pseudo SQL
                 $query = $em->getRepository('QTBlocnotesBundle:Topic')->search($formulaire_recherche->getData());
-                $liste_topics = $query->getResult();
+                $liste_topics = $query->getResult();                
             }
         }
         

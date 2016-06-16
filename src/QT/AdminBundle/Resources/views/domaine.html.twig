@@ -32,7 +32,9 @@
         <ul>
             {% for domaine in liste_domaines %}
                 <li>
-                    {{ domaine.libelle }}
+                    <a href="{{ path('lister_topic', {'topic_recherche[domaines][]': domaine.id}) }}">
+						{{ domaine.libelle }}
+					</a>
                 </li>
             {% endfor %}
         </ul>

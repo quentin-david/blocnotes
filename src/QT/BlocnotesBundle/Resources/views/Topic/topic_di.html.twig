@@ -23,6 +23,11 @@
 			
 			{# ---- Cartouche (DI) ---- #}
 			<div class="topic_cartouche">
+				<p>Domaine(s) :
+					{% for domaine in topic.domaines %}
+						{{ domaine.libelle }}, 
+					{% endfor %}
+				</p>
 				<table>
 					<tr><td>DI : {{ topic.intervention.numDi }}</td></tr>
 					<tr><td>Date intervention {{ topic.intervention.dateIntervention|date('d/m/Y') }}<tr><td>

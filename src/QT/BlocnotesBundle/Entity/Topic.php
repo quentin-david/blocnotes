@@ -3,6 +3,7 @@
 namespace QT\BlocnotesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Topic
@@ -57,6 +58,7 @@ class Topic
     
     /**
      * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"})
+     * @ORM\JoinTable(name="topic_domaine")
      */
     private $domaines;
     
@@ -76,6 +78,8 @@ class Topic
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dateCreation = new \Datetime();
         $this->dateModification = new \Datetime();
+        
+        $this->domaines = new ArrayCollection();
     }
 
     /**
@@ -258,6 +262,7 @@ class Topic
     {
         return $this->pj;
     }
+
 
     /**
      * Add domaine
