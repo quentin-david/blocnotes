@@ -61,12 +61,12 @@
     	
     			<!-- contenu de la page -->
 				{% block conteneur_droite %}
-    			<div class="w3-col" style="width: 87%; margin-left: 180px; padding-left: 10px">
+    			<div class="w3-col" style="width: 86%; margin-left: 180px; padding-left: 10px">
         			{% block contenu %} {% endblock %}
     		    </div>
 				{% endblock %}
 				
-				<!-- contenu de la page pour l'edition (full largeur) -->
+				<!-- contenu de la page pour l'edition (full largeur, pas de colonne de gauche) -->
 				{% block conteneur_droite_full %}
     			<div class="w3-col" style="width: 100%; padding-left: 10px">
         			{% block contenu_full_page %} {% endblock %}

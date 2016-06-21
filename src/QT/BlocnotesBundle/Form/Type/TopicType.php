@@ -28,7 +28,7 @@ class TopicType extends AbstractType
 							'multiple'     => true,
 							//'expanded' => true,
 			))
-			->add('pj', PieceJointeType::class)
+			->add('pj', PieceJointeType::class, array('required' => false))
 			->add('corps', TextareaType::class)
             ->add('save', SubmitType::class); 
     }

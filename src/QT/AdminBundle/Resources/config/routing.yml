@@ -17,3 +17,7 @@ ajouter_domaine:
 afficher_profil:
     path: profil
     defaults: {_controller: QTAdminBundle:Profil:index}
+    
+afficher_metrologie:
+    path: metrologie
+    defaults: {_controller: QTAdminBundle:Metrologie:index}
