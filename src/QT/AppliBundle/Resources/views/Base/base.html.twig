@@ -5,12 +5,15 @@
 
 {% block stylesheets %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/external/w3.css') }}">
 	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans'>
-	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/external/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/external/colors.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/base.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/topic.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/responsive_design.css') }}">
 	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock %}
@@ -18,15 +21,7 @@
 {% block menu %}  
 	{{ include("QTAppliBundle:Modules:menu.html.twig") }}
 {% endblock %}    
-		
-		
-{% block recherches %}
-	
-{% endblock %}
-  
-{% block lanceurs %}
-	{# render(controller('AppBundle:Accordeon:afficherAccordeon')) #}
-{% endblock %}
+
 
 {% block raccourcis %}
 	<div class="raccourci"><a href="{{ path('accueil')}}"><p>ACCUEIL</p></a></div>

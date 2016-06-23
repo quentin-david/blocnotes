@@ -9,15 +9,12 @@
 	{# On masque le champ de gauche #}	
 {% endblock %}
 
-{% block conteneur_droite %}
-	{# On masque le champ de gauche #}	
-{% endblock %}
 
 {% block contenu_full_page %}
 	{% if utilisateur == '' %}
-		<h2>Nouvel utilisateur</h2>
+		<h2 class="titre">Nouvel utilisateur</h2>
 	{% else %}
-		<h2>Edition de l'utilisateur : <b>{{ utilisateur.username }}</b></h2> 
+		<h2 class="titre">Edition de l'utilisateur : <b>{{ utilisateur.username }}</b></h2> 
 	{% endif %}
 	{% if is_granted('ROLE_ADMIN') %}
 		{# form(formulaire_utilisateur, {'attr': {'class': 'formulaire'}}) #}

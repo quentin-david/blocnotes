@@ -1,0 +1,35 @@
+/* Bloc entre le header et le footer */
+#main_block{
+    /*width: 1400px;*/
+    width: 100%;
+    margin-top:5%;
+    max-width: 100%;
+}
+
+/* colonne de gauche, recherche, lanceurs, etc*/
+#conteneur_gauche {
+    position:fixed;
+    /*width: 180px; */
+    width:15%;
+}
+
+/* Colonne de droite, corps de page */
+#conteneur_droite {
+    width: 86%;
+    /*margin-left: 180px;*/
+    margin-left: 15%;
+    /*padding-left: 10px;*/
+    padding-left: 1%;
+}
+
+/* Mode sans colonne de gauche, editeur de texte full page */
+#conteneur_droite_full {
+    width: 100%;
+}
+
+footer {
+    display: none;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}

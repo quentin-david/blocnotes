@@ -10,7 +10,7 @@
     </head>
     
     <body class="w3-theme-l5">
-    	<!-- Navbar -->
+    	<!-- Menu -->
 		<div class="w3-top">
  			<ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
  			{% block menu %} {% endblock %}
@@ -18,41 +18,50 @@
 		</div>
 		
 		
-		<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> 
+		<div id="main_block" class="w3-container w3-content"> 
         <!-- The Grid -->
 			<div class="w3-row">
 			
    				<!-- Left Column -->
 				{% block conteneur_gauche %}
-   				<div class="w3-col m2 conteneur_colonne_gauche" style="position:fixed; width:180px">
-     			
-    	 			<!-- Recherches -->
-					{% block conteneur_recherches %}
-      				<div class="w3-card-2 w3-round w3-white colonne_gauche">
-      					{% block recherches %} {% endblock %}
-      				</div>
-					{% endblock %}
-      				
-      
-     				<!-- Lanceurs -->
-					{% block conteneur_lanceurs %}
-     				<div class="w3-card-2 w3-round w3-white colonne_gauche lanceurs">
-      					{% block lanceurs %} {% endblock %}
-      				</div>
-					{% endblock %}
-      				
+   				<div id="conteneur_gauche" class="w3-col m2 conteneur_colonne_gauche">
+						
+						
+						<!-- raccourcis -->
+						{% block conteneur_raccourcis %}
+						<div class="w3-card-2 w3-round w3-white colonne_gauche liste_raccourcis">
+							{% block raccourcis %} {% endblock %}
+						</div> 
+						{% endblock %}
 					
-					<!-- raccourcis -->
-					{% block conteneur_raccourcis %}
-     				<div class="w3-card-2 w3-round w3-white colonne_gauche liste_raccourcis">
-      					{% block raccourcis %} {% endblock %}
-      				</div> 
-					{% endblock %}
-          
-      				<!-- Alert Box -->
-      				{#<div class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-      					{% block alertbox %} {% endblock %}
-      				</div>#}
+					
+						<!-- Recherches -->
+						{% block conteneur_recherches %}
+						<div class="w3-card-2 w3-round w3-white colonne_gauche">
+							{% block recherches %} {% endblock %}
+						</div>
+						{% endblock %}
+						
+		  
+						<!-- Lanceurs -->
+						{% block conteneur_lanceurs %}
+						<div class="w3-card-2 w3-round w3-white colonne_gauche lanceurs">
+							{% block lanceurs %} {% endblock %}
+						</div>
+						{% endblock %}
+						
+					
+						<!-- liste -->
+						{% block conteneur_listes %}
+						<div class="w3-card-2 w3-round w3-white colonne_gauche listes">
+							{% block listes %} {% endblock %}
+						</div> 
+						{% endblock %}
+			  
+						<!-- Alert Box -->
+						{#<div class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+							{% block alertbox %} {% endblock %}
+						</div>#}
     	
     			</div>
 				{% endblock %}
@@ -61,14 +70,14 @@
     	
     			<!-- contenu de la page -->
 				{% block conteneur_droite %}
-    			<div class="w3-col" style="width: 86%; margin-left: 180px; padding-left: 10px">
+    			<div id="conteneur_droite" class="w3-col">
         			{% block contenu %} {% endblock %}
     		    </div>
 				{% endblock %}
 				
 				<!-- contenu de la page pour l'edition (full largeur, pas de colonne de gauche) -->
 				{% block conteneur_droite_full %}
-    			<div class="w3-col" style="width: 100%; padding-left: 10px">
+    			<div id="conteneur_droite_full" class="w3-col">
         			{% block contenu_full_page %} {% endblock %}
     		    </div>
 				{% endblock %}
@@ -77,7 +86,7 @@
     	
         
 		<!-- Footer -->
-		<footer class="w3-container w3-theme-d3" style="position: fixed; width:100%; bottom:0%">
+		<footer class="w3-container w3-theme-d3">
 			<h5>Site test Blocnotes (Quentin DAVID)</h5>
 		</footer>
  

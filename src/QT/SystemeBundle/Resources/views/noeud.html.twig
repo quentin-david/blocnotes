@@ -1,0 +1,97 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+
+{% block listes %}
+	<h4>
+		Noeuds de la <a href="{{ path('afficher_cartographie') }}">PF</a>
+	</h4>
+		<ul style="padding-left: 5px">
+		{% for noeud in liste_noeuds %}
+			{#<a href="#" id="{{info}}">{{info}}</a>#}
+			<li style="list-style-type: none">
+				<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	</form>
+{% endblock %}
+
+{% block lanceurs %}
+	<p>
+		<a href="{{ path('creer_noeud') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Topic">
+		</a>
+	</p>
+{% endblock %}
+
+{% block contenu %}
+	<h2 class="titre">Cartographie des noeuds</h2>
+	
+
+	{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
+	<fieldset>
+		<legend>
+			{% if noeud is defined and noeud.nom != '' %}
+				<h4>Serveur {{ noeud.nom }}</h4>
+			{% else %}
+				<h4>Nouveau serveur</h4>
+			{% endif %}
+		</legend>
+		<div class="w3-col m5">
+			<fieldset>
+				<legend>Général</legend>
+				<table>
+					<tr>
+						<td>{{ form_label(formulaire.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nom) }}</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset>
+				<legend>Physique</legend>
+				<table>
+					<tr>
+						<td>{{ form_label(formulaire.nbCpu, "nb CPU", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nbCpu) }}</td>
+					</tr>
+					<tr>
+						<td>{{ form_label(formulaire.nbRam, "nb RAM", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nbRam) }}</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		<div class="w3-col m5">
+			<fieldset>
+				<legend>Réseau</legend>
+			<table>
+				<tr>
+					<td>{{ form_label(formulaire.ipAdmin, "@IP admin", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.ipAdmin) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire.ipData, "@IP data", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.ipData) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire.ipAppli, "@IP appli", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.ipAppli) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_label(formulaire.mac, "@ MAC", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.mac) }}</td>
+				</tr>
+			</table>
+			</fieldset>
+		</div>
+	</fieldset>
+		<div id="application_textarea" class="col-sm-10" style="clear: both">
+					{{ form_widget(formulaire.description) }}
+				</div>
+	{{ form_end(formulaire) }}
+
+	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+	<script type="text/javascript">
+		CKEDITOR.replace( 'noeud_description' );
+	</script>
+{% endblock %}

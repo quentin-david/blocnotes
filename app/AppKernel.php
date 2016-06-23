@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new QT\BlocnotesBundle\QTBlocnotesBundle(),
             new QT\AdminBundle\QTAdminBundle(),
             new QT\AppliBundle\QTAppliBundle(),
+            new QT\SystemeBundle\QTSystemeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

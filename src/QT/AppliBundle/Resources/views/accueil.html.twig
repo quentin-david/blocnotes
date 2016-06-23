@@ -1,11 +1,11 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
 
-{# block menu %}
-	{{ include("QTAppliBundle:Base:menu.html.twig") }}
-{% endblock #}
+
+{% block conteneur_recherches %} {% endblock %}
+{% block conteneur_lanceurs %} {% endblock %}
 
 {% block contenu %}
-    <h2>ACCUEIL</h2>
+    <h2 class="titre">ACCUEIL</h2>
 	<h4>Shortcuts</h4>
 	<ul>
 		<li><a href="{{ path('lister_topic') }}">Topics</a></li>

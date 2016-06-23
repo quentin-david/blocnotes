@@ -68,7 +68,7 @@ class UtilisateursController extends Controller
                 $em->persist($utilisateur);
                 $em->flush();
     
-                // ... do any other work - like sending them an email, etc
+                // redirection
                 return $this->redirectToRoute('creer_utilisateur');
             }
         }

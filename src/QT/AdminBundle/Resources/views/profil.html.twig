@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block contenu %}
-    <h2>Profil de l'utilisateur {{utilisateur.username}}</h2>
+    <h2 class="titre" >mon profil ({{utilisateur.username}})</h2>
 		
 	<h4>Modifier mon MDP</h4>	
 	{{ form(formulaire_password, {'attr': {'class': 'formulaire'}}) }}

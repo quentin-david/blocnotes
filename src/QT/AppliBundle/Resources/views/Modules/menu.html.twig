@@ -4,17 +4,27 @@
   	</li>
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
   	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
-	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
+	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="maintenance">Maintenance</a></li>
-  	<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
+  	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Wikis</a></li>
 	<li class="w3-hide-small w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
 			<a href="{{ path('creer_utilisateur') }}">Utilisateurs</a>
 			<a href="{{ path('ajouter_domaine') }}">Domaines</a>
-			<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
 		</div>
 	</li>
+	{% if is_granted('ROLE_ADMIN') %}
+		<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
+			<a href="#" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
+			<div class="w3-dropdown-content w3-white w3-card-4">
+				<a href="{{ path('afficher_application') }}">Application</a>
+				<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
+				<a href="{{ path('afficher_cartographie') }}">Cartographie</a>
+			</div>
+		</li>
+	{% endif %}
+	
   	<li class="w3-hide-small w3-dropdown-hover">
     	<a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
    		<div class="w3-dropdown-content w3-white w3-card-4">

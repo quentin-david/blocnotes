@@ -1,0 +1,27 @@
+afficher_metrologie:
+    path: metrologie
+    defaults: {_controller: QTSystemeBundle:Metrologie:index}
+    
+afficher_cartographie:
+    path: cartographie
+    defaults: {_controller: QTSystemeBundle:Cartographie:listerNoeud}
+    
+creer_noeud:
+    path: cartographie/edit/
+    defaults: {_controller: QTSystemeBundle:Cartographie:editerNoeud}
+        
+editer_noeud:
+    path: cartographie/edit/{noeud_num}
+    defaults: {_controller: QTSystemeBundle:Cartographie:editerNoeud}
+    requirements:
+        noeud_num: \d
+    
+afficher_application:
+    path: application
+    defaults: {_controller: QTSystemeBundle:Application:index}
+    
+supprimer_noeud:
+    path: cartographie/suppr/{noeud_num}
+    defaults: {_controller: QTSystemeBundle:Cartographie:supprimerNoeud}
+    requirements:
+        noeud_num: \d
