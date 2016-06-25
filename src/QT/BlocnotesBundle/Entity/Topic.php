@@ -4,6 +4,7 @@ namespace QT\BlocnotesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Topic
@@ -59,6 +60,7 @@ class Topic
     /**
      * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"})
      * @ORM\JoinTable(name="topic_domaine")
+     * @Assert\NotBlank()
      */
     private $domaines;
     

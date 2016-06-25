@@ -1,8 +1,8 @@
 {% block contenu %}
 	
 	
-	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom">
-		<div class="topic_header" style="height: 30px">
+	<div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic">
+		<div class="topic_header">
 			{# Boutons edition/suppression #}
 			<span class="w3-right w3-opacity">
 				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'topic'}) }}" style="text-decoration: none">
@@ -13,31 +13,32 @@
 				</a>
 			</span>
 			{# ------- En-tête -------- #}
-			<span style="margin: 2px">#{{ topic.id }} {{ topic.titre }}</span>
-			<span style="margin: 2px; position: absolute; right: 120px">{{ topic.createur }} ({{ topic.dateCreation|date('Y-m-d') }})</span>
+			<span class="topic_header_id">#{{ topic.id }}</span>
+			<span class="topic_header_titre"><b>{{ topic.titre }}</b></span>
+			<span class="topic_header_createur" style="">{{ topic.createur }} ({{ topic.dateCreation|date('Y-m-d') }})</span>
 		</div>
 		
+		
+		<hr class="w4-clear" style="margin: 0px">
+		
 		{# ---------- Corps ------- #}
-        <hr class="w4-clear" style="margin: 0px">
-		<div class="w3-row-padding" style="margin:0 -16px">
-		  <div class="topic_corps">
+		<div class="topic_corps">
 			{# ---- Cartouche (DI) ---- #}
-			<p>Domaine(s) :
+			<span class="topic_domaines">Domaine(s) :
 				{% for domaine in topic.domaines %}
 					{{ domaine.libelle }}, 
 				{% endfor %}
-			</p>
+			</span>
 			{# ---- Texte ---- #}
-				{{ topic.corps|raw }}
-				
+				<div class="bloc_redige">
+					<p>{{ topic.corps|raw }}</p>
+				</div>
 			{# affichage de la piece jointe #}
-			<p>
-				Liste des PJs : 
-				{{ dump(topic) }}
-			</p>
-		  </div>
+			<span class="topic_pjs">
+				Liste des PJs :
+			</span>
 		</div>
-      </div>
+    </div>
       
       
 {% endblock %}

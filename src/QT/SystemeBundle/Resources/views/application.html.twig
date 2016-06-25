@@ -7,7 +7,12 @@
 {% block listes %}
 	<h4>Liste des noeuds</h4>
 		<ul style="padding-left: 5px">
-
+		{% for noeud in liste_noeuds %}
+			{#<a href="#" id="{{info}}">{{info}}</a>#}
+			<li style="list-style-type: none">
+				<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
+			</li>
+		{% endfor %}
 		</ul>
 	</form>
 {% endblock %}
@@ -36,8 +41,7 @@
 					{{ form_widget(formulaire.description) }}
 				</div>
     {{ form_end(formulaire) }}
-    
-    <script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+	
     <script type="text/javascript">
 		CKEDITOR.replace( 'form_description' );
 	</script>

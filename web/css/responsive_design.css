@@ -4,18 +4,54 @@
     #conteneur_gauche {
         position: relative;
         float: left;
-        width:100%;
-        background-color: red;
+        width:112%;
+        /*background-color: red;*/
+        margin-left: -18px !important;
+        margin-top: 10%;
     }
     
-    #conteneur_droite {
-        position: relative;
+    #conteneur_droite, #conteneur_droite_full {
+        position: static;
         float: left;
+        width:111% !important;
+        max-width: 150% !important;
+        /*background-color: green;*/
+        margin-left: -16px !important;
+        padding-left: 0% !important;
+    }
+    
+    #conteneur_droite_full {
+        margin-top: 13%;
+    }
+ 
+ /* ----- TOPIC ---- */   
+    .topic{
         width:100%;
-        max-width: 100%;
-        background-color: green;
-        margin-left: 0%;
-        padding-left: 0%;
+        margin-left: 0% !important;
+    }
+    
+    #cke_18 {
+        display: none; /*masque un icone du mini editeur */
+    }
+    
+    .topic_header_createur{
+        display: none;
+    }
+    
+/* ----- MENU ---- */
+    
+    .w3-top ul li a {
+        display: none;
+        padding: 2px;
+    }
+    
+    #btn_menu_smartphone a {
+        display: block !important;
+    }
+    
+    .w3-top ul li{
+        float: none !important;
+        display: block !important;
     }
     
 }

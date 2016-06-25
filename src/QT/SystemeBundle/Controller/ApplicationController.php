@@ -19,9 +19,12 @@ class ApplicationController extends Controller
     /**
      * Affichage de la description de l'application de la PF
      */
-    public function indexAction(Request $request)
+    public function editerApplicationAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findAll();
+        
         $application = $em->getRepository('QTSystemeBundle:Application')->findOneByNom('Blocnotes');
         if($application == null){
             $application = new Application();
@@ -50,12 +53,13 @@ class ApplicationController extends Controller
                 $em->persist($application);
                 $em->flush();
                 // redirection
-                return $this->redirectToRoute('afficher_application');       
+                return $this->redirectToRoute('afficher_cartographie');       
             }
         }
         
         return $this->render('QTSystemeBundle::application.html.twig', array(
                                     'application' => $application,
+                                    'liste_noeuds' => $listeNoeuds,
                                     'formulaire' => $formulaire_application->createView(),
                                     ));
     }

@@ -86,8 +86,11 @@
 		</div>
 	</fieldset>
 		<div id="application_textarea" class="col-sm-10" style="clear: both">
-					{{ form_widget(formulaire.description) }}
-				</div>
+			{{ form_widget(formulaire.description) }}
+		</div>
+		
+		<td>{{ form_widget(formulaire.Valider) }}</td>
+		<a href="{{ path('afficher_cartographie') }}"><button type="button" class="cancel">Cancel</button></a>
 	{{ form_end(formulaire) }}
 
 	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>

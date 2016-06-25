@@ -16,6 +16,14 @@
 	<link rel="stylesheet" href="{{ asset('css/responsive_design.css') }}">
 	<link rel="icon" type="image/x-icon" href="{{ asset('pictures/favicon.ico') }}" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+	{# Bricolage pour detecter un acces par iphone et afficher le petit editeur #}
+	{% if app.request.headers.get("user-agent") matches '/\.\*iPhone\.\*/' %}
+		<script src="//cdn.ckeditor.com/4.5.8/basic/ckeditor.js"></script>
+	{% else %}
+		<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>	
+	{% endif %}
+	
 {% endblock %}
 
 {% block menu %}  

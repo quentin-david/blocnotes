@@ -15,7 +15,7 @@ class MetrologieController extends Controller
     public function indexAction()
     {
         $listeMachines = array('serv-apache','serv-data','serv-infra','cloud');
-        $listeInfos = array('diskstats_iops-day','if_ens3-day'); //Liste des graphes a afficher directement
+        $listeInfos = array('diskstats_iops-week','if_ens3-week','cpu-week'); //Liste des graphes a afficher directement
         return $this->render('QTSystemeBundle::metrologie.html.twig', array(
                                     'liste_machines' => $listeMachines,
                                     'liste_infos' => $listeInfos,

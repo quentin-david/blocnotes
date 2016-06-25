@@ -1,6 +1,7 @@
 {% block menu %}
-  	<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-    	<a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+
+  	<li style="display: none" id="btn_menu_smartphone">
+    	<a class="" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   	</li>
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
   	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
@@ -18,7 +19,6 @@
 		<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
 			<a href="#" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
 			<div class="w3-dropdown-content w3-white w3-card-4">
-				<a href="{{ path('afficher_application') }}">Application</a>
 				<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
 				<a href="{{ path('afficher_cartographie') }}">Cartographie</a>
 			</div>
@@ -41,4 +41,20 @@
 			<a href="{{ path('logout') }}">Logout</a>
 		</div>
 	</li>
+	
+	<script>
+		$("#btn_menu_smartphone").click(function(){
+			/*if( $(".w3-top ul li a").css('display') == 'none' ){
+				$(".w3-top ul li a").hide();
+				$('.btn_menu_smartphone').show();
+				alert('visible');
+				//$(".w3-top ul li a").css('display','block');
+			}else{
+				$(".w3-top ul li a").show();
+				alert('other');
+			}*/
+			$(".w3-top ul li a").toggle();
+		});		
+	</script>
+	
 {% endblock %}

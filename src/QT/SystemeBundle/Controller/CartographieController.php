@@ -15,16 +15,18 @@ use QT\SystemeBundle\Form\NoeudType;
 class CartographieController extends Controller
 {
     /**
-     * Affichage des différents serveurs de la PF
+     * Affichage des différents serveurs de la PF et de la description de l'appli
      */
     public function listerNoeudAction()
     {
         $em = $this->getDoctrine()->getManager();
         $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findAll();
+        $application = $em->getRepository('QTSystemeBundle:Application')->findOneByNom('Blocnotes');
         //$listeNoeuds = array('serv-apache','serv-data','serv-infra','cloud');
         
         return $this->render('QTSystemeBundle::cartographie.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
+                                    'application' => $application,
                                     ));
     }
     
@@ -50,7 +52,8 @@ class CartographieController extends Controller
                 $em->persist($noeud);
                 $em->flush();
                 
-                return $this->redirectToRoute('editer_noeud', array('noeud_num' => $noeud->getId()));
+                //return $this->redirectToRoute('editer_noeud', array('noeud_num' => $noeud->getId()));
+                return $this->redirectToRoute('afficher_cartographie');
             }
         }
         

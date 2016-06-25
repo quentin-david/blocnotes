@@ -16,9 +16,9 @@ editer_noeud:
     requirements:
         noeud_num: \d
     
-afficher_application:
+editer_application:
     path: application
-    defaults: {_controller: QTSystemeBundle:Application:index}
+    defaults: {_controller: QTSystemeBundle:Application:editerApplication}
     
 supprimer_noeud:
     path: cartographie/suppr/{noeud_num}

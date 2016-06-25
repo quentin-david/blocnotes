@@ -7,48 +7,46 @@
 {% block conteneur_lanceurs %}
 {% endblock %}
 
+{% block raccourcis %}
+	{{parent()}}
+	<div class="raccourci"><a href="https://151.80.45.53/munin/"><p>MUNIN</p></a></div>
+{% endblock %}
+
 {% block recherches %}
 	<h4>Indicateurs</h4>
-	<form>
-		<ul style="padding-left: 5px">
-		{% for info in liste_infos %}
-			{#<a href="#" id="{{info}}">{{info}}</a>#}
-			<li style="list-style-type: none">
-				<label><input type="checkbox" name="{{info}}" value="{{info}}" />  {{info}}</label>
-			</li>
-			<script>
-				$(":checkbox {{info}}").click(function(){
-					$(".{{info}}").toggle();
-					
-				});
-			</script> 
-		{% endfor %}
-		</ul>
-	</form>
+	<ul style="padding-left: 35px">
+	{% for info in liste_infos %}
+		<li>
+			{{info}}
+		</li>
+	{% endfor %}
+	</ul>
 {% endblock %}
 
 {% block contenu %}
-    <div style="padding-left: 30px">
+    
         <h2 class="titre">Métrologie des serveurs</h2>
         <ul>
             {% for machine in liste_machines %}
                 <li>
 					<a href="https://151.80.45.53/munin/{{machine}}/{{machine}}/index.html">{{machine}}</a>
 					<a href="#" id="{{machine}}">(graphs)</a>
+					<br>
+					<script>
+						$("#{{machine}}").click(function(){
+							$(".{{machine}}").toggle();
+						});
+					</script>
+					<span style="display: none;" class="{{machine}}">
+					{% for info in liste_infos %}
+						<img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://151.80.45.53/munin/{{machine}}/{{machine}}/{{info}}.png"/>
+					{% endfor %}
+					</span>
+					
 				</li>
-                <script>
-					$("#{{machine}}").click(function(){
-						$(".{{machine}}").toggle();
-					});
-				</script>
-				<span style="" class="{{machine}}">
-                {% for info in liste_infos %}
-					<img style="" class="{{info}}" src="https://151.80.45.53/munin/{{machine}}/{{machine}}/{{info}}.png"/>
-                {% endfor %}
-				</span>
             {% endfor %}
         </ul>
-    </div>
+    
 {% endblock %}
 
 {% block stylesheets %}

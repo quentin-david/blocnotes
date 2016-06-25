@@ -1,5 +1,25 @@
+.topic_header {
+    height: 26px;
+}
+
+.topic_header_id {
+    margin: 0.1%;
+}
+
+.topic_header_titre {
+    margin: 1.5%;
+}
+
+.topic_header_createur {
+    position: absolute;
+    right: 6%;
+}
+
+
 .topic_corps {
     background-color: #d9d9db;
+    margin: 0 -10px;
+    margin-bottom: 5px;
 }
 
 .topic_corps td {
@@ -7,3 +27,14 @@
     border: 1px solid black;
 }
 
+.bloc_redige {
+    /*background-color: #c1c1bf;*/
+    background-color: black;
+}
+
+.bloc_redige p {
+    margin: 2px;
+    color: #56db3a;
+    font-family: monospace,monospace;
+    font-size: 1em;
+}

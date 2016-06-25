@@ -2,9 +2,7 @@
 
 
 {% block listes %}
-	<h4>
-		Noeuds de la <a href="{{ path('afficher_cartographie') }}">PF</a>
-	</h4>
+	<h4>Liste des noeuds</h4>
 		<ul style="padding-left: 5px">
 		{% for noeud in liste_noeuds %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
@@ -25,10 +23,17 @@
 {% endblock %}
 
 {% block contenu %}
-	<h2 class="titre">Cartographie des noeuds</h2>
-    
+	<h2 class="titre">Cartographie de l'application {{application.nom }}</h2>
+    <h3>Description
+		<a href="{{ path('editer_application') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:25px;width:25px;margin-left:10px" alt="Ajout Topic">
+		</a>
+	</h3>
+		<div class="w3-card-2 w3-round w3-black bloc_redige">
+			{{ application.description|raw }}
+		</div>
     <h3>Liste des noeuds de l'application</h3>
-		<ul>
+		{#<ul>
 		{% for noeud in liste_noeuds %}
 			<li>
                 {{ noeud.nom }}
@@ -40,5 +45,32 @@
                 </a>
             </li>
 		{% endfor %}
-		</ul>
+		</ul>#}
+		<table class="formulaire" style="border: 1px solid black">
+			<tr>
+				<th>Nom serveur</th>
+				<th>IP admin</th>
+				<th>IP data</th>
+			</tr>
+		{% for noeud in liste_noeuds %}
+			<tr>
+                <td>
+					{{ noeud.nom }}
+					<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">
+						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" alt="Ajout">
+					</a>
+					<a href="{{ path('supprimer_noeud', {'noeud_num': noeud.id}) }}">
+						<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" alt="Ajout">
+					</a>
+				</td>
+				<td>
+					{{ noeud.ipAdmin }}
+				</td>
+				<td>
+					{{ noeud.ipData }}
+				</td>
+            </tr>
+		{% endfor %}
+		</table>
+		
 {% endblock %}
