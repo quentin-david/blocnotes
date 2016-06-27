@@ -31,12 +31,12 @@ class Verrou
     /**
      * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Topic", cascade={"persist"})
      */
-    private $id_topic;
+    private $topic;
     
     /**
      * @ORM\OneToOne(targetEntity="QT\AdminBundle\Entity\Utilisateur", cascade={"persist"})
      */
-    private $id_utilisateur;
+    private $utilisateur;
     
     /**
      * @var bool
