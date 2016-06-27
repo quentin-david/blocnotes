@@ -47,6 +47,14 @@ class Application
      */
     private $ipPublique;
 
+    /**
+     * Constructeur (crée l'appli)
+     */
+    public function __construct()
+    {
+        $this->nom = "Blocnotes";
+        $this->description = "Entrer la description ici";
+    }
 
     /**
      * Get id

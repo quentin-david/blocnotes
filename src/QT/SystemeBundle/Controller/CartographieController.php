@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use QT\SystemeBundle\Entity\Noeud;
 use QT\SystemeBundle\Form\NoeudType;
+use QT\SystemeBundle\Entity\Application;
 
 class CartographieController extends Controller
 {
@@ -22,6 +23,9 @@ class CartographieController extends Controller
         $em = $this->getDoctrine()->getManager();
         $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findAll();
         $application = $em->getRepository('QTSystemeBundle:Application')->findOneByNom('Blocnotes');
+        if($application == ''){
+            $application = new Application;
+        }
         //$listeNoeuds = array('serv-apache','serv-data','serv-infra','cloud');
         
         return $this->render('QTSystemeBundle::cartographie.html.twig', array(

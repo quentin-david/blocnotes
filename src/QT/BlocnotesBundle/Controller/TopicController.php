@@ -5,6 +5,7 @@ namespace QT\BlocnotesBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use QT\BlocnotesBundle\Entity\Topic;
+use QT\BlocnotesBundle\Entity\Verrou;
 use QT\AdminBundle\Entity\Utilisateur;
 use QT\AdminBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,8 +72,17 @@ class TopicController extends Controller
                 return $this->redirectToRoute('lister_topic', array('topic_recherche[domaines]' => $request->get('topic')['domaines']));
             }
         }
+		// Verification d'un eventuel verrou sur le topic
+		if($topic_num != ''){
+			$verrou = $em->getRepository('QTBlocnotesBundle:Verrou')->findOneBy(
+										array('id_topic' => $topic_num, 'id_utilisateur' => $this->getUser()->getId()));
+		}else{
+			$verrou = '';
+		}
+		
 		// Affichage du template d'edition du topic/DI
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
+									'verrou' => $verrou,
 									'topic_num' => $topic_num,
 									'topic' => $topic,
 									'topic_type' => $topic_type,

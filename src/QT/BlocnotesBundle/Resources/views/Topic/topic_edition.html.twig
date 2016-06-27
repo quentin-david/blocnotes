@@ -8,7 +8,8 @@
 	{# On masque le champ de gauche #}	
 {% endblock %}
 
-{% block contenu_full_page %}	
+{% block contenu_full_page %}
+{% if verrou == '' %}	
 	<div class="w3-card-2 w3-white w3-round">					
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				
@@ -61,4 +62,7 @@
 				CKEDITOR.replace( 'topic_intervention_corps' );
 			{% endif %}
 	</script>
+{% else %}
+	<script>alert('VERROU par {{ dump(verrou) }} !!');</script>
+{% endif %}
 {% endblock %}
