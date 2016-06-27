@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new QT\AdminBundle\QTAdminBundle(),
             new QT\AppliBundle\QTAppliBundle(),
             new QT\SystemeBundle\QTSystemeBundle(),
+            new QT\DocumentsBundle\QTDocumentsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

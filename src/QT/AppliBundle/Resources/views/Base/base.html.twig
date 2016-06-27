@@ -32,8 +32,7 @@
 
 
 {% block raccourcis %}
-	<div class="raccourci"><a href="{{ path('accueil')}}"><p>ACCUEIL</p></a></div>
-	<div class="raccourci"><a href="{{ path('lister_topic')}}"><p>TOPICS</p></a></div>
+	{{ include("QTAppliBundle:Modules:raccourcis.html.twig") }}
 {% endblock %}
 
 

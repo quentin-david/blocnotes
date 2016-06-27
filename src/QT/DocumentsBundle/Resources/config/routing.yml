@@ -1,0 +1,3 @@
+lister_documents:
+    path:     /documents
+    defaults: { _controller: QTDocumentsBundle:Documents:lister }

@@ -1,0 +1,13 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block recherches %} {% endblock %}
+
+{% block lanceurs %} {% endblock %}
+
+{% block contenu %}
+    <h2 class="titre">Liste documents</h2>
+    {{dump(documents)}}
+    {% for doc in documents %}
+        <img src="/web/uploads/photos/{{doc}}"/>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% block raccourcis %}
+	<div class="raccourci"><a href="{{ path('lister_topic')}}"><p>TOPICS</p></a></div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="raccourci"><a href="{{ path('afficher_metrologie')}}"><p>Métrologie</p></a></div>
+        <div class="raccourci"><a href="{{ path('afficher_cartographie')}}"><p>Cartographie</p></a></div>
+	{% endif %}
+{% endblock %}
