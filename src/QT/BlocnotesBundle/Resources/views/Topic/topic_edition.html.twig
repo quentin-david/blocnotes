@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block contenu_full_page %}
-{% if verrou == '' %}	
+{% if verrou.utilisateur.id == app.user.id %}	
 	<div class="w3-card-2 w3-white w3-round">					
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				

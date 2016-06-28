@@ -56,7 +56,6 @@ class Topic
      */
     private $dateModification;
 
-    
     /**
      * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"})
      * @ORM\JoinTable(name="topic_domaine")
@@ -73,6 +72,11 @@ class Topic
      * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\PieceJointe", cascade={"persist"})
      */
     private $pj;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Verrou", cascade={"persist"})
+     */
+    private $verrou;
 
     
     public function __construct()
@@ -298,5 +302,29 @@ class Topic
     public function getDomaines()
     {
         return $this->domaines;
+    }
+
+    /**
+     * Set verrou
+     *
+     * @param \QT\BlocnotesBundle\Entity\Verrou $verrou
+     *
+     * @return Topic
+     */
+    public function setVerrou(\QT\BlocnotesBundle\Entity\Verrou $verrou = null)
+    {
+        $this->verrou = $verrou;
+
+        return $this;
+    }
+
+    /**
+     * Get verrou
+     *
+     * @return \QT\BlocnotesBundle\Entity\Verrou
+     */
+    public function getVerrou()
+    {
+        return $this->verrou;
     }
 }

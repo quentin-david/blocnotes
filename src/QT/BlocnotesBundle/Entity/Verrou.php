@@ -27,23 +27,11 @@ class Verrou
      * @ORM\Column(name="date_modification", type="datetime")
      */
     private $date;
-
-    /**
-     * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Topic", cascade={"persist"})
-     */
-    private $topic;
     
     /**
      * @ORM\OneToOne(targetEntity="QT\AdminBundle\Entity\Utilisateur", cascade={"persist"})
      */
     private $utilisateur;
-    
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="verrouille", type="boolean")
-     */
-    private $verrouille;
 
     /**
      *
@@ -61,78 +49,6 @@ class Verrou
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set verrouille
-     *
-     * @param boolean $verrouille
-     *
-     * @return Verrou
-     */
-    public function setVerrouille($verrouille)
-    {
-        $this->verrouille = $verrouille;
-
-        return $this;
-    }
-
-    /**
-     * Get verrouille
-     *
-     * @return bool
-     */
-    public function getVerrouille()
-    {
-        return $this->verrouille;
-    }
-
-    /**
-     * Set idTopic
-     *
-     * @param \QT\BlocnotesBundle\Entity\Topic $idTopic
-     *
-     * @return Verrou
-     */
-    public function setIdTopic(\QT\BlocnotesBundle\Entity\Topic $idTopic)
-    {
-        $this->id_topic = $idTopic;
-
-        return $this;
-    }
-
-    /**
-     * Get idTopic
-     *
-     * @return \QT\BlocnotesBundle\Entity\Topic
-     */
-    public function getIdTopic()
-    {
-        return $this->id_topic;
-    }
-
-    /**
-     * Set idUtilisateur
-     *
-     * @param \QT\AdminBundle\Entity\Utilisateur $idUtilisateur
-     *
-     * @return Verrou
-     */
-    public function setIdUtilisateur(\QT\AdminBundle\Entity\Utilisateur $idUtilisateur)
-    {
-        $this->id_utilisateur = $idUtilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get idUtilisateur
-     *
-     * @return \QT\AdminBundle\Entity\Utilisateur
-     */
-    public function getIdUtilisateur()
-    {
-        return $this->id_utilisateur;
     }
 
     /**
@@ -157,5 +73,29 @@ class Verrou
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \QT\AdminBundle\Entity\Utilisateur $utilisateur
+     *
+     * @return Verrou
+     */
+    public function setUtilisateur(\QT\AdminBundle\Entity\Utilisateur $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \QT\AdminBundle\Entity\Utilisateur
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }
