@@ -1,0 +1,46 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+
+{% block conteneur_lanceurs %} {% endblock %}
+{% block conteneur_recherches %} {% endblock %}
+
+{% block listes %}
+	<h4>Liste des noeuds</h4>
+		<ul style="padding-left: 5px">
+		{% for noeud in liste_noeuds %}
+			{#<a href="#" id="{{info}}">{{info}}</a>#}
+			<li style="list-style-type: none">
+				<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	</form>
+{% endblock %}
+
+{% block contenu %}
+	<h2 class="titre">Description de l'Application {{ application.nom }}</h2>
+	
+	{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
+        <table>
+            {% if application.nom == '' %}
+			<tr>
+                <td>{{ form_label(formulaire.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+                <td>{{ form_widget(formulaire.nom) }}</td>
+            </tr>
+			{% endif %}
+            <tr>
+                <td>{{ form_label(formulaire.ipPublique, "@IP publique", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+                <td>{{ form_widget(formulaire.ipPublique) }}</td>
+            </tr>
+        </table>
+        <div id="application_textarea" class="col-sm-10">
+			{{ form_widget(formulaire.description) }}
+		</div>
+		<td>{{ form_widget(formulaire.Valider) }}</td>
+		<a href="{{ path('afficher_systeme') }}"><button type="button" class="cancel">Cancel</button></a>
+    {{ form_end(formulaire) }}
+	
+    <script type="text/javascript">
+		CKEDITOR.replace( 'application_description' );
+	</script>
+{% endblock %}

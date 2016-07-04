@@ -20,11 +20,6 @@ class Application
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Utilisateur")
-     */
-    private $responsable;
     
     /**
      * @var string
@@ -138,27 +133,4 @@ class Application
         return $this->ipPublique;
     }
 
-    /**
-     * Set responsable
-     *
-     * @param \QT\AdminBundle\Entity\Utilisateur $responsable
-     *
-     * @return Application
-     */
-    public function setResponsable(\QT\AdminBundle\Entity\Utilisateur $responsable = null)
-    {
-        $this->responsable = $responsable;
-
-        return $this;
-    }
-
-    /**
-     * Get responsable
-     *
-     * @return \QT\AdminBundle\Entity\Utilisateur
-     */
-    public function getResponsable()
-    {
-        return $this->responsable;
-    }
 }

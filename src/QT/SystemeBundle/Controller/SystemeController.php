@@ -13,22 +13,18 @@ use QT\SystemeBundle\Entity\Noeud;
 use QT\SystemeBundle\Form\NoeudType;
 use QT\SystemeBundle\Entity\Application;
 
-class CartographieController extends Controller
+class SystemeController extends Controller
 {
     /**
      * Affichage des différents serveurs de la PF et de la description de l'appli
      */
     public function listerNoeudAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findAll();
-        $application = $em->getRepository('QTSystemeBundle:Application')->findOneByNom('Blocnotes');
-        if($application == ''){
-            $application = new Application;
-        }
-        //$listeNoeuds = array('serv-apache','serv-data','serv-infra','cloud');
+        $em = $this->getDoctrine()->getManager('infra');
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findAll();
+        $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
         
-        return $this->render('QTSystemeBundle::cartographie.html.twig', array(
+        return $this->render('QTSystemeBundle::systeme.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
                                     'application' => $application,
                                     ));
@@ -39,16 +35,15 @@ class CartographieController extends Controller
      */
     public function editerNoeudAction(Request $request, $noeud_num = null)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager('infra');
         if($noeud_num == ''){
             $noeud = new Noeud();
         }else{
-            $noeud = $em->getRepository('QTSystemeBundle:Noeud')->findOneById($noeud_num);
+            $noeud = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findOneById($noeud_num);
         }
         $formulaire = $this->createForm(NoeudType::class, $noeud);
         
-        //$listeNoeuds = array('serv-apache','serv-data','serv-infra','cloud');
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findAll();
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findAll();
         
         if($request->isMethod('POST')){
             $formulaire->handleRequest($request);
@@ -56,12 +51,11 @@ class CartographieController extends Controller
                 $em->persist($noeud);
                 $em->flush();
                 
-                //return $this->redirectToRoute('editer_noeud', array('noeud_num' => $noeud->getId()));
-                return $this->redirectToRoute('afficher_cartographie');
+                return $this->redirectToRoute('afficher_systeme');
             }
         }
         
-        return $this->render('QTSystemeBundle::noeud.html.twig', array(
+        return $this->render('QTSystemeBundle::noeud_edition.html.twig', array(
                                     'noeud' => $noeud,
                                     'liste_noeuds' => $listeNoeuds,
                                     'formulaire' => $formulaire->createView(),
@@ -73,11 +67,11 @@ class CartographieController extends Controller
      */
     public function supprimerNoeudAction($noeud_num)
     {
-        $em = $this->getDoctrine()->getManager();
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud')->findOneById($noeud_num);
+        $em = $this->getDoctrine()->getManager('infra');
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findOneById($noeud_num);
         //$listeNoeuds = array('serv-apache','serv-data','serv-infra','cloud');
         
-        return $this->render('QTSystemeBundle::cartographie.html.twig', array(
+        return $this->render('QTSystemeBundle::systeme.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
                                     ));
     }

@@ -9,7 +9,7 @@
 
 {% block raccourcis %}
 	{{parent()}}
-	<div class="raccourci"><a href="https://151.80.45.53/munin/"><p>MUNIN</p></a></div>
+	<div class="raccourci"><a href="https://cloud/munin/"><p>MUNIN</p></a></div>
 {% endblock %}
 
 {% block recherches %}
@@ -29,7 +29,7 @@
         <ul>
             {% for machine in liste_machines %}
                 <li>
-					<a href="https://151.80.45.53/munin/{{machine}}/{{machine}}/index.html">{{machine}}</a>
+					<a href="https://cloud/munin/{{machine}}/{{machine}}/index.html">{{machine}}</a>
 					<a href="#" id="{{machine}}">(graphs)</a>
 					<br>
 					<script>
@@ -39,7 +39,7 @@
 					</script>
 					<span style="display: none;" class="{{machine}}">
 					{% for info in liste_infos %}
-						<img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://151.80.45.53/munin/{{machine}}/{{machine}}/{{info}}.png"/>
+						<img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://cloud/munin/{{machine}}/{{machine}}/{{info}}.png"/>
 					{% endfor %}
 					</span>
 					

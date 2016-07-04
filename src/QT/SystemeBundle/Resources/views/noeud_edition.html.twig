@@ -3,7 +3,7 @@
 
 {% block listes %}
 	<h4>
-		Noeuds de la <a href="{{ path('afficher_cartographie') }}">PF</a>
+		Noeuds de la <a href="{{ path('afficher_systeme') }}">PF</a>
 	</h4>
 		<ul style="padding-left: 5px">
 		{% for noeud in liste_noeuds %}
@@ -25,8 +25,6 @@
 {% endblock %}
 
 {% block contenu %}
-	<h2 class="titre">Cartographie des noeuds</h2>
-	
 
 	{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 	<fieldset>
@@ -90,11 +88,12 @@
 		</div>
 		
 		<td>{{ form_widget(formulaire.Valider) }}</td>
-		<a href="{{ path('afficher_cartographie') }}"><button type="button" class="cancel">Cancel</button></a>
+		<a href="{{ path('afficher_systeme') }}"><button type="button" class="cancel">Cancel</button></a>
 	{{ form_end(formulaire) }}
 
 	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
 	<script type="text/javascript">
 		CKEDITOR.replace( 'noeud_description' );
 	</script>
+	
 {% endblock %}

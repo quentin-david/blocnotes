@@ -32,9 +32,9 @@ $request = Request::createFromGlobals();
 
 // QT essai avec reverse proxy
 /*$_SERVER['SCRIPT_NAME'] = '/blocnotes' . $_SERVER['SCRIPT_NAME'];
-Request::setTrustedProxies(array('192.168.100.1'));
+Request::setTrustedProxies(array('192.168.100.1'));*/
 Request::setTrustedHeaderName(Request::HEADER_FORWARDED, 'X-Forwarded');
-Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, 'X-Proxy-For');
+/*Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, 'X-Proxy-For');
 Request::setTrustedHeaderName(Request::HEADER_CLIENT_HOST, 'X-Proxy-Host');
 Request::setTrustedHeaderName(Request::HEADER_CLIENT_PORT, 'X-Proxy-Port');
 Request::setTrustedHeaderName(Request::HEADER_CLIENT_PROTO, 'X-Proxy-Proto');*/

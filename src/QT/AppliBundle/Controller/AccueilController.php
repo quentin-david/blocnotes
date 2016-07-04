@@ -14,6 +14,10 @@ class AccueilController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('QTAppliBundle::accueil.html.twig');
+        $kernel = $this->container->get('kernel');
+        $bundles = $kernel->getBundles();
+        return $this->render('QTAppliBundle::accueil.html.twig', array(
+                                            'liste_bundles' => $bundles,                          
+                                            ));
     }
 }

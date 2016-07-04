@@ -34,9 +34,10 @@
 					<p>{{ topic.corps|raw }}</p>
 				</div>
 			{# affichage de la piece jointe #}
-			<span class="topic_pjs">
-				Liste des PJs :
-			</span>
+			{% if topic.pj.file is defined %}
+				<span class="topic_pjs">
+				</span>
+			{% endif %}
 		</div>
     </div>
       
