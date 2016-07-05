@@ -1,0 +1,3 @@
+accueil_cartographie:
+    path:     /cartographie
+    defaults: { _controller: QTCartographieBundle:Cartographie:index }

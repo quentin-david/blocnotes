@@ -1,3 +1,7 @@
+qt_cartographie:
+    resource: "@QTCartographieBundle/Resources/config/routing.yml"
+    prefix:   /
+
 qt_documents:
     resource: "@QTDocumentsBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,3 +1,7 @@
+accueil_pf:
+    path: pf
+    defaults: {_controller: QTSystemeBundle:Systeme:index}
+
 afficher_metrologie:
     path: metrologie
     defaults: {_controller: QTSystemeBundle:Metrologie:index}

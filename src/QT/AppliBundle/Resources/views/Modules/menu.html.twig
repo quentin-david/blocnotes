@@ -7,7 +7,17 @@
   	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
 	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="maintenance">Documents</a></li>
-  	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="wikis">Cartographie</a></li>
+  	
+	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
+		<a href="{{path('accueil_cartographie')}}" class="w3-padding-large w3-hover-white" title="wikis">Cartographie</a>
+		<div class="w3-dropdown-content w3-white w3-card-4">
+				<a href="#">Applications</a>
+				<a href="#">PF systemes</a>
+				<a href="#">Données</a>
+			</div>
+	</li>
+	
+	{% if is_granted('ROLE_ADMIN') %}
 	<li class="w3-hide-small w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
@@ -15,9 +25,11 @@
 			<a href="{{ path('ajouter_domaine') }}">Domaines</a>
 		</div>
 	</li>
+	{% endif %}
+
 	{% if is_granted('ROLE_ADMIN') %}
 		<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
-			<a href="#" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
+			<a href="{{path('accueil_pf')}}" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
 			<div class="w3-dropdown-content w3-white w3-card-4">
 				<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
 				<a href="{{ path('afficher_systeme') }}">Systeme</a>

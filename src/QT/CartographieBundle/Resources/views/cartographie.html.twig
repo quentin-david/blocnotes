@@ -1,0 +1,23 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="raccourci"><a href="{{ path('accueil_cartographie')}}"><p>Cartographie</p></a></div>
+	{% endif %}
+{% endblock %}
+
+{% block contenu %}
+    
+	<h2 class="titre">Cartographie <u>globale</u></h2>
+
+    <div class="w3-card-2 w3-round w3-black bloc_redige">
+        Ensemble des PFs
+    </div>
+    
+    <h3>Liste des applications</h3>
+    <ul>
+    {% for appli in liste_applications %}
+        <li>{{appli.nom}}</li>
+    {% endfor %}
+		
+{% endblock %}

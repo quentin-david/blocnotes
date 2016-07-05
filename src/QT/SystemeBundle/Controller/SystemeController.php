@@ -7,14 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use QT\SystemeBundle\Entity\Noeud;
 use QT\SystemeBundle\Form\NoeudType;
 use QT\SystemeBundle\Entity\Application;
 
 class SystemeController extends Controller
 {
+    /**
+     * Accueil de la partie PF (système, métrologie, applicatif)
+     * editable par l'administrateur de la PF
+     */
+    public function indexAction()
+    {
+        return $this->render('QTSystemeBundle::pf.html.twig');
+    }
+    
     /**
      * Affichage des différents serveurs de la PF et de la description de l'appli
      */

@@ -25,6 +25,9 @@ class ApplicationController extends Controller
         $em = $this->getDoctrine()->getManager('infra');
         $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findAll();
         $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
+        if($application == null){
+            $application = new Application();
+        }
         
         return $this->render('QTSystemeBundle::application.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
