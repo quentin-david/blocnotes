@@ -1,0 +1,23 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 192.168.200.20
+    database_port: 3306
+    database_name: blocnotes
+    database_user: blocnotes
+    database_password: Verne1828
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    
+    database_host_infra: 192.168.200.20
+    database_port_infra: 3306
+    database_name_infra: infra
+    database_user_infra: infra
+    database_password_infra: Verne1828
+    mailer_transport_infra: smtp
+    mailer_host_infra: 127.0.0.1
+    mailer_user_infra: null
+    mailer_password_infra: null
+    secret_infra: ThisTokenIsNotSoSecretChangeIt

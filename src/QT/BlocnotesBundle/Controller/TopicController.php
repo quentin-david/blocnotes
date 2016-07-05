@@ -63,11 +63,11 @@ class TopicController extends Controller
             $formulaire->handleRequest($request);
             if($formulaire->isValid()){
 				$topic->setCreateur($this->getUser());
-				$verrou_a_supprimer = $topic->getVerrou();
-				$topic->setVerrou(null);
+				//$verrou_a_supprimer = $topic->getVerrou();
+				//$topic->setVerrou(null);
 				// A l'enregistrement on libère le verrou
                 $em->persist($topic);
-				$em->remove($verrou_a_supprimer);
+				//$em->remove($verrou_a_supprimer);
                 $em->flush();
                 
 				// Redirection vers les topics du meme domaine
@@ -75,7 +75,7 @@ class TopicController extends Controller
             }
         }
 		// Verification d'un eventuel verrou sur le topic
-		$verrou = $topic->getVerrou();
+		/*$verrou = $topic->getVerrou();
 		if($verrou == ''){
 			$verrou = new Verrou;
 			$verrou->setUtilisateur($this->getUser());
@@ -83,12 +83,11 @@ class TopicController extends Controller
 			// On enregistre en base
 			$em->persist($topic);
             $em->flush();
-		}
+		}*/
 
 		
 		// Affichage du template d'edition du topic/DI
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
-									'verrou' => $verrou,
 									'topic_num' => $topic_num,
 									'topic' => $topic,
 									'topic_type' => $topic_type,

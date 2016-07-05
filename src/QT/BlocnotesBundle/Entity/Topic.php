@@ -68,10 +68,6 @@ class Topic
      */
     private $intervention;
     
-    /**
-     * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\PieceJointe", cascade={"persist"})
-     */
-    private $pj;
     
     /**
      * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Verrou", cascade={"persist"})
@@ -243,30 +239,6 @@ class Topic
     public function getIntervention()
     {
         return $this->intervention;
-    }
-
-    /**
-     * Set pj
-     *
-     * @param \QT\BlocnotesBundle\Entity\PieceJointe $pj
-     *
-     * @return Topic
-     */
-    public function setPj(\QT\BlocnotesBundle\Entity\PieceJointe $pj = null)
-    {
-        $this->pj = $pj;
-
-        return $this;
-    }
-
-    /**
-     * Get pj
-     *
-     * @return \QT\BlocnotesBundle\Entity\PieceJointe
-     */
-    public function getPj()
-    {
-        return $this->pj;
     }
 
 

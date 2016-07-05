@@ -1,3 +1,7 @@
 accueil_cartographie:
     path:     /cartographie
     defaults: { _controller: QTCartographieBundle:Cartographie:index }
+
+afficher_applications:
+    path:     /applications
+    defaults: { _controller: QTCartographieBundle:Application:index }

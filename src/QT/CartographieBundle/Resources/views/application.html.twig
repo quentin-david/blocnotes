@@ -10,12 +10,12 @@
 {% endblock %}
 
 {% block listes %}
-	<h4>Liste des PF</h4>
+	<h4>Liste des bundles</h4>
 		<ul style="padding-left: 5px">
-		{% for appli in liste_applications %}
+		{% for bundle in liste_bundles %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				{{appli.nom}}
+				{{bundle}}
 			</li>
 		{% endfor %}
 		</ul>
@@ -23,19 +23,17 @@
 
 {% block contenu %}
     
-	<h2 class="titre">Cartographie <u>globale</u></h2>
+	<h2 class="titre">Cartographie <u>applicative</u></h2>
 
     <div class="w3-card-2 w3-round w3-black bloc_redige">
-        Ensemble des PFs
+        Liste des modules applicatif (bundles)
     </div>
     
-    <h3>Liste des applications</h3>
+    <h3>Liste des bundles</h3>
     <ul>
-    {% for appli in liste_applications %}
-        <li>{{appli.nom}}</li>
+    {% for bundle in liste_bundles %}
+        <li>{{bundle}}</li>
     {% endfor %}
 	</ul>
-	
-	<h3>Liste des plateformes virtuelles</h3>
 		
 {% endblock %}

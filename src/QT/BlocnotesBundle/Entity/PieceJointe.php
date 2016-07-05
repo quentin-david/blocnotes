@@ -21,6 +21,12 @@ class PieceJointe
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Topic", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $topic;
 
     /**
      * @var string
@@ -213,5 +219,29 @@ class PieceJointe
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set topic
+     *
+     * @param \QT\BlocnotesBundle\Entity\Topic $topic
+     *
+     * @return PieceJointe
+     */
+    public function setTopic(\QT\BlocnotesBundle\Entity\Topic $topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Get topic
+     *
+     * @return \QT\BlocnotesBundle\Entity\Topic
+     */
+    public function getTopic()
+    {
+        return $this->topic;
     }
 }
