@@ -68,11 +68,10 @@ class Topic
      */
     private $intervention;
     
-    
     /**
-     * @ORM\ManyToOne(targetEntity="QT\BlocnotesBundle\Entity\Verrou", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="QT\BlocnotesBundle\Entity\PieceJointe", mappedBy="topic", cascade={"persist"})
      */
-    private $verrou;
+    private $pjs;
 
     
     public function __construct()
@@ -277,26 +276,36 @@ class Topic
     }
 
     /**
-     * Set verrou
+     * Add pj
      *
-     * @param \QT\BlocnotesBundle\Entity\Verrou $verrou
+     * @param \QT\BlocnotesBundle\Entity\PieceJointe $pj
      *
      * @return Topic
      */
-    public function setVerrou(\QT\BlocnotesBundle\Entity\Verrou $verrou = null)
+    public function addPj(\QT\BlocnotesBundle\Entity\PieceJointe $pj)
     {
-        $this->verrou = $verrou;
+        $this->pjs[] = $pj;
 
         return $this;
     }
 
     /**
-     * Get verrou
+     * Remove pj
      *
-     * @return \QT\BlocnotesBundle\Entity\Verrou
+     * @param \QT\BlocnotesBundle\Entity\PieceJointe $pj
      */
-    public function getVerrou()
+    public function removePj(\QT\BlocnotesBundle\Entity\PieceJointe $pj)
     {
-        return $this->verrou;
+        $this->pjs->removeElement($pj);
+    }
+
+    /**
+     * Get pjs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPjs()
+    {
+        return $this->pjs;
     }
 }

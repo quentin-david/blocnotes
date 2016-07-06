@@ -30,11 +30,11 @@ class TopicType extends AbstractType
 							'multiple'     => true,
 							//'expanded' => true,
 			))
-			//->add('file', PieceJointeType::class)
 			->add('pjs', CollectionType::class, array(
 				'entry_type'   => PieceJointeType::class,
 				'allow_add'    => true,
-				'allow_delete' => true
+				'allow_delete' => true,
+				'by_reference' => false
 			))
 			->add('corps', TextareaType::class)
             ->add('save', SubmitType::class); 

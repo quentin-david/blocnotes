@@ -16,7 +16,7 @@ use QT\BlocnotesBundle\Form\Type\TopicInterventionType;
 class TopicController extends Controller
 {
 	/**
-	 *
+	 * Affichage d'un topic unique (appelé par topic liste)
 	 */
     public function afficherTopicAction($topic)
     {
@@ -63,28 +63,14 @@ class TopicController extends Controller
             $formulaire->handleRequest($request);
             if($formulaire->isValid()){
 				$topic->setCreateur($this->getUser());
-				//$verrou_a_supprimer = $topic->getVerrou();
-				//$topic->setVerrou(null);
-				// A l'enregistrement on libère le verrou
+				//$topic->getPjs()->upload();
                 $em->persist($topic);
-				//$em->remove($verrou_a_supprimer);
                 $em->flush();
                 
 				// Redirection vers les topics du meme domaine
                 return $this->redirectToRoute('lister_topic', array('topic_recherche[domaines]' => $request->get('topic')['domaines']));
             }
         }
-		// Verification d'un eventuel verrou sur le topic
-		/*$verrou = $topic->getVerrou();
-		if($verrou == ''){
-			$verrou = new Verrou;
-			$verrou->setUtilisateur($this->getUser());
-			$topic->setVerrou($verrou);
-			// On enregistre en base
-			$em->persist($topic);
-            $em->flush();
-		}*/
-
 		
 		// Affichage du template d'edition du topic/DI
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(

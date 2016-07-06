@@ -38,3 +38,10 @@
     font-family: monospace,monospace;
     font-size: 1em;
 }
+
+#topic_pjs label {
+    clear: none;
+}
+#topic_pjs a {
+    clear: none;
+}
