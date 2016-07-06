@@ -40,6 +40,7 @@
 					</div>
 					<div class="w3-col m6"> {# cadre d'upload de fichier #}
 						{# form_label(formulaire.pjs, "") #}
+						<div id="champ_pjs"></div>
 						{{ form_widget(formulaire.pjs) }}
 						<a href="#" id="add_pj" class="btn btn-default"><button class="">Add PJ</button></a>
 					</div>
@@ -106,7 +107,8 @@
 		// On ajoute au prototype un lien pour pouvoir supprimer la catégorie
 		addDeleteLink($prototype);
 		// On ajoute le prototype modifié à la fin de la balise <div>
-		$container.append($prototype);
+		//$container.append($prototype);
+		$("#champ_pjs").append($prototype);
 		
 		// Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
 		index++;
