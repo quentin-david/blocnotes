@@ -81,6 +81,7 @@ class Topic
         $this->dateModification = new \Datetime();
         
         $this->domaines = new ArrayCollection();
+        $this->pjs = new ArrayCollection();
     }
 
     /**
@@ -285,6 +286,9 @@ class Topic
     public function addPj(\QT\BlocnotesBundle\Entity\PieceJointe $pj)
     {
         $this->pjs[] = $pj;
+        
+        //QT
+        $pj->setTopic($this);
 
         return $this;
     }

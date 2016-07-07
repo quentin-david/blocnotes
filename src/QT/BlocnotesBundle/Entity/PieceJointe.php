@@ -43,25 +43,21 @@ class PieceJointe
     private $alt;
 
     private $file;
-
-    private $tempFilename;
+    
+    
+    /**
+     *  Constructeur
+     */
+    public function __construct()
+    {
+        $this->url = md5(rand()); //Identifiant aleatoire
+        //$this->alt = $this->file->getClientOriginalName();
+    }
+    
     
     /**
      * QT fonction upload
      */
-      
-    // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
-    public function setFile(UploadedFile $file)
-    {
-        $this->file = $file;
-        // On vérifie si on avait déjà un fichier pour cette entité
-        if (null !== $this->url) {
-            // On sauvegarde l'extension du fichier pour le supprimer plus tard
-            $this->tempFilename = $this->url;  
-
-        }
-    }
-    
     public function upload()
     {
         // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
@@ -69,27 +65,22 @@ class PieceJointe
           return;
         }
         // On récupère le nom original du fichier de l'internaute
-        $name = $this->file->getClientOriginalName();
+        //$name = $this->file->getClientOriginalName();
+        
         // On déplace le fichier envoyé dans le répertoire de notre choix
-        $this->file->move($this->getUploadRootDir(), $name);
+        $this->file->move($this->getUploadDir(), $this->url);
     }
     
       
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-        return 'uploads/topic_pj/';
-    }
-
-    protected function getUploadRootDir()
-    {
-        // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../web/uploads/topic_pj';
     }
 
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+        return $this->getUploadDir().'/'.$this->getUrl();
         // Permet de l'inserer facilement dans les pages apres
         // src="{{ asset(advert.image.webPath) }}"
     }
@@ -152,6 +143,15 @@ class PieceJointe
     public function getAlt()
     {
         return $this->alt;
+    }
+    
+    
+    // On modifie le setter de File, pour prendre en compte l'upload d'un fichier
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+        $this->alt = $this->file->getClientOriginalName();
+        $this->upload();
     }
 
 

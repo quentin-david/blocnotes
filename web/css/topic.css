@@ -45,3 +45,11 @@
 #topic_pjs a {
     clear: none;
 }
+
+#champ_pjs div label{
+    display: none;
+}
+
+.champ_pjs_del{
+
+}

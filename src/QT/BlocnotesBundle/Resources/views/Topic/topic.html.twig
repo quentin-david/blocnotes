@@ -34,8 +34,11 @@
 					<p>{{ topic.corps|raw }}</p>
 				</div>
 			{# affichage de la piece jointe #}
-			{% if topic.pj.file is defined %}
-				<span class="topic_pjs">
+			{% if topic.pjs is defined %}
+				<span class="topic_pjs">PJs : 
+					{% for pj in topic.pjs %}
+						{{ pj.alt }}
+					{% endfor %}
 				</span>
 			{% endif %}
 		</div>

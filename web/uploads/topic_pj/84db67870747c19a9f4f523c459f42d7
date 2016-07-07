@@ -1,0 +1,99 @@
+Serveur Web : wikisa01 - 192.168.1.201
+
+Repertoires d'installation :
+Mediawiki : /var/www/html/wikipedia/  (fichier de conf' "LocalSettings.php")
+VisualEditor : /var/www/html/wikipedia/extensions/VisualEditor/
+Parsoid : /usr/src/deploy/src/  (fichier de conf' "api/localsettings.js")
+
+Firewall :
+firewall-cmd --zone=public --add-port=80/tcp
+firewall-cmd --zone=public --add-port=8000/tcp
+
+Paquets complémentaires : 
+yum install php-mbstring
+
+Installation de Wikimedia :
+# php maintenance/install.php --dbuser wikiuser --dbpass wikiuser --dbname wikidb --dbport 5432 --dbserver 192.168.1.211 --dbtype postgres --pass erty wikipedia wikiuser
+
+
+Lancement du serveur Web :
+-> # node /usr/src/deploy/src/api/server.js
+
+Logs : /var/log/httpd/error_log
+
+
+Test de connexion à la base de données
+# php -r 'pg_connect("host=192.168.1.211 port=5432 user=wikiuser password=wikiuser dbname=wikidb");'
+
+
+
+
+------------------------------------------------------------
+############################################################
+-----------------------------------------------------------
+
+Serveur Données : wikisd01 - 192.168.1.211
+
+Repertoire d'installation :
+/usr/local/pgsql/data/  (fichier de conf' "postgresql.conf")
+
+Autorisations Postgres (pg_hba.conf)
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+host	wikidb		wikiuser	192.168.1.201/24	password
+
+Firewall :
+firewall-cmd --zone=public --add-port=5432/tcp
+setsebool -P httpd_can_network_connect_db 1
+
+
+connexion à la base :
+-> # psql -U wikiuser -p 5432 -d wikidb
+
+Service :
+/usr/lib/systemd/system/postgresql-9.3.service
+
+Lancement du serveur de données :
+avec le compte 'postgres' :
+-> $ pg_ctl start -D /usr/local/pgsql/data/
+
+Log : /usr/local/pgsql/data/pg_log/postgresql-XXX.log
+
+
+
+------------------------------------------------------------
+############################################################
+-----------------------------------------------------------
+
+Serveur de déploiement, supervision, backup : wikisp01 - 192.168.1.221
+
+Sauvegarde des fichiers de config de wikisa01 et wikisd01
+
+Nagios :
+Lancement :
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+/etc/init.d/nagios start
+Interface Web : http://wikisp01/nagios
+
+User web : htpasswd /usr/local/nagios/etc/htpasswd.users nagiosadmin   (pwd : nagiosadmin)
+
+Firewall :
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --reload
+
+Declaration des Hosts : /usr/local/nagios/etc/objects/hostXX.cfg  // /usr/local/nagios/etc/server/machineXXX.cfg
+
+NRPE :   yum install openssl-devel; ./configure --enable-command-args --with-nagios-user=nagios --with-nagios-group=nagios --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu;  make all; sudo make install; sudo make install-xinetd; sudo make install-daemon-config
+Fichier de config' : /etc/xinet.d/nrpe    et surtout /usr/local/nagios/etc/nrpe.cfg
+
+
+
+
+Metasploit :
+Installation /opt/metasploit
+port 3790
+
+
+
+
+
+
