@@ -10,6 +10,12 @@ afficher_systeme:
     path: systeme
     defaults: {_controller: QTSystemeBundle:Systeme:listerNoeud}
     
+afficher_noeud:
+    path: noeud/{noeud_num}
+    defaults: {_controller: QTSystemeBundle:Systeme:afficherNoeud}
+    requirements:
+        noeud_num: \d+
+    
 creer_noeud:
     path: systeme/edit/
     defaults: {_controller: QTSystemeBundle:Systeme:editerNoeud}
@@ -18,7 +24,7 @@ editer_noeud:
     path: systeme/edit/{noeud_num}
     defaults: {_controller: QTSystemeBundle:Systeme:editerNoeud}
     requirements:
-        noeud_num: \d
+        noeud_num: \d+
  
 afficher_application:
     path: application
@@ -32,4 +38,4 @@ supprimer_noeud:
     path: systeme/suppr/{noeud_num}
     defaults: {_controller: QTSystemeBundle:Systeme:supprimerNoeud}
     requirements:
-        noeud_num: \d
+        noeud_num: \d+

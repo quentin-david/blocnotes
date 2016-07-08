@@ -9,7 +9,7 @@
 		{% for noeud in liste_noeuds %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
+				<a href="{{ path('afficher_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
 			</li>
 		{% endfor %}
 		</ul>
@@ -43,11 +43,19 @@
 						<td>{{ form_label(formulaire.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 						<td>{{ form_widget(formulaire.nom) }}</td>
 					</tr>
+					{#<tr>
+						<td>{{ form_label(formulaire.application, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.application) }}</td>
+					</tr>#}
 				</table>
 			</fieldset>
 			<fieldset>
 				<legend>Physique</legend>
 				<table>
+					<tr>
+						<td>{{ form_label(formulaire.hyperviseur, "Hyperviseur", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.hyperviseur) }}</td>
+					</tr>
 					<tr>
 						<td>{{ form_label(formulaire.nbCpu, "nb CPU", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 						<td>{{ form_widget(formulaire.nbCpu) }}</td>
@@ -83,6 +91,10 @@
 			</fieldset>
 		</div>
 	</fieldset>
+		<div class="col-sm-10" style="clear: both">
+			{{ form_label(formulaire.descriptionCourte, "Descritption courte", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+			{{ form_widget(formulaire.descriptionCourte) }}
+		</div>
 		<div id="application_textarea" class="col-sm-10" style="clear: both">
 			{{ form_widget(formulaire.description) }}
 		</div>

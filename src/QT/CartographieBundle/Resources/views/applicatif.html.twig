@@ -2,9 +2,8 @@
 
 {% block raccourcis %}
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="raccourci"><a href="{{ path('accueil_cartographie')}}"><p>Cartographie</p></a></div>
-		<div class="raccourci"><a href="{{ path('accueil_cartographie')}}"><p>PF virtuelles</p></a></div>
-		<div class="raccourci"><a href="{{ path('afficher_applications')}}"><p>Applications</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_plateforme')}}"><p>PF virtuelles</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Applicatif</p></a></div>
 		<div class="raccourci"><a href="{{ path('accueil_cartographie')}}"><p>Données</p></a></div>
 	{% endif %}
 {% endblock %}
@@ -23,10 +22,10 @@
 
 {% block contenu %}
     
-	<h2 class="titre">Cartographie <u>applicative</u></h2>
+	<h2 class="titre">Cartographie <u>applicative</u> mutualisée</h2>
 
     <div class="w3-card-2 w3-round w3-black bloc_redige">
-        Liste des modules applicatif (bundles)
+        Liste des modules applicatifs (bundles)
     </div>
     
     <h3>Liste des bundles</h3>

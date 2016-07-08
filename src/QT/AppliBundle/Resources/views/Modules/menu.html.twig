@@ -6,13 +6,13 @@
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
   	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
 	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
-	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="maintenance">Documents</a></li>
+	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="documents">Documents</a></li>
   	
 	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
-		<a href="{{path('accueil_cartographie')}}" class="w3-padding-large w3-hover-white" title="wikis">Cartographie</a>
+		<a href="{{path('accueil_cartographie')}}" class="w3-padding-large w3-hover-white" title="cartographie">Cartographie</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
-				<a href="#">Applications</a>
-				<a href="#">PF systemes</a>
+				<a href="{{path('afficher_applicatif') }}">Applicatif</a>
+				<a href="{{path('afficher_plateforme')}}">PF systemes</a>
 				<a href="#">Données</a>
 			</div>
 	</li>
@@ -32,8 +32,8 @@
 			<a href="{{path('accueil_pf')}}" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
 			<div class="w3-dropdown-content w3-white w3-card-4">
 				<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
-				<a href="{{ path('afficher_systeme') }}">Systeme</a>
-				<a href="{{ path('afficher_application') }}">Application</a>
+				{#<a href="{{ path('afficher_systeme') }}">Systeme</a>#}
+				<a href="{{ path('afficher_systeme') }}">Application</a>
 			</div>
 		</li>
 	{% endif %}

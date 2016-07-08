@@ -76,6 +76,7 @@ doctrine:
                 connection: infra
                 mappings:
                     QTSystemeBundle: ~
+                    QTCartographieBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

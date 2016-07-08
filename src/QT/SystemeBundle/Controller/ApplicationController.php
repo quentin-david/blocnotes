@@ -22,17 +22,20 @@ class ApplicationController extends Controller
      */
     public function afficherApplicationAction()
     {
-        $em = $this->getDoctrine()->getManager('infra');
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findAll();
+       /* $em = $this->getDoctrine()->getManager('infra');
         $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
+        
         if($application == null){
             $application = new Application();
+            $application->setNom('Blocnotes');
         }
         
         return $this->render('QTSystemeBundle::application.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
                                     'application' => $application,
                                     ));
+        */
     }
     
     
@@ -43,12 +46,13 @@ class ApplicationController extends Controller
     {
         $em = $this->getDoctrine()->getManager('infra');
         
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findAll();
-        
         $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
         if($application == null){
             $application = new Application();
+            $application->setNom('Blocnotes');
         }
+        
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
         
          //Creation de l'objet formulaire
         $formulaire = $this->createForm(ApplicationType::class, $application);
@@ -59,7 +63,7 @@ class ApplicationController extends Controller
             if ($formulaire->isSubmitted() && $formulaire->isValid()) {
                 $em->persist($application);
                 $em->flush();
-                return $this->redirectToRoute('afficher_application');       
+                return $this->redirectToRoute('afficher_systeme');       
             }
         }
         

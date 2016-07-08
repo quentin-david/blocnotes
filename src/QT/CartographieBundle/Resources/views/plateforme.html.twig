@@ -8,13 +8,21 @@
 	{% endif %}
 {% endblock %}
 
+{% block lanceurs %}
+	<p>
+		<a href="{{ path('creer_hyperviseur') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout hyperviseur">
+		</a>
+	</p>
+{% endblock %}
+
 {% block listes %}
-	<h4>Liste des PF</h4>
+    <h4>Liste des PF</h4>
 		<ul style="padding-left: 5px">
-		{% for appli in liste_applications %}
+		{% for pf in liste_plateformes %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				{{appli.nom}}
+				{{pf.nom}}
 			</li>
 		{% endfor %}
 		</ul>
@@ -22,19 +30,27 @@
 
 {% block contenu %}
     
-	<h2 class="titre">Cartographie <u>globale</u></h2>
+	<h2 class="titre">Cartographie <u>système</u> mutualisée</h2>
 
     <div class="w3-card-2 w3-round w3-black bloc_redige">
-        Ensemble des PFs
+        <p>Liste des diférentes  PF, des hyperviseurs...</p>
     </div>
     
-    <h3>Liste des applications</h3>
+    <h3>Liste des plateformes</h3>
     <ul>
-    {% for appli in liste_applications %}
-        <li>{{appli.nom}}</li>
+    {% for pf in liste_plateformes %}
+        <li>{{pf.nom}}</li>
     {% endfor %}
 	</ul>
-	
-	<h3>Liste des plateformes virtuelles</h3>
+    
+    <h3>Hyperviseur</h3>
+	<ul>
+	{% for hyperviseur in liste_hyperviseurs %}
+		<li>{{hyperviseur.nom}}</li>
+		<ul>
+			
+		</ul>
+	{% endfor %}
+	</ul>
 		
 {% endblock %}

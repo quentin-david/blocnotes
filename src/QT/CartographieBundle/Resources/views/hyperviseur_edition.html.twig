@@ -1,0 +1,70 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+
+{% block listes %} {% endblock %}
+
+{% block lanceurs %}
+	<p>
+		<a href="{{ path('creer_noeud') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Topic">
+		</a>
+	</p>
+{% endblock %}
+
+{% block contenu %}
+
+	{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
+	<fieldset>
+		<legend>
+			{% if hyperviseur is defined and hyperviseur.nom != '' %}
+				<h4>Serveur {{ hyperviseur.nom }}</h4>
+			{% else %}
+				<h4>Nouvel hyperviseur</h4>
+			{% endif %}
+		</legend>
+		<div class="w3-col m5">
+			<fieldset>
+				<legend>Général</legend>
+				<table>
+					<tr>
+						<td>{{ form_label(formulaire.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nom) }}</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset>
+				<legend>Physique</legend>
+				<table>
+					<tr>
+						<td>{{ form_label(formulaire.nbRam, "nb RAM", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nbRam) }}</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		<div class="w3-col m5">
+			<fieldset>
+				<legend>Réseau</legend>
+			<table>
+				<tr>
+					<td>{{ form_label(formulaire.ipPublique, "@IP publique", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.ipPublique) }}</td>
+				</tr>
+			</table>
+			</fieldset>
+		</div>
+	</fieldset>
+		<div id="application_textarea" class="col-sm-10" style="clear: both">
+			{{ form_widget(formulaire.description) }}
+		</div>
+		
+		<td>{{ form_widget(formulaire.Valider) }}</td>
+		<a href="{{ path('afficher_plateforme') }}"><button type="button" class="cancel">Cancel</button></a>
+	{{ form_end(formulaire) }}
+
+	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+	<script type="text/javascript">
+		CKEDITOR.replace( 'hyperviseur_description' );
+	</script>
+	
+{% endblock %}

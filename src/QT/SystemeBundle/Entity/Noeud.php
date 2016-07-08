@@ -20,6 +20,11 @@ class Noeud
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="QT\SystemeBundle\Entity\Application")
+     */
+    private $application;
 
     /**
      * @var string
@@ -34,6 +39,13 @@ class Noeud
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_courte", type="string", length=255, nullable=true)
+     */
+    private $descriptionCourte;
 
     /**
      * @var string
@@ -76,6 +88,11 @@ class Noeud
      * @ORM\Column(name="nb_ram", type="integer", nullable=true)
      */
     private $nbRam;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Hyperviseur")
+     */
+    private $hyperviseur;
 
 
     /**
@@ -279,5 +296,76 @@ class Noeud
     {
         return $this->nbRam;
     }
-}
 
+    /**
+     * Set descriptionCourte
+     *
+     * @param string $descriptionCourte
+     *
+     * @return Noeud
+     */
+    public function setDescriptionCourte($descriptionCourte)
+    {
+        $this->descriptionCourte = $descriptionCourte;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionCourte
+     *
+     * @return string
+     */
+    public function getDescriptionCourte()
+    {
+        return $this->descriptionCourte;
+    }
+
+    /**
+     * Set application
+     *
+     * @param \QT\SystemeBundle\Entity\Application $application
+     *
+     * @return Noeud
+     */
+    public function setApplication(\QT\SystemeBundle\Entity\Application $application = null)
+    {
+        $this->application = $application;
+
+        return $this;
+    }
+
+    /**
+     * Get application
+     *
+     * @return \QT\SystemeBundle\Entity\Application
+     */
+    public function getApplication()
+    {
+        return $this->application;
+    }
+
+    /**
+     * Set hyperviseur
+     *
+     * @param \QT\CartographieBundle\Entity\Hyperviseur $hyperviseur
+     *
+     * @return Noeud
+     */
+    public function setHyperviseur(\QT\CartographieBundle\Entity\Hyperviseur $hyperviseur = null)
+    {
+        $this->hyperviseur = $hyperviseur;
+
+        return $this;
+    }
+
+    /**
+     * Get hyperviseur
+     *
+     * @return \QT\CartographieBundle\Entity\Hyperviseur
+     */
+    public function getHyperviseur()
+    {
+        return $this->hyperviseur;
+    }
+}
