@@ -8,21 +8,13 @@
 	{% endif %}
 {% endblock %}
 
-{% block lanceurs %}
-	<p>
-		<a href="{{ path('creer_bundle') }}">
-			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Bundle">
-		</a>
-	</p>
-{% endblock %}
-
 {% block listes %}
-	<h4>Liste des bundles</h4>
+	<h4>Liste des BDD</h4>
 		<ul style="padding-left: 5px">
-		{% for bundle in liste_bundles %}
+		{% for bdd in liste_bdds %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				{{bundle.nom}}
+				{{bdd}}
 			</li>
 		{% endfor %}
 		</ul>
@@ -30,24 +22,16 @@
 
 {% block contenu %}
     
-	<h2 class="titre">Cartographie <u>applicative</u> mutualisée</h2>
+	<h2 class="titre">Cartographie <u>BDD</u></h2>
 
     <div class="w3-card-2 w3-round w3-black bloc_redige">
-        <p>Liste des modules applicatifs (bundles)</p>
+        <p>Ensemble des base de données utilisées par tous les projets</p>
     </div>
     
-    <h3>Liste des bundles</h3>
+    <h3>Liste des bases de données</h3>
     <ul>
-    {% for bundle in liste_bundles %}
-		<table class="tableau_carto" style="border: 1px solid black">
-			<tr>
-				<th>{{bundle.nom}}</th>
-			</tr>
-			<tr>
-				<td>{{bundle.description|raw}}</td>
-			</tr>
-		</table>
-		<br>
+    {% for bdd in liste_bdds %}
+        <li>{{bdd}}</li>
     {% endfor %}
 	</ul>
 		

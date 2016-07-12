@@ -1,0 +1,71 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('afficher_plateforme')}}"><p>PF mutualisées</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Mod. applicatifs</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_carto_donnee')}}"><p>BDD</p></a></div>
+	{% endif %}
+{% endblock %}
+
+
+{% block contenu %}
+	{% if application.nom is defined %}
+		<h2 class="titre">Cartographie de l'application {{application.nom }}</h2>
+	
+		<h3>******** APPLICATIF ********</h3>
+		<h4>Description</h4>
+			<div class="w3-card-2 w3-round w3-black bloc_redige">
+				{{ application.description|raw }}
+			</div>
+			
+			
+		<h4>Bundles utilisés</h4>
+
+		
+		<br><h3>******** SYSTEME ********</h3>
+		<h4>Liste des serveurs</h4>
+
+		{% for noeud in liste_noeuds %}
+			{{ noeud.nom }}
+			
+			<table class="tableau_carto" style="border: 1px solid black">
+				<tr>
+					<th>Description</th>
+					<td>{{ noeud.descriptionCourte|raw }}</td>
+				</tr>
+				<tr>
+					<th>Hyperviseur</th>
+					<td>{{ noeud.hyperviseur.nom }}</td>
+				</tr>
+				<tr>
+					<th>IP admin</th>
+					<td>{{ noeud.ipAdmin }}</td>
+				</tr>
+				<tr>
+					<th>IP data</th>
+					<td>{{ noeud.ipData }}</td>
+				</tr>
+				<tr>
+					<th>Nb CPU</th>
+					<td>{{ noeud.nbCpu }}</td>
+				</tr>
+				<tr>
+					<th>Nb RAM</th>
+					<td>{{ noeud.nbRam }}</td>
+				</tr>
+				<tr>
+					<th colspan="2">Description</th>
+				</tr>
+				<tr>
+					<td colspan="2">{{ noeud.description|raw }}</td>
+				</tr>
+			</table>
+		
+		{% endfor %}
+		
+	{% else %}
+		<h2 class="titre">Appli inconnue</h2>
+	{% endif %}
+		
+{% endblock %}

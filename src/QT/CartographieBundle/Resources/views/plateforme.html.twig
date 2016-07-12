@@ -2,9 +2,9 @@
 
 {% block raccourcis %}
     {% if is_granted('ROLE_ADMIN') %}
-		<div class="raccourci"><a href="{{ path('afficher_plateforme')}}"><p>PF virtuelles</p></a></div>
-		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Applicatif</p></a></div>
-		<div class="raccourci"><a href="{{ path('accueil_cartographie')}}"><p>Données</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_plateforme')}}"><p>PF mutualisées</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Mod. applicatifs</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_carto_donnee')}}"><p>BDD</p></a></div>
 	{% endif %}
 {% endblock %}
 
@@ -17,12 +17,13 @@
 {% endblock %}
 
 {% block listes %}
-    <h4>Liste des PF</h4>
+    <h4>Liste des appli/PF</h4>
 		<ul style="padding-left: 5px">
 		{% for pf in liste_plateformes %}
-			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				{{pf.nom}}
+				<a href="{{path('afficher_carto_application', {'application_num': pf.id})}}">
+					{{pf.nom}}
+				</a>
 			</li>
 		{% endfor %}
 		</ul>
@@ -36,20 +37,97 @@
         <p>Liste des diférentes  PF, des hyperviseurs...</p>
     </div>
     
-    <h3>Liste des plateformes</h3>
+    <h3>Liste des applications/plateformes</h3>
     <ul>
     {% for pf in liste_plateformes %}
-        <li>{{pf.nom}}</li>
+        <li>
+			<a href="{{path('afficher_carto_application', {'application_num': pf.id})}}">
+				{{pf.nom}}
+			</a>
+		</li>
     {% endfor %}
 	</ul>
     
-    <h3>Hyperviseur</h3>
+    <h3>Liste des hyperviseurs</h3>
 	<ul>
 	{% for hyperviseur in liste_hyperviseurs %}
-		<li>{{hyperviseur.nom}}</li>
-		<ul>
+		<h4>
+			** {{ hyperviseur.nom }}
+			<a href="{{ path('editer_hyperviseur', {'hyperviseur_num': hyperviseur.id}) }}">
+				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" title="editer noeud">
+			</a>
+			<a href="">
+				<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" title="supprimer noeud">
+			</a>
+		</h4>
+		
+		<table class="tableau_carto" style="border: 1px solid black">
+			<tr>
+				<th>IP publique</th>
+				<td>{{ hyperviseur.ipPublique }}</td>
+			</tr>
+			<tr>
+				<th>Nb RAM</th>
+				<td>{{ hyperviseur.nbRam }}</td>
+			</tr>
+			<tr>
+				<th colspan="2">Description</th>
+			</tr>
+			<tr>
+				<td colspan="2">{{ hyperviseur.description|raw }}</td>
+			</tr>
+		</table>
+		<br>
+		
+		
+		
+		
+		=> Occupation : <br>
+		<table class="tableau_carto" style="border: 1px solid black">
+			<tr>
+				<th>Nb de VMs</th>
+				<td>{{ hyperviseur.noeuds| length }}</td>
+			</tr>
+			<tr>
+				<th>Provisionning RAM</th>
+				<td>{{ hyperviseur.occupationRam }} ({{( hyperviseur.occupationRam / hyperviseur.nbRam) * 100}} %)</td>
+			</tr>
+		</table>
+		<br>
+		
+		
+		
+		
+		
+		=> Liste des VMs attachées : <br>
+		{% for noeud in hyperviseur.noeuds %}
+			<b>{{ noeud.nom }}</b>
 			
-		</ul>
+			<table class="tableau_carto" style="border: 1px solid black">
+				<tr>
+					<th colspan="2">Application</th>
+					<td colspan="2">
+						<a href="{{path('afficher_carto_application', {'application_num': noeud.application.id})}}">
+							{{ noeud.application.nom }}
+						</a>	
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">Description</th>
+					<td colspan="2">{{ noeud.descriptionCourte|raw }}</td>
+				</tr>
+				<tr>
+					<th colspan="2">IP admin</th>
+					<td colspan="2">{{ noeud.ipAdmin }}</td>
+				</tr>
+				<tr>
+					<th>Nb vCPU</th>
+					<td>{{ noeud.nbCpu }}</td>
+					<th>Nb RAM</th>
+					<td>{{ noeud.nbRam }} Mo</td>
+				</tr>
+			</table>
+		{% endfor %}
 	{% endfor %}
 	</ul>
 		

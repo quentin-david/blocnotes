@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use QT\SystemeBundle\Entity\Noeud;
 use QT\SystemeBundle\Form\NoeudType;
 use QT\SystemeBundle\Entity\Application;
+use QT\CartographieBundle\Entity\Bundle;
+use QT\CartographieBundle\Form\BundleType;
 
 class ApplicatifController extends Controller
 {
@@ -19,11 +21,56 @@ class ApplicatifController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager('infra');
-        //$listeApplications = $em->getRepository('QTSystemeBundle:Application', 'infra')->findAll();
-        $listeBundles = ["SystemeBundle","AdminBundle"];
+        $listeBundles = $em->getRepository('QTCartographieBundle:Bundle', 'infra')->findAll();
+        //$listeBundles = ["SystemeBundle","AdminBundle"];
         return $this->render('QTCartographieBundle::applicatif.html.twig', array(
                                     'liste_bundles' => $listeBundles,
                                     ));        
+    }    
+    
+    /**
+     * Affichage des différents serveurs de la PF et de la description de l'appli
+     */
+    public function afficherApplicationAction($application_num)
+    {
+        $em = $this->getDoctrine()->getManager('infra');
+        $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->find($application_num);
+        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
+        
+        return $this->render('QTCartographieBundle::application.html.twig', array(
+                                    'liste_noeuds' => $listeNoeuds,
+                                    'application' => $application,
+                                    ));
+    }
+    
+    
+    /**
+     * Edition ou création d'un bundle
+     */
+    public function editerBundleAction(Request $request, $bundle_num = null)
+    {
+        $em = $this->getDoctrine()->getManager('infra');
+        if($bundle_num == ''){
+            $bundle = new Bundle();
+        }else{
+            $bundle = $em->getRepository('QTCartographieBundle:Bundle', 'infra')->findOneById($bundle_num);
+        }
+        
+        $formulaire = $this->createForm(BundleType::class, $bundle);
+        
+        if($request->isMethod('POST')){
+            $formulaire->handleRequest($request);
+            if($formulaire->isSubmitted() && $formulaire->isValid()){
+                $em->persist($bundle);
+                $em->flush();
+                
+                return $this->redirectToRoute('afficher_applicatif');
+            }
+        }
+        
+        return $this->render('QTCartographieBundle::bundle_edition.html.twig', array(
+                                        'formulaire' => $formulaire->createView(),
+                                        ));
     }
 
 }

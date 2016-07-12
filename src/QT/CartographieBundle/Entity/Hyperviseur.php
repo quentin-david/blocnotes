@@ -48,6 +48,12 @@ class Hyperviseur
      * @ORM\Column(name="nbRam", type="integer", nullable=true)
      */
     private $nbRam;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="QT\SystemeBundle\Entity\Noeud", mappedBy="hyperviseur")
+    */
+    private $noeuds;
+    
 
 
     /**
@@ -155,5 +161,57 @@ class Hyperviseur
     {
         return $this->nbRam;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->noeuds = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add noeud
+     *
+     * @param \QT\SystemeBundle\Entity\Noeud $noeud
+     *
+     * @return Hyperviseur
+     */
+    public function addNoeud(\QT\SystemeBundle\Entity\Noeud $noeud)
+    {
+        $this->noeuds[] = $noeud;
+
+        return $this;
+    }
+
+    /**
+     * Remove noeud
+     *
+     * @param \QT\SystemeBundle\Entity\Noeud $noeud
+     */
+    public function removeNoeud(\QT\SystemeBundle\Entity\Noeud $noeud)
+    {
+        $this->noeuds->removeElement($noeud);
+    }
+
+    /**
+     * Get noeuds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNoeuds()
+    {
+        return $this->noeuds;
+    }
+    
+    /**
+     * Get occupation mémoire RAM
+     */
+    public function getOccupationRam()
+    {
+        $occupationRam = 0;
+        foreach($this->noeuds as $noeud){
+            $occupationRam += $noeud->getNbRam();
+        }
+        return $occupationRam;   
+    }
+}

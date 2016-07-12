@@ -90,7 +90,7 @@ class Noeud
     private $nbRam;
     
     /**
-     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Hyperviseur")
+     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Hyperviseur", inversedBy="noeuds")
      */
     private $hyperviseur;
 

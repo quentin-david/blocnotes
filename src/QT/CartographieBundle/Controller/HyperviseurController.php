@@ -21,7 +21,7 @@ class HyperviseurController extends Controller
         if($hyperviseur_num == ''){
             $hyperviseur = new Hyperviseur();
         }else{
-            $hyperviseur = $em->getRepository('QTSystemeBundle:Hyperviseur', 'infra')->findOneById($hyperviseur_num);
+            $hyperviseur = $em->getRepository('QTCartographieBundle:Hyperviseur', 'infra')->findOneById($hyperviseur_num);
         }
         
         $formulaire = $this->createForm(HyperviseurType::class, $hyperviseur);

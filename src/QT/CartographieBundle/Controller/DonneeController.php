@@ -11,17 +11,18 @@ use QT\SystemeBundle\Entity\Noeud;
 use QT\SystemeBundle\Form\NoeudType;
 use QT\SystemeBundle\Entity\Application;
 
-class CartographieController extends Controller
+class DonneeController extends Controller
 {
     /**
-     * Page d'accueil de la cartographie globale
+     * Page d'accueil dela carto des base de données
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager('infra');
-        $listeApplications = $em->getRepository('QTSystemeBundle:Application', 'infra')->findAll();
-        return $this->render('QTCartographieBundle::cartographie.html.twig', array(
-                                    'liste_applications' => $listeApplications,
+        //$listeBdds = $em->getRepository('QTCartographiesBundle:Donnee', 'infra')->findAll();
+        $listeBdds = ['blocnotes', 'infra'];
+        return $this->render('QTCartographieBundle::donnee.html.twig', array(
+                                    'liste_bdds' => $listeBdds,                                         
                                     ));        
     }
 

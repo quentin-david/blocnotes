@@ -1,22 +1,42 @@
-accueil_cartographie:
-    path:     /cartographie
-    defaults: { _controller: QTCartographieBundle:Cartographie:index }
-
 afficher_applicatif:
-    path:     /applicatif
+    path:     /carto_applicatif
     defaults: { _controller: QTCartographieBundle:Applicatif:index }
+    
+afficher_carto_application:
+    path:     /carto_application/{application_num}
+    defaults: { _controller: QTCartographieBundle:Applicatif:afficherApplication }
+    requirements:
+        application_num: \d+
+        
+creer_bundle:
+    path: /bundle/edit
+    defaults: {_controller: QTCartographieBundle:Applicatif:editerBundle}
+    
+editer_bundle:
+    path: /bundle/edit/{bundle_num}
+    defaults: {_controller: QTCartographieBundle:Applicatif:editerBundle}
+    requirements:
+        bundle_num: \d+
+        
+        
     
 afficher_plateforme:
     path:     /plateforme
     defaults: { _controller: QTCartographieBundle:Plateforme:index }
 
+
 creer_hyperviseur:
-    path: hyperviseur/edit
+    path: /hyperviseur/edit
     defaults: {_controller: QTCartographieBundle:Hyperviseur:editerHyperviseur}
 
-
 editer_hyperviseur:
-    path: hyperviseur/edit/{hyperviseur_num}
+    path: /hyperviseur/edit/{hyperviseur_num}
     defaults: {_controller: QTCartographieBundle:Hyperviseur:editerHyperviseur}
     requirements:
         hyperviseur_num: \d+
+   
+        
+afficher_carto_donnee:
+    path:     /carto_donnee
+    defaults: { _controller: QTCartographieBundle:Donnee:index }
+    
