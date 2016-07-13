@@ -5,12 +5,16 @@
 	<link rel="stylesheet" href="{{ asset('css/liste_utilisateurs.css') }}">
 {% endblock %}
 
-{% block conteneur_gauche %}
-	{# On masque le champ de gauche #}	
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('lister_topic')}}"><p>Topics</p></a></div>
+		<div class="raccourci"><a href="{{ path('creer_domaine')}}"><p>Domaines</p></a></div>
+		<div class="raccourci"><a href="{{ path('creer_utilisateur')}}"><p>Utilisateurs</p></a></div>
+	{% endif %}
 {% endblock %}
 
 
-{% block contenu_full_page %}
+{% block contenu %}
 	{% if utilisateur == '' %}
 		<h2 class="titre">Nouvel utilisateur</h2>
 	{% else %}

@@ -1,15 +1,13 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
 
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('afficher_mutualisation')}}"><p>PF mutualisées</p></a></div>
+	{% endif %}
+{% endblock %}
 
 {% block listes %} {% endblock %}
 
-{% block lanceurs %}
-	<p>
-		<a href="{{ path('creer_noeud') }}">
-			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Topic">
-		</a>
-	</p>
-{% endblock %}
 
 {% block contenu %}
 
@@ -73,7 +71,7 @@
 		</div>
 		
 		<td>{{ form_widget(formulaire.Valider) }}</td>
-		<a href="{{ path('afficher_plateforme') }}"><button type="button" class="cancel">Cancel</button></a>
+		<a href="{{ path('afficher_mutualisation') }}"><button type="button" class="cancel">Cancel</button></a>
 	{{ form_end(formulaire) }}
 
 	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>

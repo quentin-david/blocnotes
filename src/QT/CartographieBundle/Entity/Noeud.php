@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Entity;
+namespace QT\CartographieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Noeud
  *
  * @ORM\Table(name="noeud")
- * @ORM\Entity(repositoryClass="QT\SystemeBundle\Repository\NoeudRepository")
+ * @ORM\Entity(repositoryClass="QT\CartographieBundle\Repository\NoeudRepository")
  */
 class Noeud
 {
@@ -22,7 +22,7 @@ class Noeud
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="QT\SystemeBundle\Entity\Application")
+     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Application")
      */
     private $application;
 
@@ -347,11 +347,11 @@ class Noeud
     /**
      * Set application
      *
-     * @param \QT\SystemeBundle\Entity\Application $application
+     * @param \QT\CartographieBundle\Entity\Application $application
      *
      * @return Noeud
      */
-    public function setApplication(\QT\SystemeBundle\Entity\Application $application = null)
+    public function setApplication(\QT\CartographieBundle\Entity\Application $application = null)
     {
         $this->application = $application;
 
@@ -361,7 +361,7 @@ class Noeud
     /**
      * Get application
      *
-     * @return \QT\SystemeBundle\Entity\Application
+     * @return \QT\CartographieBundle\Entity\Application
      */
     public function getApplication()
     {

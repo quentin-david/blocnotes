@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Controller;
+namespace QT\CartographieBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,7 +16,7 @@ class MetrologieController extends Controller
     {
         $listeMachines = array('serv-apache','serv-data','serv-infra','cloud');
         $listeInfos = array('diskstats_iops-week','if_ens3-week','cpu-week'); //Liste des graphes a afficher directement
-        return $this->render('QTSystemeBundle::metrologie.html.twig', array(
+        return $this->render('QTCartographieBundle::metrologie.html.twig', array(
                                     'liste_machines' => $listeMachines,
                                     'liste_infos' => $listeInfos,
                                     ));

@@ -2,7 +2,7 @@
 
 {% block raccourcis %}
     {% if is_granted('ROLE_ADMIN') %}
-		<div class="raccourci"><a href="{{ path('afficher_plateforme')}}"><p>PF mutualisées</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_mutualisation')}}"><p>PF mutualisées</p></a></div>
 		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Mod. applicatifs</p></a></div>
 		<div class="raccourci"><a href="{{ path('afficher_carto_donnee')}}"><p>BDD</p></a></div>
 	{% endif %}

@@ -7,9 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use QT\SystemeBundle\Entity\Noeud;
-use QT\SystemeBundle\Form\NoeudType;
-use QT\SystemeBundle\Entity\Application;
+use QT\CartographieBundle\Entity\Noeud;
+use QT\CartographieBundle\Form\NoeudType;
+use QT\CartographieBundle\Entity\Application;
 
 class DonneeController extends Controller
 {
@@ -18,7 +18,7 @@ class DonneeController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager('infra');
+        $em = $this->getDoctrine()->getManager();
         //$listeBdds = $em->getRepository('QTCartographiesBundle:Donnee', 'infra')->findAll();
         $listeBdds = ['blocnotes', 'infra'];
         return $this->render('QTCartographieBundle::donnee.html.twig', array(

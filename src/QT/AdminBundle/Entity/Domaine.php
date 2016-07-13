@@ -27,6 +27,12 @@ class Domaine
      * @ORM\Column(name="libelle", type="string", length=255, unique=true)
      */
     private $libelle;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="QT\BlocnotesBundle\Entity\Topic", mappedBy="domaines")
+     * @ORM\JoinTable(name="topic_domaine")
+     */
+    private $topics;
 
 
     /**
@@ -62,5 +68,45 @@ class Domaine
     {
         return $this->libelle;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->topics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add topic
+     *
+     * @param \QT\BlocnotesBundle\Entity\Topic $topic
+     *
+     * @return Domaine
+     */
+    public function addTopic(\QT\BlocnotesBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \QT\BlocnotesBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\QT\BlocnotesBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+}

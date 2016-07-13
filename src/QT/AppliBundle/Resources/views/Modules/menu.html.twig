@@ -9,12 +9,13 @@
 	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="documents">Documents</a></li>
   	
 	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
-		<a href="{{path('afficher_plateforme')}}" class="w3-padding-large w3-hover-white" title="cartographie">Cartographie</a>
+		<a href="{{path('afficher_mutualisation')}}" class="w3-padding-large w3-hover-white" title="cartographie">Cartographie</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
-				<a href="{{path('afficher_applicatif') }}">Mod. applicatifs</a>
-				<a href="{{path('afficher_plateforme')}}">PF mutualisée</a>
-				<a href="{{path('afficher_carto_donnee')}}">BDD</a>
-			</div>
+			<a href="{{path('afficher_mutualisation')}}">PF mutualisée</a>
+			<a href="{{path('afficher_applicatif') }}">Mod. applicatifs</a>
+			<a href="{{path('afficher_carto_donnee')}}">BDD</a>
+			<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
+		</div>
 	</li>
 	
 	{% if is_granted('ROLE_ADMIN') %}
@@ -22,20 +23,9 @@
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
 			<a href="{{ path('creer_utilisateur') }}">Utilisateurs</a>
-			<a href="{{ path('ajouter_domaine') }}">Domaines</a>
+			<a href="{{ path('creer_domaine') }}">Domaines</a>
 		</div>
 	</li>
-	{% endif %}
-
-	{% if is_granted('ROLE_ADMIN') %}
-		<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
-			<a href="{{path('accueil_pf')}}" class="w3-padding-large w3-hover-white" title="gestion">PF</a>
-			<div class="w3-dropdown-content w3-white w3-card-4">
-				<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
-				{#<a href="{{ path('afficher_systeme') }}">Systeme</a>#}
-				<a href="{{ path('afficher_systeme') }}">Application</a>
-			</div>
-		</li>
 	{% endif %}
 
 	<li class="w3-hide-small w3-right w3-dropdown-hover">
@@ -43,6 +33,7 @@
 		<div class="w3-dropdown-content w3-right w3-white w3-card-4" style="right: 2px">
 			<a href="{{ path('afficher_profil') }}">Mon profil</a>
 			<a href="{{ path('logout') }}">Logout</a>
+			{#<a href="{{ path('deconnecter_profil') }}">Logout</a>#}
 		</div>
 	</li>
 	

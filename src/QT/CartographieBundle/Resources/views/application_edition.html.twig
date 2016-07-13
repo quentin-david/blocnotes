@@ -4,17 +4,29 @@
 {% block conteneur_lanceurs %} {% endblock %}
 {% block conteneur_recherches %} {% endblock %}
 
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('afficher_mutualisation')}}"><p>PF mutualisées</p></a></div>
+		{% if application.id != "" %}
+			<div class="raccourci"><a href="{{ path('afficher_application', {'application_num': application.id})}}"><p>Appli {{application.nom}}</p></a></div>
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+
 {% block listes %}
-	<h4>Liste des noeuds</h4>
-		<ul style="padding-left: 5px">
-		{% for noeud in liste_noeuds %}
-			{#<a href="#" id="{{info}}">{{info}}</a>#}
-			<li style="list-style-type: none">
-				<a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
-			</li>
-		{% endfor %}
-		</ul>
-	</form>
+	{% if application.id != "" %}
+		<h4>Liste des noeuds</h4>
+			<ul style="padding-left: 5px">
+			{% for noeud in liste_noeuds %}
+				{#<a href="#" id="{{info}}">{{info}}</a>#}
+				<li style="list-style-type: none">
+					<a href="{{ path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id}) }}">{{noeud.nom}}</a>
+				</li>
+			{% endfor %}
+			</ul>
+		</form>
+	{% endif %}
 {% endblock %}
 
 {% block contenu %}
@@ -37,7 +49,11 @@
 			{{ form_widget(formulaire.description) }}
 		</div>
 		<td>{{ form_widget(formulaire.Valider) }}</td>
-		<a href="{{ path('afficher_systeme') }}"><button type="button" class="cancel">Cancel</button></a>
+		{% if application.id != "" %}
+			<a href="{{ path('afficher_application', {'application_num': application.id}) }}"><button type="button" class="cancel">Cancel</button></a>
+		{% else %}
+			<a href="{{ path('afficher_mutualisation') }}"><button type="button" class="cancel">Cancel</button></a>
+		{% endif %}
     {{ form_end(formulaire) }}
 	
     <script type="text/javascript">

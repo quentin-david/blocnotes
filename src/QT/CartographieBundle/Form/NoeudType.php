@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Form;
+namespace QT\CartographieBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,10 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-use QT\SystemeBundle\Entity\Application;
+use QT\CartographieBundle\Form\Type\Application;
 
-class ApplicationType extends AbstractType
+class NoeudType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,8 +21,22 @@ class ApplicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ipPublique',    TextType::class)
-            ->add('description',    TextAreaType::class)
+            ->add('nom')
+            ->add('hyperviseur', EntityType::class, array(
+							'class' => 'QTCartographieBundle:Hyperviseur',
+							'choice_label' => 'nom',
+			))
+            ->add('description')
+			->add('etat')
+            ->add('descriptionCourte')
+			->add('os')
+            ->add('ipAdmin')
+            ->add('ipData')
+            ->add('ipAppli')
+            ->add('mac')
+            ->add('nbCpu')
+            ->add('nbRam')
+			->add('nbDisque')
             ->add('Valider', SubmitType::class);
         ;
     }
@@ -32,7 +47,7 @@ class ApplicationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'QT\SystemeBundle\Entity\Application'
+            'data_class' => 'QT\CartographieBundle\Entity\Noeud'
         ));
     }
 }

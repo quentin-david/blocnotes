@@ -24,7 +24,7 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            anonymous: false
 
             http_basic: ~
 
@@ -32,8 +32,9 @@ security:
             provider: db_provider
             
             logout:
-                path:   /logout
-                target: /
+                path:   logout
+                target: lister_topic
+                
             
     access_control:
         - { path: ^/utilisateurs, roles: ROLE_ADMIN }

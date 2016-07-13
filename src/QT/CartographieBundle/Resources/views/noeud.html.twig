@@ -1,5 +1,19 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
 
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('afficher_mutualisation')}}"><p>PF mutualisées</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_application', {'application_num': noeud.application.id})}}"><p>Appli {{noeud.application.nom}}</p></a></div>
+	{% endif %}
+{% endblock %}
+
+{% block lanceurs %}
+	<p>
+		<a href="{{ path('creer_noeud', {'application_num': noeud.application.id}) }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout noeud">
+		</a>
+	</p>
+{% endblock %}
 
 {% block listes %}
 	<h4>Liste des noeuds</h4>
@@ -7,17 +21,21 @@
 		{% for noeud in liste_noeuds %}
 			{#<a href="#" id="{{info}}">{{info}}</a>#}
 			<li style="list-style-type: none">
-				<a href="{{ path('afficher_noeud', {'noeud_num': noeud.id}) }}">{{noeud.nom}}</a>
+				<a href="{{ path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id}) }}">{{noeud.nom}}</a>
 			</li>
 		{% endfor %}
 		</ul>
 
 {% endblock %}
 
+
+
 {% block contenu %}
+	
     <h2 class="titre">
+		Application {{noeud.application.nom}} - 
         Noeud : {{noeud.nom}}
-        <a href="{{ path('editer_noeud', {'noeud_num': noeud.id}) }}">
+        <a href="{{ path('editer_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id}) }}">
             <img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:25px;width:25px;margin-left:10px" title="editer application">
         </a>
     </h2>

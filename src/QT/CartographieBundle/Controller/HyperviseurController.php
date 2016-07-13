@@ -17,11 +17,11 @@ class HyperviseurController extends Controller
      */
     public function editerHyperviseurAction(Request $request, $hyperviseur_num = null)
     {
-        $em = $this->getDoctrine()->getManager('infra');
+        $em = $this->getDoctrine()->getManager();
         if($hyperviseur_num == ''){
             $hyperviseur = new Hyperviseur();
         }else{
-            $hyperviseur = $em->getRepository('QTCartographieBundle:Hyperviseur', 'infra')->findOneById($hyperviseur_num);
+            $hyperviseur = $em->getRepository('QTCartographieBundle:Hyperviseur')->findOneById($hyperviseur_num);
         }
         
         $formulaire = $this->createForm(HyperviseurType::class, $hyperviseur);
@@ -32,7 +32,7 @@ class HyperviseurController extends Controller
                 $em->persist($hyperviseur);
                 $em->flush();
                 
-                return $this->redirectToRoute('afficher_plateforme');
+                return $this->redirectToRoute('afficher_mutualisation');
             }
         }
         

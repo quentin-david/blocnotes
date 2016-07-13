@@ -1,4 +1,0 @@
-services:
-#    qt_systeme.example:
-#        class: QT\SystemeBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]

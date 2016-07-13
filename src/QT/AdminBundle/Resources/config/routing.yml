@@ -1,19 +1,39 @@
 creer_utilisateur:
-    path:   /utilisateurs
+    path:   /utilisateurs/edit
     defaults: {_controller: QTAdminBundle:Utilisateurs:index}
     
 editer_utilisateur:
-    path:   /utilisateurs/{utilisateur_num}
+    path:   /utilisateurs/edit/{utilisateur_num}
     defaults: {_controller: QTAdminBundle:Utilisateurs:index}
     
 supprimer_utilisateur:
     path:   /utilisateurs/suppr/{utilisateur_num}
     defaults: {_controller: QTAdminBundle:Utilisateurs:supprimerUtilisateur}
 
-ajouter_domaine:
-    path:   /domaine
-    defaults: {_controller: QTAdminBundle:Domaine:index}
-    
+
+
+creer_domaine:
+    path:   /domaine/edit
+    defaults: {_controller: QTAdminBundle:Domaine:editerDomaine}
+  
+editer_domaine:
+    path:   /domaine/edit/{domaine_num}
+    defaults: {_controller: QTAdminBundle:Domaine:editerDomaine}
+    requirements:
+        domaine_num: \d+
+        
+supprimer_domaine:
+    path:   /domaine/suppr/{domaine_num}
+    defaults: {_controller: QTAdminBundle:Domaine:supprimerDomaine}
+    requirements:
+        domaine_num: \d+
+        
+        
+  
 afficher_profil:
-    path: profil
+    path: /profil
     defaults: {_controller: QTAdminBundle:Profil:index}
+    
+deconnecter_profil:
+    path: /deconnecter
+    defaults: {_controller: QTAdminBundle:Deconnexion:deconnecter}

@@ -16,23 +16,27 @@ class DomaineController extends Controller
      * Famille de formulaires : Type_cartouche, projet, type_localisation
      * Enregistrement de l'objet en base
      */
-    public function indexAction(Request $request)
+    public function editerDomaineAction(Request $request, $domaine_num=null)
     {
         //ENtity Manager
         $em = $this->getDoctrine()->getManager();
-        
-        // Objet Emplacement pour le formulaire
-        $domaine = new Domaine;
+
+        if($domaine_num == null){
+            $domaine = new Domaine;
+        }else{
+            $domaine = $em->getRepository('QTAdminBundle:Domaine')->find($domaine_num);
+        }
         
         //Creation de l'objet formulaire
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $domaine);
         $formBuilder
-            ->add('libelle', TextType::class, array('attr'=> array('value'=>'')))
+            //->add('libelle', TextType::class, array('attr'=> array('value'=>'')))
+            ->add('libelle', TextType::class)
             ->add('save', SubmitType::class);   
         $formulaire = $formBuilder->getForm();
          
         // Liste les domaines
-        $liste_domaines = $em->getRepository('QTAdminBundle:Domaine')->findAll();        
+        $liste_domaines = $em->getRepository('QTAdminBundle:Domaine')->findAll();
         
         //Enregistrement en base
         if($request->isMethod('POST')){
@@ -41,15 +45,45 @@ class DomaineController extends Controller
                 $em->persist($domaine);
                 $em->flush();
                 
-                return $this->redirectToRoute('ajouter_domaine');
+                return $this->redirectToRoute('creer_domaine');
             }
         }
-        
         
         //Génération du template
         return $this->render('QTAdminBundle::domaine.html.twig', array(
                                     'formulaire' => $formulaire->createView(),
                                     'liste_domaines' =>$liste_domaines
                             ));
-    }   
+    }
+    
+    /**
+     * Suppression d'un domaine
+     * Vérification des topics impactés
+     */
+    public function supprimerDomaineAction(Request $request, $domaine_num)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $domaine_a_supprimer = $em->getRepository('QTAdminBundle:Domaine')->find($domaine_num);
+        if($domaine_a_supprimer == null){
+            return 1;
+        }
+        
+        if($request->isMethod('POST')){
+            foreach($domaine_a_supprimer->getTopics() as $topic_concerne){
+                if(sizeof($topic_concerne->getDomaines()) < 2){
+                    //Si le topic n'a plus de domaine on lui rajoute le "Perso"
+                    $topic_concerne->addDomaine($em->getRepository('QTAdminBundle:Domaine')->find(4));
+                }
+                $topic_concerne->removeDomaine($domaine_a_supprimer);
+            }
+            $em->remove($domaine_a_supprimer);
+            $em->flush();
+            
+            return $this->redirectToRoute('creer_domaine');
+        }
+        
+        return $this->render('QTAdminBundle::domaine_suppression.html.twig', array(
+                                            'domaine' => $domaine_a_supprimer
+                                            ));
+    }
 }

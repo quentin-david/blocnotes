@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new QT\BlocnotesBundle\QTBlocnotesBundle(),
             new QT\AdminBundle\QTAdminBundle(),
             new QT\AppliBundle\QTAppliBundle(),
-            new QT\SystemeBundle\QTSystemeBundle(),
             new QT\DocumentsBundle\QTDocumentsBundle(),
             new QT\CartographieBundle\QTCartographieBundle(),
         ];

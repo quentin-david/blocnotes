@@ -6,10 +6,6 @@ qt_documents:
     resource: "@QTDocumentsBundle/Resources/config/routing.yml"
     prefix:   /
 
-qt_systeme:
-    resource: "@QTSystemeBundle/Resources/config/routing.yml"
-    prefix:   /
-
 qt_appli:
     resource: "@QTAppliBundle/Resources/config/routing.yml"
     prefix:   /
@@ -22,3 +18,5 @@ qt_blocnotes:
     resource: "@QTBlocnotesBundle/Resources/config/routing.yml"
     prefix:   /
 
+logout:
+    path: /logout

@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Entity;
+namespace QT\CartographieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Application
  *
  * @ORM\Table(name="application")
- * @ORM\Entity(repositoryClass="QT\SystemeBundle\Repository\ApplicationRepository")
+ * @ORM\Entity(repositoryClass="QT\CartographieBundle\Repository\ApplicationRepository")
  */
 class Application
 {

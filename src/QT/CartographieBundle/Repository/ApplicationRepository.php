@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Repository;
+namespace QT\CartographieBundle\Repository;
 
 /**
  * ApplicationRepository

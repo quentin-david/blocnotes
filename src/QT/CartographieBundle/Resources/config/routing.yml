@@ -1,13 +1,14 @@
+afficher_metrologie:
+    path: metrologie
+    defaults: {_controller: QTCartographieBundle:Metrologie:index}
+
+
+
+
 afficher_applicatif:
     path:     /carto_applicatif
     defaults: { _controller: QTCartographieBundle:Applicatif:index }
-    
-afficher_carto_application:
-    path:     /carto_application/{application_num}
-    defaults: { _controller: QTCartographieBundle:Applicatif:afficherApplication }
-    requirements:
-        application_num: \d+
-        
+       
 creer_bundle:
     path: /bundle/edit
     defaults: {_controller: QTCartographieBundle:Applicatif:editerBundle}
@@ -19,11 +20,12 @@ editer_bundle:
         bundle_num: \d+
         
         
+   
+   
     
-afficher_plateforme:
-    path:     /plateforme
-    defaults: { _controller: QTCartographieBundle:Plateforme:index }
-
+afficher_mutualisation:
+    path:     /mutualisation
+    defaults: { _controller: QTCartographieBundle:Mutualisation:index }
 
 creer_hyperviseur:
     path: /hyperviseur/edit
@@ -34,9 +36,59 @@ editer_hyperviseur:
     defaults: {_controller: QTCartographieBundle:Hyperviseur:editerHyperviseur}
     requirements:
         hyperviseur_num: \d+
+
+
+
+
+afficher_application:
+    path:     /application/{application_num}
+    defaults: { _controller: QTCartographieBundle:Application:afficherApplication }
+    requirements:
+        application_num: \d+
+
+creer_application:
+    path:     /application/edit/
+    defaults: { _controller: QTCartographieBundle:Application:editerApplication }
+
+editer_application:
+    path:     /application/edit/{application_num}
+    defaults: { _controller: QTCartographieBundle:Application:editerApplication }
+    requirements:
+        application_num: \d+
+
+
+
+
+afficher_noeud:
+    path: /application/{application_num}/noeud/{noeud_num}
+    defaults: {_controller: QTCartographieBundle:Systeme:afficherNoeud}
+    requirements:
+        noeud_num: \d+
+        application_num: \d+
+    
+creer_noeud:
+    path: /application/{application_num}/noeud/edit/
+    defaults: {_controller: QTCartographieBundle:Systeme:editerNoeud}
+    requirements:
+        application_num: \d+
+        
+editer_noeud:
+    path: /application/{application_num}/noeud/edit/{noeud_num}
+    defaults: {_controller: QTCartographieBundle:Systeme:editerNoeud}
+    requirements:
+        noeud_num: \d+
+        application_num: \d+
+ 
+supprimer_noeud:
+    path: /systeme/suppr/{noeud_num}
+    defaults: {_controller: QTCartographieBundle:Systeme:supprimerNoeud}
+    requirements:
+        noeud_num: \d+
    
+  
+  
         
 afficher_carto_donnee:
     path:     /carto_donnee
     defaults: { _controller: QTCartographieBundle:Donnee:index }
-    
+ 

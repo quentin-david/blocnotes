@@ -57,9 +57,8 @@ class Topic
     private $dateModification;
 
     /**
-     * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="QT\AdminBundle\Entity\Domaine", cascade={"persist"}, inversedBy="topics")
      * @ORM\JoinTable(name="topic_domaine")
-     * @Assert\NotBlank()
      */
     private $domaines;
     

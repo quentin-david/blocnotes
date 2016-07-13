@@ -1,0 +1,22 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block contenu %}      
+    <div class="w3-col m9">
+        <h3>Suppression d'un domaine !</h3>
+        {% if domaine.topics|length > 0 %}
+            <p>Attention : {{domaine.topics|length}} topics impactés !</p>
+        {% endif %}
+        <p>
+            Etes vous sur de vouloir supprimer le domaine <b>{{ domaine.libelle }}</b>
+        </p>
+    </div>
+    
+    <div class="w3-col m9">
+        <form action="{{ path('supprimer_domaine', {'domaine_num': domaine.id}) }}" method="post">
+            <a href="{{ path('creer_domaine') }}" class="btn btn-default">
+                Retour création domaine
+            </a>
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+        </form>
+    </div>
+{% endblock %}

@@ -50,14 +50,6 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-            infra:
-                driver:   pdo_mysql
-                host:     "%database_host_infra%"
-                port:     "%database_port_infra%"
-                dbname:   "%database_name_infra%"
-                user:     "%database_user_infra%"
-                password: "%database_password_infra%"
-                charset:  UTF8
 
     orm:
         #auto_generate_proxy_classes: "%kernel.debug%"
@@ -72,11 +64,8 @@ doctrine:
                     QTAdminBundle: ~
                     QTBlocnotesBundle: ~
                     QTDocumentsBundle: ~
-            infra:
-                connection: infra
-                mappings:
-                    QTSystemeBundle: ~
                     QTCartographieBundle: ~
+                    
 
 # Swiftmailer Configuration
 swiftmailer:

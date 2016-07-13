@@ -57,7 +57,7 @@ class Hyperviseur
     private $nbDisque;
     
     /**
-    * @ORM\OneToMany(targetEntity="QT\SystemeBundle\Entity\Noeud", mappedBy="hyperviseur")
+    * @ORM\OneToMany(targetEntity="QT\CartographieBundle\Entity\Noeud", mappedBy="hyperviseur")
     */
     private $noeuds;
     
@@ -186,11 +186,11 @@ class Hyperviseur
     /**
      * Add noeud
      *
-     * @param \QT\SystemeBundle\Entity\Noeud $noeud
+     * @param \QT\CartographieBundle\Entity\Noeud $noeud
      *
      * @return Hyperviseur
      */
-    public function addNoeud(\QT\SystemeBundle\Entity\Noeud $noeud)
+    public function addNoeud(\QT\CartographieBundle\Entity\Noeud $noeud)
     {
         $this->noeuds[] = $noeud;
 
@@ -200,9 +200,9 @@ class Hyperviseur
     /**
      * Remove noeud
      *
-     * @param \QT\SystemeBundle\Entity\Noeud $noeud
+     * @param \QT\CartographieBundle\Entity\Noeud $noeud
      */
-    public function removeNoeud(\QT\SystemeBundle\Entity\Noeud $noeud)
+    public function removeNoeud(\QT\CartographieBundle\Entity\Noeud $noeud)
     {
         $this->noeuds->removeElement($noeud);
     }

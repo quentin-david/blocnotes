@@ -20,40 +20,25 @@ class ApplicatifController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager('infra');
-        $listeBundles = $em->getRepository('QTCartographieBundle:Bundle', 'infra')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $listeBundles = $em->getRepository('QTCartographieBundle:Bundle')->findAll();
         //$listeBundles = ["SystemeBundle","AdminBundle"];
         return $this->render('QTCartographieBundle::applicatif.html.twig', array(
                                     'liste_bundles' => $listeBundles,
                                     ));        
     }    
-    
-    /**
-     * Affichage des différents serveurs de la PF et de la description de l'appli
-     */
-    public function afficherApplicationAction($application_num)
-    {
-        $em = $this->getDoctrine()->getManager('infra');
-        $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->find($application_num);
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
         
-        return $this->render('QTCartographieBundle::application.html.twig', array(
-                                    'liste_noeuds' => $listeNoeuds,
-                                    'application' => $application,
-                                    ));
-    }
-    
     
     /**
      * Edition ou création d'un bundle
      */
     public function editerBundleAction(Request $request, $bundle_num = null)
     {
-        $em = $this->getDoctrine()->getManager('infra');
+        $em = $this->getDoctrine()->getManager();
         if($bundle_num == ''){
             $bundle = new Bundle();
         }else{
-            $bundle = $em->getRepository('QTCartographieBundle:Bundle', 'infra')->findOneById($bundle_num);
+            $bundle = $em->getRepository('QTCartographieBundle:Bundle')->findOneById($bundle_num);
         }
         
         $formulaire = $this->createForm(BundleType::class, $bundle);

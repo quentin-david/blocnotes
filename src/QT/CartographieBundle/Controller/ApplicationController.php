@@ -1,6 +1,6 @@
 <?php
 
-namespace QT\SystemeBundle\Controller;
+namespace QT\CartographieBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,47 +12,41 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use QT\AdminBundle\Entity\Utilisateur;
-use QT\SystemeBundle\Form\ApplicationType;
-use QT\SystemeBundle\Entity\Application;
+use QT\CartographieBundle\Form\ApplicationType;
+use QT\CartographieBundle\Entity\Application;
 
 class ApplicationController extends Controller
 {
     /**
-     * Affichage de l'application
+     * Affichage des différents serveurs de la PF et de la description de l'appli
      */
-    public function afficherApplicationAction()
+    public function afficherApplicationAction($application_num)
     {
-       /* $em = $this->getDoctrine()->getManager('infra');
-        $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
+        $em = $this->getDoctrine()->getManager();
+        $application = $em->getRepository('QTCartographieBundle:Application')->find($application_num);
+        $listeNoeuds = $em->getRepository('QTCartographieBundle:Noeud')->findByApplication($application);
         
-        if($application == null){
-            $application = new Application();
-            $application->setNom('Blocnotes');
-        }
-        
-        return $this->render('QTSystemeBundle::application.html.twig', array(
+        return $this->render('QTCartographieBundle::application.html.twig', array(
                                     'liste_noeuds' => $listeNoeuds,
                                     'application' => $application,
                                     ));
-        */
     }
     
     
     /**
      * Affichage de la description de l'application de la PF
      */
-    public function editerApplicationAction(Request $request)
+    public function editerApplicationAction(Request $request, $application_num=null)
     {
-        $em = $this->getDoctrine()->getManager('infra');
+        $em = $this->getDoctrine()->getManager();
         
-        $application = $em->getRepository('QTSystemeBundle:Application', 'infra')->findOneByNom('Blocnotes');
-        if($application == null){
+        if($application_num == null){
             $application = new Application();
-            $application->setNom('Blocnotes');
+        }else{
+            $application = $em->getRepository('QTCartographieBundle:Application')->find($application_num);
         }
         
-        $listeNoeuds = $em->getRepository('QTSystemeBundle:Noeud', 'infra')->findByApplication($application);
+        $listeNoeuds = $em->getRepository('QTCartographieBundle:Noeud')->findByApplication($application);
         
          //Creation de l'objet formulaire
         $formulaire = $this->createForm(ApplicationType::class, $application);
@@ -63,11 +57,11 @@ class ApplicationController extends Controller
             if ($formulaire->isSubmitted() && $formulaire->isValid()) {
                 $em->persist($application);
                 $em->flush();
-                return $this->redirectToRoute('afficher_systeme');       
+                return $this->redirectToRoute('afficher_application', array('application_num' => $application->getId()));       
             }
         }
         
-        return $this->render('QTSystemeBundle::application_edition.html.twig', array(
+        return $this->render('QTCartographieBundle::application_edition.html.twig', array(
                                     'application' => $application,
                                     'liste_noeuds' => $listeNoeuds,
                                     'formulaire' => $formulaire->createView(),

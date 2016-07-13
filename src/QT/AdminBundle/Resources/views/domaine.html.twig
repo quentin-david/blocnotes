@@ -1,19 +1,26 @@
 {% extends 'QTAppliBundle:Base:base.html.twig' %}
 
-{% block conteneur_gauche %}
-	{# On masque le champ de gauche #}	
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('lister_topic')}}"><p>Topics</p></a></div>
+		<div class="raccourci"><a href="{{ path('creer_domaine')}}"><p>Domaines</p></a></div>
+		<div class="raccourci"><a href="{{ path('creer_utilisateur')}}"><p>Utilisateurs</p></a></div>
+	{% endif %}
 {% endblock %}
 
-{% block conteneur_droite %}
-	{# On masque le champ de gauche #}	
-{% endblock %}
-
-{% block contenu_full_page %}      
+{% block contenu %}      
     <div class="w3-col m6">
-        <h4>Ajout d'un nouveau domaine</h4>
-        <div>
-            {{ form(formulaire, {'attr': {'class': 'formulaire'}}) }}
-        </div>
+		{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
+        <fieldset>
+			<legend>Nouveau Domaine</legend>
+			<table>
+				<tr>
+					<td>{{ form_label(formulaire.libelle, "Libelle", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.libelle) }}</td>
+				</tr>
+			</table>
+		</fieldset>	
+		{{ form_end(formulaire) }}
     </div>
     
     <div class="w3-col m4">
@@ -21,7 +28,7 @@
         <ul>
             {% for domaine in liste_domaines %}
                 <li>
-                    {{ domaine.id }} : {{ domaine.libelle }}
+                    {{ domaine.id }} : {{ domaine.libelle }} ({{ domaine.topics|length }} topics)
                 </li>
             {% endfor%}
         </ul>
@@ -35,6 +42,12 @@
                     <a href="{{ path('lister_topic', {'topic_recherche[domaines][]': domaine.id}) }}">
 						{{ domaine.libelle }}
 					</a>
+					<a href="{{ path('editer_domaine', {'domaine_num': domaine.id}) }}">
+						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+					</a>
+					<a href="{{ path('supprimer_domaine', {'domaine_num': domaine.id}) }}">
+							<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+						</a>
                 </li>
             {% endfor %}
         </ul>

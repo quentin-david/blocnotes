@@ -34,12 +34,13 @@ class ProfilController extends Controller
         //Creation de l'objet formulaire de changement de MDP
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $utilisateur);
         $formBuilder
-            ->add('plainPassword', RepeatedType::class, array(
+            /*->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
                 'required' => false
-            ))
+            ))*/
+            ->add('plainPassword')
             ->add('modifier', SubmitType::class);       
         $formulaire_password = $formBuilder->getForm();
         
