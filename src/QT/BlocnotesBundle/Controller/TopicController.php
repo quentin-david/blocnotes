@@ -95,6 +95,13 @@ class TopicController extends Controller
 		if($request->isMethod('POST')){
 			//$topic_a_supprimer = $em->getRepository('QTBlocnotesBundle:Topic')->find($topic_num);
 			if($topic_a_supprimer != ''){
+				//Suppression des PJs et de leur fichier
+				if($topic_a_supprimer->getPjs() != null){
+					foreach($topic_a_supprimer->getPjs() as $pj){
+						$pj->deleteFile();
+						$em->remove($pj);
+					}
+				}
 				$em->remove($topic_a_supprimer);
 				$em->flush();
 			}
@@ -102,6 +109,24 @@ class TopicController extends Controller
 		}
 			// Redirection vers les topics du meme domaine
             return $this->render('QTBlocnotesBundle:Topic:topic_suppression.html.twig',array('topic' => $topic_a_supprimer));
+	}
+	
+	
+	/**
+	 * Suppression PJ d'un topic
+	 */
+	public function supprimerPjAction(Request $request, $pj_num)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$pj_a_supprimer = $em->getRepository('QTBlocnotesBundle:PieceJointe')->find($pj_num);
+		// Verification que le topic existe bien
+		if($pj_a_supprimer != ''){
+			$pj_a_supprimer->getTopic()->removePj($pj_a_supprimer); //dereferecement au niveau du topic
+			$pj_a_supprimer->deleteFile(); // suppression du fichier physique
+			$em->remove($pj_a_supprimer); //suppression de l'objet PJ
+			$em->flush();
+		}
+		return $this->redirectToRoute('lister_topic');
 	}
 	
 }

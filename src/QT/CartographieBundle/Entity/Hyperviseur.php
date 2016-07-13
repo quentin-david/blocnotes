@@ -50,9 +50,23 @@ class Hyperviseur
     private $nbRam;
     
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nbDisque", type="integer", nullable=true)
+     */
+    private $nbDisque;
+    
+    /**
     * @ORM\OneToMany(targetEntity="QT\SystemeBundle\Entity\Noeud", mappedBy="hyperviseur")
     */
     private $noeuds;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="os", type="string", length=50, nullable=true)
+     */
+    private $os;
     
 
 
@@ -204,7 +218,7 @@ class Hyperviseur
     }
     
     /**
-     * Get occupation mémoire RAM
+     * QT Get occupation mémoire RAM
      */
     public function getOccupationRam()
     {
@@ -213,5 +227,65 @@ class Hyperviseur
             $occupationRam += $noeud->getNbRam();
         }
         return $occupationRam;   
+    }
+
+    /**
+     * Set nbDisque
+     *
+     * @param integer $nbDisque
+     *
+     * @return Hyperviseur
+     */
+    public function setNbDisque($nbDisque)
+    {
+        $this->nbDisque = $nbDisque;
+
+        return $this;
+    }
+
+    /**
+     * Get nbDisque
+     *
+     * @return integer
+     */
+    public function getNbDisque()
+    {
+        return $this->nbDisque;
+    }
+    
+    /**
+     * QT Get occupation du dd
+     */
+    public function getOccupationDisque()
+    {
+        $occupationDisque = 0;
+        foreach($this->noeuds as $noeud){
+            $occupationDisque += $noeud->getNbDisque();
+        }
+        return $occupationDisque;   
+    }
+
+    /**
+     * Set os
+     *
+     * @param string $os
+     *
+     * @return Hyperviseur
+     */
+    public function setOs($os)
+    {
+        $this->os = $os;
+
+        return $this;
+    }
+
+    /**
+     * Get os
+     *
+     * @return string
+     */
+    public function getOs()
+    {
+        return $this->os;
     }
 }

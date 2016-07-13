@@ -14,6 +14,9 @@
 			</span>
 			{# ------- En-tête -------- #}
 			<span class="topic_header_id">#{{ topic.id }}</span>
+			{% if topic.pjs|length > 0 %}
+				<button class="btn_afficher_liste_pjs {{topic.id}}">{{topic.pjs|length}} PJs</button>
+			{% endif %}
 			<span class="topic_header_titre"><b>{{ topic.titre }}</b></span>
 			<span class="topic_header_createur" style="">{{ topic.createur }} ({{ topic.dateCreation|date('Y-m-d') }})</span>
 		</div>
@@ -29,20 +32,29 @@
 					{{ domaine.libelle }}, 
 				{% endfor %}
 			</span>
+			
+			
 			{# ---- Texte ---- #}
 				<div class="bloc_redige">
 					<p>{{ topic.corps|raw }}</p>
 				</div>
-			{# affichage de la piece jointe #}
-			{% if topic.pjs is defined %}
-				<span class="topic_pjs">PJs : 
+				
+				
+			{# affichage des pieces jointes #}
+			{% if topic.pjs|length > 0 %}
+				{#<span class="topic_pjs">
+					<button class="btn_afficher_liste_pjs {{topic.id}}">Afficher {{topic.pjs|length}} PJs</button>
+					<ul class="liste_pjs {{topic.id}}" style="display: none">
 					{% for pj in topic.pjs %}
-						{{ pj.alt }}
+						<li><a href="{{ asset(pj.webPath) }}">
+							{{ pj.alt }}
+						</a></li>
 					{% endfor %}
-				</span>
+					</ul>
+				</span>#}
+				{{ include("QTBlocnotesBundle:Topic:topic_cartouche_pjs.html.twig") }}
 			{% endif %}
 		</div>
     </div>
-      
       
 {% endblock %}

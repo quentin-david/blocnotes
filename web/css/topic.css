@@ -27,12 +27,39 @@
     border: 1px solid black;
 }
 
+.liste_pjs {
+    margin: 1px;
+}
+
+.topic_pj {
+    width: 45%;
+    float: left;
+    text-align: center;
+    border-radius: 25px 8px;
+    box-shadow: -1px 1px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.topic_pj_extension {
+    float: left;
+    padding-left: 2%;
+    border-right: solid 1px;
+}
+
+.topic_pj_suppression {
+    float: right;
+    padding-right: 2%;
+    border-left: solid 1px;
+}
+
+
 .bloc_redige {
     /*background-color: #c1c1bf;*/
     background-color: black;
 }
 
-.bloc_redige p {
+.bloc_redige p, .bloc_redige ul {
     margin: 2px;
     color: #56db3a;
     font-family: monospace,monospace;

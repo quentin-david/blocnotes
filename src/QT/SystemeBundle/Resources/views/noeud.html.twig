@@ -37,7 +37,7 @@
         </div>
     
     <h4>Réseau</h4>
-        <table class="formulaire" style="border: 1px solid black">
+        <table class="tableau_carto">
             <tr>
                 <th>IP admin</th>
                 <td>{{ noeud.ipAdmin }}</td>
@@ -49,21 +49,35 @@
         </table>
         
     <h4>Ressources physiques</h4>
-        <table class="formulaire" style="border: 1px solid black">
+        <table class="tableau_carto">
 			<tr>
                 <th>Hyperviseur</th>
                 <td>{{ noeud.hyperviseur.nom }}</td>
             </tr>
             <tr>
                 <th>Nb CPU</th>
-                <td>{{ noeud.nbCpu }}</td>
+                <td>{{ noeud.nbCpu }} vCPU</td>
             </tr>
             <tr>
                 <th>Nb RAM</th>
-                <td>{{ noeud.nbRam }}</td>
+                <td>{{ noeud.nbRam }} Mo</td>
             </tr>
         </table>
+		
+	<h4>Système</h4>
+        <table class="tableau_carto">
+			<tr>
+                <th>OS</th>
+                <td>{{ noeud.os}}</td>
+            </tr>
+		</table>
     
      <h4>Stockage - partionnement</h4>
+		<table class="tableau_carto">
+			<tr>
+                <th>Taille disque</th>
+                <td>{{ noeud.nbDisque }} Go</td>
+            </tr>
+		</table>
     
 {% endblock %}

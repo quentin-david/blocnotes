@@ -43,10 +43,10 @@
 						<td>{{ form_label(formulaire.nom, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 						<td>{{ form_widget(formulaire.nom) }}</td>
 					</tr>
-					{#<tr>
-						<td>{{ form_label(formulaire.application, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-						<td>{{ form_widget(formulaire.application) }}</td>
-					</tr>#}
+					<tr>
+						<td>{{ form_label(formulaire.etat, "Actif ?", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.etat) }}</td>
+					</tr>
 				</table>
 			</fieldset>
 			<fieldset>
@@ -63,6 +63,10 @@
 					<tr>
 						<td>{{ form_label(formulaire.nbRam, "nb RAM", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 						<td>{{ form_widget(formulaire.nbRam) }}</td>
+					</tr>
+					<tr>
+						<td>{{ form_label(formulaire.nbDisque, "taille DD", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						<td>{{ form_widget(formulaire.nbDisque) }}</td>
 					</tr>
 				</table>
 			</fieldset>
@@ -84,8 +88,18 @@
 					<td>{{ form_widget(formulaire.ipAppli) }}</td>
 				</tr>
 				<tr>
-					<td>{{ form_label(formulaire.mac, "@ MAC", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_label(formulaire.mac, "@MAC", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 					<td>{{ form_widget(formulaire.mac) }}</td>
+				</tr>
+			</table>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Système</legend>
+			<table>
+				<tr>
+					<td>{{ form_label(formulaire.os, "OS", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.os) }}</td>
 				</tr>
 			</table>
 			</fieldset>

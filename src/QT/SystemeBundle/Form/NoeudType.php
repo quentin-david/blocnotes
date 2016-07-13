@@ -28,13 +28,16 @@ class NoeudType extends AbstractType
 							'choice_label' => 'nom',
 			))
             ->add('description')
+			->add('etat')
             ->add('descriptionCourte')
+			->add('os')
             ->add('ipAdmin')
             ->add('ipData')
             ->add('ipAppli')
             ->add('mac')
             ->add('nbCpu')
             ->add('nbRam')
+			->add('nbDisque')
             ->add('Valider', SubmitType::class);
         ;
     }

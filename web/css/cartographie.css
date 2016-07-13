@@ -1,4 +1,21 @@
+.tableau_carto {
+    background-color: #e5e5e5;
+    border: 1px solid black;
+    border-radius: 25px;
+    border-collapse: separate;
+    border-spacing: 0;
+    padding: 6px;
+}
+
 .tableau_carto th, .tableau_carto td {
     border: 1px solid black;
     text-align: center;
+}
+
+.tableau_carto tr:hover {
+    background-color: #b7b7b7 !important;
+}
+
+.tableau_carto td p {
+    margin: 2px;
 }

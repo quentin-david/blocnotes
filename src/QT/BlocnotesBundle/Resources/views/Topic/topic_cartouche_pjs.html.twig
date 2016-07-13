@@ -1,0 +1,27 @@
+<span class="topic_pjs">
+    {#<button class="btn_afficher_liste_pjs {{topic.id}}">Afficher {{topic.pjs|length}} PJs</button>#}
+    <ul class="liste_pjs {{topic.id}}" style="display: none">
+    {% for pj in topic.pjs %}
+        <div class="topic_pj">
+            <div class="topic_pj_extension">{{pj.extension}}</div>
+            
+            <a href="{{ asset(pj.webPath) }}">{{ pj.alt }}</a>
+            
+            <div class="topic_pj_suppression">
+                <a href="{{path('supprimer_topic_pj', {'pj_num': pj.id})}}" style="text-decoration: none">
+					<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
+				</a>
+            </div>
+        </div>
+    {% endfor %}
+    </ul>
+</span>
+
+  
+<script>
+    $(".btn_afficher_liste_pjs").click(function(){
+        var liste = $(this).attr('id');
+        //alert(liste);
+        $(".liste_pjs").toggle();			
+    });
+</script>

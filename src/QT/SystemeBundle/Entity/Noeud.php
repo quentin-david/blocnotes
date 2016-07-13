@@ -90,9 +90,32 @@ class Noeud
     private $nbRam;
     
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_disque", type="integer", nullable=true)
+     */
+    private $nbDisque;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Hyperviseur", inversedBy="noeuds")
      */
     private $hyperviseur;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="os", type="string", length=50, nullable=true)
+     */
+    private $os;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="etat", type="boolean", nullable=true)
+     */
+    private $etat;
+    
+    
 
 
     /**
@@ -367,5 +390,77 @@ class Noeud
     public function getHyperviseur()
     {
         return $this->hyperviseur;
+    }
+
+    /**
+     * Set nbDisque
+     *
+     * @param integer $nbDisque
+     *
+     * @return Noeud
+     */
+    public function setNbDisque($nbDisque)
+    {
+        $this->nbDisque = $nbDisque;
+
+        return $this;
+    }
+
+    /**
+     * Get nbDisque
+     *
+     * @return integer
+     */
+    public function getNbDisque()
+    {
+        return $this->nbDisque;
+    }
+
+    /**
+     * Set os
+     *
+     * @param string $os
+     *
+     * @return Noeud
+     */
+    public function setOs($os)
+    {
+        $this->os = $os;
+
+        return $this;
+    }
+
+    /**
+     * Get os
+     *
+     * @return string
+     */
+    public function getOs()
+    {
+        return $this->os;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param boolean $etat
+     *
+     * @return Noeud
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return boolean
+     */
+    public function getEtat()
+    {
+        return $this->etat;
     }
 }

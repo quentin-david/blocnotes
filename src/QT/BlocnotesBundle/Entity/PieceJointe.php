@@ -41,6 +41,13 @@ class PieceJointe
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
      */
     private $alt;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extension", type="string", length=25, nullable=true)
+     */
+    private $extension;
 
     private $file;
     
@@ -58,17 +65,21 @@ class PieceJointe
     /**
      * QT fonction upload
      */
-    public function upload()
+    public function uploadFile()
     {
         // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
         if (null === $this->file) {
           return;
-        }
-        // On récupère le nom original du fichier de l'internaute
-        //$name = $this->file->getClientOriginalName();
-        
+        }        
         // On déplace le fichier envoyé dans le répertoire de notre choix
         $this->file->move($this->getUploadDir(), $this->url);
+    }
+    
+    public function deleteFile()
+    {
+        if($this->getUrl() != null){
+            unlink($this->getUploadDir().'/'.$this->getUrl());
+        }
     }
     
       
@@ -151,7 +162,11 @@ class PieceJointe
     {
         $this->file = $file;
         $this->alt = $this->file->getClientOriginalName();
-        $this->upload();
+        //Calcul et enregistrement de l'extension du fichier
+        $extension = $this->file->guessExtension();
+        if(!$extension){$extension = 'bin';}
+        $this->extension = $extension;
+        $this->uploadFile();
     }
 
 
@@ -187,5 +202,29 @@ class PieceJointe
     public function getTopic()
     {
         return $this->topic;
+    }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     *
+     * @return PieceJointe
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
     }
 }

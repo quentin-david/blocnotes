@@ -17,3 +17,9 @@ supprimer_topic:
 lister_topic:
     path:   /topics
     defaults: {_controller: QTBlocnotesBundle:TopicListe:listerTopic}
+    
+supprimer_topic_pj:
+    path:   /topic/pj/suppr/{pj_num}
+    defaults: {_controller: QTBlocnotesBundle:Topic:supprimerPj}
+    requirements:
+        pj_num: \d+

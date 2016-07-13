@@ -18,8 +18,10 @@ class HyperviseurType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
+            ->add('os')
             ->add('ipPublique')
             ->add('nbRam')
+            ->add('nbDisque')
             ->add('Valider', SubmitType::class);
         ;
     }
