@@ -6,6 +6,9 @@ security:
             entity:
                 class: QT\AdminBundle\Entity\Utilisateur
                 property: username
+                
+        main:
+            id: fos_user.user_provider.username
         #in_memory:
             #memory:
                 #users:
@@ -14,8 +17,8 @@ security:
     
     encoders:
         #Symfony\Component\Security\Core\User\User: plaintext
-        QT\AdminBundle\Entity\Utilisateur:
-            algorithm: bcrypt
+        QT\AdminBundle\Entity\Utilisateur: sha512
+            #algorithm: bcrypt
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -24,16 +27,17 @@ security:
             security: false
 
         main:
-            anonymous: false
-
-            http_basic: ~
-
+            anonymous: true
+            #http_basic: ~
             pattern:  ^/
-            provider: db_provider
-            
+            #provider: db_provider
+            provider: main
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
             logout:
-                path:   logout
-                target: lister_topic
+                path:   fos_user_security_logout
+                target: accueil
                 
             
     access_control:

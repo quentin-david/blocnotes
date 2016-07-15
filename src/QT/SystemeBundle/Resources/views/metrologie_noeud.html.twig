@@ -1,0 +1,11 @@
+{% block metrologie_noeud %}
+    
+    <a href="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/index.html" target="_blank">lien Munin : {{noeud.nom}}</a>
+    <br>
+    <div>
+        {% for info in liste_infos %}
+            <img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
+        {% endfor %}
+    </div>	
+    
+{% endblock %}

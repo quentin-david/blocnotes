@@ -29,7 +29,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "symfony/filesystem": "^3.1",
-        "symfony/finder": "^3.1"
+        "symfony/finder": "^3.1",
+        "friendsofsymfony/user-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

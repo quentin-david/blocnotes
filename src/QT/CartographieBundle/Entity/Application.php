@@ -41,13 +41,19 @@ class Application
      * @ORM\Column(name="ip_publique", type="string", length=20, nullable=true)
      */
     private $ipPublique;
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="QT\CartographieBundle\Entity\Noeud", mappedBy="application")
+     */
+    private $noeuds;
 
     /**
      * Constructeur (crée l'appli)
      */
     public function __construct()
     {
-        $this->nom = "Blocnotes";
+        //$this->nom = "Blocnotes";
         $this->description = "Entrer la description ici";
     }
 
@@ -133,4 +139,38 @@ class Application
         return $this->ipPublique;
     }
 
+
+    /**
+     * Add noeud
+     *
+     * @param \QT\CartographieBundle\Entity\Noeud $noeud
+     *
+     * @return Application
+     */
+    public function addNoeud(\QT\CartographieBundle\Entity\Noeud $noeud)
+    {
+        $this->noeuds[] = $noeud;
+
+        return $this;
+    }
+
+    /**
+     * Remove noeud
+     *
+     * @param \QT\CartographieBundle\Entity\Noeud $noeud
+     */
+    public function removeNoeud(\QT\CartographieBundle\Entity\Noeud $noeud)
+    {
+        $this->noeuds->removeElement($noeud);
+    }
+
+    /**
+     * Get noeuds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNoeuds()
+    {
+        return $this->noeuds;
+    }
 }

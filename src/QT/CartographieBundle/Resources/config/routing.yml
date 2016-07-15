@@ -1,10 +1,3 @@
-afficher_metrologie:
-    path: metrologie
-    defaults: {_controller: QTCartographieBundle:Metrologie:index}
-
-
-
-
 afficher_applicatif:
     path:     /carto_applicatif
     defaults: { _controller: QTCartographieBundle:Applicatif:index }

@@ -20,6 +20,7 @@ class ApplicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('nom',    TextType::class)
             ->add('ipPublique',    TextType::class)
             ->add('description',    TextAreaType::class)
             ->add('Valider', SubmitType::class);

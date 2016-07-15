@@ -1,0 +1,49 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block conteneur_lanceurs %}
+{% endblock %}
+
+{% block raccourcis %}
+	<div class="raccourci"><a href="https://quentin-david.ovh/munin/"><p>MUNIN</p></a></div>
+{% endblock %}
+
+{% block recherches %}
+	<h4>Indicateurs</h4>
+	<ul style="padding-left: 35px">
+	{% for info in liste_infos %}
+		<li>
+			{{info}}
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block contenu %}
+    
+        <h2 class="titre">Métrologie des serveurs</h2>
+        <ul>
+            {% for application in liste_applications %}
+                <h4>Application <b>{{application.nom}}</b></h4>
+				<ul>
+					{% for noeud in application.noeuds %}
+					<li>
+						<a href="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/index.html" target="_blank">{{noeud.nom}}</a>
+						<a href="#" id="{{noeud.nom}}">(graphs)</a>
+						<br>
+						<script>
+							$("#{{noeud.nom}}").click(function(){
+								$(".{{noeud.nom}}").toggle();
+							});
+						</script>
+						<span style="display: none;" class="{{noeud.nom}}">
+						{% for info in liste_infos %}
+							<img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
+						{% endfor %}
+						</span>	
+					</li>
+					{% endfor %}
+				</ul>
+            {% endfor %}
+        </ul>
+    
+{% endblock %}

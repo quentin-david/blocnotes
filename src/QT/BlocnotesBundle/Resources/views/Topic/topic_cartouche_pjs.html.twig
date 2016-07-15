@@ -1,11 +1,12 @@
 <span class="topic_pjs">
     {#<button class="btn_afficher_liste_pjs {{topic.id}}">Afficher {{topic.pjs|length}} PJs</button>#}
-    <ul class="liste_pjs {{topic.id}}" style="display: none">
+    <ul class="liste_pjs {{topic.id}}">
     {% for pj in topic.pjs %}
         <div class="topic_pj">
             <div class="topic_pj_extension">{{pj.extension}}</div>
             
-            <a href="{{ asset(pj.webPath) }}">{{ pj.alt }}</a>
+			<a href="{{ asset('uploads/topic_pj/'~pj.url) }}" target="_blank">{{ pj.alt }}</a>
+
             
             <div class="topic_pj_suppression">
                 <a href="{{path('supprimer_topic_pj', {'pj_num': pj.id})}}" style="text-decoration: none">

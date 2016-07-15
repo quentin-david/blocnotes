@@ -7,13 +7,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use FOS\UserBundle\Model\User as BaseUser;
+
 /**
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="QT\AdminBundle\Repository\UtilisateurRepository")
  */
-class Utilisateur implements UserInterface, \Serializable
+//class Utilisateur implements UserInterface, \Serializable
+class Utilisateur extends BaseUser
 {
     /**
      * @var int
@@ -22,57 +25,40 @@ class Utilisateur implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=100)
+     * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
      */
     private $prenom;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="user_name", type="string", length=100, unique=true)
-     */
-    private $username;
 
     /**
      * 
-     * @Assert\Length(max=4096)
      */
-    private $plainPassword;
+    protected $plainPassword;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=100)
-     */
-    private $password;
-    
-    /**
-    * @ORM\Column(name="roles", type="array")
-    */
-    private $roles = array();
     
     /**
      * @Assert\NotBlank()
      */
     private $listeRoles;
-
-    /**
-     * @ORM\OneToOne(targetEntity="QT\AdminBundle\Entity\Profil", cascade={"persist"})
-     */
-    private $profil;
     
+    
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
@@ -160,65 +146,17 @@ class Utilisateur implements UserInterface, \Serializable
         $this->listeRoles = $listeRoles;
     }
     
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Utilisateur
-     */
-    public function setPassword($password)
-    {
-        if($password != ''){
-            $this->password = $password;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-    
-    public function getRoles()
-    {
-        return $this->roles;
-        //return array('ROLE_USER','ROLE_ADMIN');
-    }
     
     public function getSalt()
     {
         return null;
     }
     
-    public function getUsername()
-    {
-        return $this->username;
-    }
     
     public function eraseCredentials()
     {
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Utilisateur
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
     
     /** @see \Serializable::serialize() */
     public function serialize()
@@ -244,19 +182,6 @@ class Utilisateur implements UserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
-    /**
-     * Set roles
-     *
-     * @param array $roles
-     *
-     * @return Utilisateur
-     */
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
     
     /**
      * QT essai 
@@ -266,27 +191,4 @@ class Utilisateur implements UserInterface, \Serializable
         return (string) $this->getUsername();
     }
 
-    /**
-     * Set profil
-     *
-     * @param \QT\AdminBundle\Entity\Profil $profil
-     *
-     * @return Utilisateur
-     */
-    public function setProfil(\QT\AdminBundle\Entity\Profil $profil = null)
-    {
-        $this->profil = $profil;
-
-        return $this;
-    }
-
-    /**
-     * Get profil
-     *
-     * @return \QT\AdminBundle\Entity\Profil
-     */
-    public function getProfil()
-    {
-        return $this->profil;
-    }
 }

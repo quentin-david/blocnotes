@@ -1,7 +1,3 @@
 accueil:
     path:     /
     defaults: { _controller: QTAppliBundle:Accueil:index }
-
-logout:
-    path: /logout
-    #defaults: {_controller: QTAdminBundle:Utilisateurs:logout}

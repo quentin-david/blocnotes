@@ -23,3 +23,4 @@ supprimer_topic_pj:
     defaults: {_controller: QTBlocnotesBundle:Topic:supprimerPj}
     requirements:
         pj_num: \d+
+        

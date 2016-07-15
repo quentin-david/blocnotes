@@ -98,4 +98,11 @@
             </tr>
 		</table>
     
+	<h4>Métrologie</h4>
+		<div>
+		{% block metrologie_noeud %}
+			{# chargement depuis le controleur metrologie #}
+			{{ render(controller('QTSystemeBundle:Metrologie:afficherMetrologieNoeud', {'noeud_num': noeud.id}))}}
+		{% endblock %}
+		</div>
 {% endblock %}

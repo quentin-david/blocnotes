@@ -148,7 +148,15 @@
 			</table>
 			<br>
 		{% endfor %}
+		
+		<h4>Métrologie</h4>
+		<div>
+		{% block metrologie_noeud %}
+			{# chargement depuis le controleur metrologie #}
+			{{ render(controller('QTSystemeBundle:Metrologie:afficherMetrologieNoeud', {'noeud_num': hyperviseur.id}))}}
+		{% endblock %}
+		</div>
+		
 	{% endfor %}
-	
 		
 {% endblock %}

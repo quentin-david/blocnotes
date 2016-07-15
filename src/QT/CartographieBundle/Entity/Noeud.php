@@ -22,7 +22,7 @@ class Noeud
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Application")
+     * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Application", inversedBy="noeuds")
      */
     private $application;
 

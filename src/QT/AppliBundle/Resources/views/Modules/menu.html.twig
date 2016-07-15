@@ -14,12 +14,20 @@
 			<a href="{{path('afficher_mutualisation')}}">PF mutualisée</a>
 			<a href="{{path('afficher_applicatif') }}">Mod. applicatifs</a>
 			<a href="{{path('afficher_carto_donnee')}}">BDD</a>
-			<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
 		</div>
 	</li>
 	
 	{% if is_granted('ROLE_ADMIN') %}
 	<li class="w3-hide-small w3-dropdown-hover">
+		<a href="#" class="w3-padding-large w3-hover-white" title="cartographie">Système</a>
+		<div class="w3-dropdown-content w3-white w3-card-4">
+			<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
+		</div>
+	</li>
+	{% endif %}
+	
+	{% if is_granted('ROLE_ADMIN') %}
+	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
 			<a href="{{ path('creer_utilisateur') }}">Utilisateurs</a>
@@ -32,7 +40,8 @@
 		<a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
 		<div class="w3-dropdown-content w3-right w3-white w3-card-4" style="right: 2px">
 			<a href="{{ path('afficher_profil') }}">Mon profil</a>
-			<a href="{{ path('logout') }}">Logout</a>
+			{#<a href="{{ path('logout') }}">Logout</a>#}
+			<a href="{{ path('fos_user_security_logout') }}">Logout</a>
 			{#<a href="{{ path('deconnecter_profil') }}">Logout</a>#}
 		</div>
 	</li>

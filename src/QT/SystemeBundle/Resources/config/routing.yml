@@ -1,0 +1,3 @@
+afficher_metrologie:
+    path: metrologie
+    defaults: {_controller: QTSystemeBundle:Metrologie:index}
