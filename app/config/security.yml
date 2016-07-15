@@ -27,8 +27,9 @@ security:
             security: false
 
         main:
-            anonymous: true
-            #http_basic: ~
+            #Laisser l'acces anonymous pour permettre d'executer le chemin /login, /logout
+            anonymous: ~
+            #http_basic: ~ # option a bannir pour ne pas bloquer FOSUserBundle
             pattern:  ^/
             #provider: db_provider
             provider: main
@@ -37,13 +38,14 @@ security:
                 check_path: fos_user_security_check
             logout:
                 path:   fos_user_security_logout
-                target: accueil
+                target: /
                 
             
     access_control:
         - { path: ^/utilisateurs, roles: ROLE_ADMIN }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
         
     role_hierarchy:
-        # Un admin hérite des droits d'auteur et de modérateur
-        #ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN

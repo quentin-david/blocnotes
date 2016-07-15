@@ -4,15 +4,12 @@ namespace QT\AdminBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\AdminBundle\Entity\Utilisateur;
+use QT\AdminBundle\Form\UtilisateurType;
 
 class UtilisateursController extends Controller
 {
@@ -33,20 +30,7 @@ class UtilisateursController extends Controller
         }
         
         //Creation de l'objet formulaire
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $utilisateur);
-        $formBuilder
-            ->add('nom',    TextType::class)
-            ->add('prenom',    TextType::class)
-            ->add('username',    TextType::class)
-            ->add('listeRoles', TextType::class)
-            //->add('plainPassword', RepeatedType::class, array(
-            //    'type' => PasswordType::class,
-            //    'first_options'  => array('label' => 'Password'),
-            //    'second_options' => array('label' => 'Repeat Password'),
-            //))
-            ->add('Creer', SubmitType::class);
-            
-        $formulaire_utilisateur = $formBuilder->getForm();
+        $formulaire_utilisateur = $this->createForm(UtilisateurType::class, $utilisateur);
         
         // Enregistrement de l'utilisateur
         if($request->isMethod('POST')){
@@ -60,7 +44,6 @@ class UtilisateursController extends Controller
                 }
                 
                 // Ajout du role
-                //$utilisateur->setRoles(array('ROLE_ADMIN'));
                 $utilisateur->setRoles(explode(",", $utilisateur->getListeRoles()));
         
                 // 4) save the User!

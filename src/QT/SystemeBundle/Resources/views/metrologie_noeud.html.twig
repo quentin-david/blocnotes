@@ -4,8 +4,14 @@
     <br>
     <div>
         {% for info in liste_infos %}
-            <img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
+            <img class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
         {% endfor %}
-    </div>	
+    </div>
+    
+    <script>
+        $(".btn_noeud_metrologie").click(function(){
+           $(".noeud_metrologie").toggle(); 
+        });
+    </script>
     
 {% endblock %}

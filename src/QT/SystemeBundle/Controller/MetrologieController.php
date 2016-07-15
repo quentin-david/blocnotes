@@ -16,10 +16,12 @@ class MetrologieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $listeApplications = $em->getRepository('QTCartographieBundle:Application')->findAll();
+        $listeHyperviseurs = $em->getRepository('QTCartographieBundle:Hyperviseur')->findAll();
         $listeInfos = array('diskstats_iops-','cpu-', 'memory-'); //Liste des graphes a afficher directement
         $niveauDetail = 'day';
         return $this->render('QTSystemeBundle::metrologie.html.twig', array(
                                     'liste_applications' => $listeApplications,
+                                    'liste_hyperviseurs' => $listeHyperviseurs,
                                     'niveau_detail' => $niveauDetail,
                                     'liste_infos' => $listeInfos,
                                     ));
@@ -47,6 +49,15 @@ class MetrologieController extends Controller
                             'liste_infos' => $listeInfos,
                             'noeud' => $noeud,
                         ));
+        
+    }
+    
+    /**
+     * Affichage des graphes par hyperviseur et par type de profilage
+     * (graphe de l'hyperviseur en grand avec en dessous les graphes de ses VMs)
+     */
+    public function afficherProfilingAction($hyperviseur_num, $profiling_type)
+    {
         
     }
 }

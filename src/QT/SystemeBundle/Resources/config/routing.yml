@@ -1,3 +1,9 @@
 afficher_metrologie:
     path: metrologie
     defaults: {_controller: QTSystemeBundle:Metrologie:index}
+    
+afficher_profiling:
+    path: /metrologie/profiling/{hyperviseur_num}/{profiling_type}
+    defaults: {_controller: QTSystemeBundle:Metrologie:afficherProfilingAction}
+    requirements:
+        hypervisuer_num: \d+

@@ -93,7 +93,7 @@
 		
 		
 		
-		=> Occupation : <br>
+		<h4>Provisioning</h4>
 		<table class="tableau_carto">
 			<tr>
 				<th>Nb de VMs</th>
@@ -114,7 +114,7 @@
 		
 		
 		
-		=> Liste des VMs attachées : <br>
+		<h4>Liste des VMs attachées</h4>
 		{% for noeud in hyperviseur.noeuds %}
 			<b>{{ noeud.nom }}</b>
 			
@@ -149,10 +149,18 @@
 			<br>
 		{% endfor %}
 		
-		<h4>Métrologie</h4>
-		<div>
+		
+		<h4>Liste des réseaux internes</h4>
+		<ul>
+		{% for reseau in liste_reseaux %}
+			<li>{{reseau}}.0/24</li>
+		{% endfor %}
+		</ul>
+		
+		
+		<h4>Métrologie  <button class="btn_noeud_metrologie">(display)</button></h4>
+		<div class="noeud_metrologie">
 		{% block metrologie_noeud %}
-			{# chargement depuis le controleur metrologie #}
 			{{ render(controller('QTSystemeBundle:Metrologie:afficherMetrologieNoeud', {'noeud_num': hyperviseur.id}))}}
 		{% endblock %}
 		</div>

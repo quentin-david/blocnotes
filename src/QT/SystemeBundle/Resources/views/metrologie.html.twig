@@ -12,18 +12,29 @@
 	<ul style="padding-left: 35px">
 	{% for info in liste_infos %}
 		<li>
-			{{info}}
+			{{info}}{{niveau_detail}}
 		</li>
 	{% endfor %}
 	</ul>
 {% endblock %}
 
+{% block listes %}
+	<h4>Profiling</h4>
+	<ul style="padding-left: 35px">
+		<li>Mémoire</li>
+		<li>CPU</li>
+		<li>Réseau</li>
+		<li>Disque</li>
+	</ul>
+{% endblock %}
+
 {% block contenu %}
     
-        <h2 class="titre">Métrologie des serveurs</h2>
+        <h2 class="titre">Métrologie</h2>
+		<h4>Par Application</h4>
         <ul>
             {% for application in liste_applications %}
-                <h4>Application <b>{{application.nom}}</b></h4>
+                <h5>Application <b>{{application.nom}}</b></h5>
 				<ul>
 					{% for noeud in application.noeuds %}
 					<li>
@@ -45,5 +56,14 @@
 				</ul>
             {% endfor %}
         </ul>
+		
+		
+		<h4>Par hyperviseur</h4>
+		<ul>
+			{% for hyperviseur in liste_hyperviseurs %}
+				<h5>{{hyperviseur.nom}}</h5>
+			{% endfor %}
+		</ul>
+		
     
 {% endblock %}

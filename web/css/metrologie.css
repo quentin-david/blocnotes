@@ -1,0 +1,13 @@
+.noeud_metrologie{
+    display: none;
+}
+
+.noeud_metrologie img{
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.btn_noeud_metrologie {
+    font-size: 12px;
+    height: 23px;
+}

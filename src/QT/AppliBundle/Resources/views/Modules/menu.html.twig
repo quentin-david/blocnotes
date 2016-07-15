@@ -8,20 +8,23 @@
 	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="documents">Documents</a></li>
   	
-	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
-		<a href="{{path('afficher_mutualisation')}}" class="w3-padding-large w3-hover-white" title="cartographie">Cartographie</a>
-		<div class="w3-dropdown-content w3-white w3-card-4">
-			<a href="{{path('afficher_mutualisation')}}">PF mutualisée</a>
-			<a href="{{path('afficher_applicatif') }}">Mod. applicatifs</a>
-			<a href="{{path('afficher_carto_donnee')}}">BDD</a>
-		</div>
-	</li>
+	{% if is_granted('ROLE_ADMIN') %}
+		<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
+			<a href="{{path('afficher_mutualisation')}}" class="w3-padding-large w3-hover-white" title="cartographie">Cartographie</a>
+			<div class="w3-dropdown-content w3-white w3-card-4">
+				<a href="{{path('afficher_mutualisation')}}">PF mutualisée</a>
+				<a href="{{path('afficher_applicatif') }}">Mod. applicatifs</a>
+				<a href="{{path('afficher_carto_donnee')}}">BDD</a>
+			</div>
+		</li>
+	{% endif %}
 	
 	{% if is_granted('ROLE_ADMIN') %}
 	<li class="w3-hide-small w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="cartographie">Système</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
 			<a href="{{ path('afficher_metrologie') }}">Métrologie</a>
+			<a href="{{ path('afficher_metrologie') }}">Sauvegarde</a>
 		</div>
 	</li>
 	{% endif %}
@@ -39,10 +42,13 @@
 	<li class="w3-hide-small w3-right w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
 		<div class="w3-dropdown-content w3-right w3-white w3-card-4" style="right: 2px">
+			{% if  not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_login') }}">Login</a>
+			{% endif %}
 			<a href="{{ path('afficher_profil') }}">Mon profil</a>
-			{#<a href="{{ path('logout') }}">Logout</a>#}
-			<a href="{{ path('fos_user_security_logout') }}">Logout</a>
-			{#<a href="{{ path('deconnecter_profil') }}">Logout</a>#}
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_logout') }}">Logout</a>
+			{% endif %}
 		</div>
 	</li>
 	
