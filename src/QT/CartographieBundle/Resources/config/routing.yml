@@ -20,6 +20,12 @@ afficher_mutualisation:
     path:     /mutualisation
     defaults: { _controller: QTCartographieBundle:Mutualisation:index }
 
+afficher_hyperviseur:
+    path: /hyperviseur/{hyperviseur_num}
+    defaults: {_controller: QTCartographieBundle:Hyperviseur:afficherHyperviseur}
+    requirements:
+        hyperviseur_num: \d+
+
 creer_hyperviseur:
     path: /hyperviseur/edit
     defaults: {_controller: QTCartographieBundle:Hyperviseur:editerHyperviseur}

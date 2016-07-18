@@ -52,119 +52,13 @@
 	</ul>
     
     <h3>Liste des hyperviseurs</h3>
-	
+	<ul>
 	{% for hyperviseur in liste_hyperviseurs %}
-		<h4 style="text-align: center">
-			<b>{{ hyperviseur.nom }}</b>
-			<a href="{{ path('editer_hyperviseur', {'hyperviseur_num': hyperviseur.id}) }}">
-				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" title="editer hyperviseur">
+		<li>
+			<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': hyperviseur.id})}}">
+				{{hyperviseur.nom}}
 			</a>
-			<a href="">
-				<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" title="supprimer hyperviseur">
-			</a>
-		</h4>
-		
-		<table class="tableau_carto">
-			<tr>
-				<th>IP publique</th>
-				<td>{{ hyperviseur.ipPublique }}</td>
-			</tr>
-			<tr>
-				<th>Nb RAM</th>
-				<td>{{ hyperviseur.nbRam }} Mo</td>
-			</tr>
-			<tr>
-				<th>Disque dur</th>
-				<td>{{ hyperviseur.nbDisque }} Go</td>
-			</tr>
-			<tr>
-				<th>Système</th>
-				<td>{{ hyperviseur.os }}</td>
-			</tr>
-			<tr>
-				<th colspan="2">Description</th>
-			</tr>
-			<tr>
-				<td colspan="2">{{ hyperviseur.description|raw }}</td>
-			</tr>
-		</table>
-		<br>
-		
-		
-		
-		
-		<h4>Provisioning</h4>
-		<table class="tableau_carto">
-			<tr>
-				<th>Nb de VMs</th>
-				<td>{{ hyperviseur.noeuds| length }}</td>
-			</tr>
-			<tr>
-				<th>Provisionning RAM</th>
-				<td>{{ hyperviseur.occupationRam }} Mo ({{( hyperviseur.occupationRam / hyperviseur.nbRam) * 100}} %)</td>
-			</tr>
-			<tr>
-				<th>Provisionning disque</th>
-				<td>{{ hyperviseur.occupationDisque }} Go ({{( hyperviseur.occupationDisque / hyperviseur.nbDisque) * 100}} %)</td>
-			</tr>
-		</table>
-		<br>
-		
-		
-		
-		
-		
-		<h4>Liste des VMs attachées</h4>
-		{% for noeud in hyperviseur.noeuds %}
-			<b>{{ noeud.nom }}</b>
-			
-			<table class="tableau_carto">
-				<tr>
-					<th colspan="3">Application</th>
-					<td colspan="3">
-						<a href="{{path('afficher_application', {'application_num': noeud.application.id})}}">
-							{{ noeud.application.nom }}
-						</a>	
-					</td>
-				</tr>
-				<tr>
-					<th colspan="3">Description</th>
-					<td colspan="3">{{ noeud.descriptionCourte|raw }}</td>
-				</tr>
-				<tr>
-					<th>IP admin</th>
-					<td colspan="2">{{ noeud.ipAdmin }}</td>
-					<th>Système</th>
-					<td colspan="2">{{noeud.os}}</td>
-				</tr>
-				<tr>
-					<th>Nb vCPU</th>
-					<td>{{ noeud.nbCpu }}</td>
-					<th>Nb RAM</th>
-					<td>{{ noeud.nbRam }} Mo</td>
-					<th>taille DD</th>
-					<td>{{ noeud.nbDisque }} Go</td>
-				</tr>
-			</table>
-			<br>
-		{% endfor %}
-		
-		
-		<h4>Liste des réseaux internes</h4>
-		<ul>
-		{% for reseau in liste_reseaux %}
-			<li>{{reseau}}.0/24</li>
-		{% endfor %}
-		</ul>
-		
-		
-		<h4>Métrologie  <button class="btn_noeud_metrologie">(display)</button></h4>
-		<div class="noeud_metrologie">
-		{% block metrologie_noeud %}
-			{{ render(controller('QTSystemeBundle:Metrologie:afficherMetrologieNoeud', {'noeud_num': hyperviseur.id}))}}
-		{% endblock %}
-		</div>
-		
+		</li>
 	{% endfor %}
-		
+	</ul>	
 {% endblock %}

@@ -49,7 +49,7 @@
 		<h4>Liste des serveurs</h4>
 
 		{% for noeud in liste_noeuds %}
-			{{ noeud.nom }}
+			<a href="{{ path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id}) }}">{{noeud.nom}}</a>
 			<a href="{{ path('editer_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id}) }}">
 				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:5px" title="editer noeud">
 			</a>
@@ -64,7 +64,9 @@
 				</tr>
 				<tr>
 					<th>Hyperviseur</th>
-					<td>{{ noeud.hyperviseur.nom }}</td>
+					<td>
+						<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': noeud.hyperviseur.id})}}"> {{ noeud.hyperviseur.nom }}</a>
+					</td>
 				</tr>
 				<tr>
 					<th>IP admin</th>

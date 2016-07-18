@@ -5,7 +5,6 @@
   	</li>
   	<li><a href="{{ path('accueil') }}" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
   	<li class="w3-hide-small"><a href="{{ path('lister_topic') }}" class="w3-padding-large w3-hover-white" title="blocnotes">Bloc-notes</a></li>
-	<li class="w3-hide-small w3-theme-d4"><a href="#" class="w3-padding-large w3-hover-white" title="calendriers">Calendriers</a></li>
 	<li class="w3-hide-small"><a href="{{ path('lister_documents') }}" class="w3-padding-large w3-hover-white" title="documents">Documents</a></li>
   	
 	{% if is_granted('ROLE_ADMIN') %}
@@ -29,7 +28,7 @@
 	</li>
 	{% endif %}
 	
-	{% if is_granted('ROLE_ADMIN') %}
+	{# if is_granted('ROLE_ADMIN') #}
 	<li class="w3-hide-small w3-dropdown-hover w3-theme-d4">
 		<a href="#" class="w3-padding-large w3-hover-white" title="gestion">Gestion</a>
 		<div class="w3-dropdown-content w3-white w3-card-4">
@@ -37,7 +36,7 @@
 			<a href="{{ path('creer_domaine') }}">Domaines</a>
 		</div>
 	</li>
-	{% endif %}
+	{# endif #}
 
 	<li class="w3-hide-small w3-right w3-dropdown-hover">
 		<a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="{{ asset('pictures/img_avatar2.png') }}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>

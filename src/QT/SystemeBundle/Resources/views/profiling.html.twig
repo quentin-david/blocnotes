@@ -1,0 +1,47 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block conteneur_lanceurs %}
+{% endblock %}
+
+{% block raccourcis %}
+	<div class="raccourci"><a href="https://quentin-david.ovh/munin/"><p>MUNIN</p></a></div>
+{% endblock %}
+
+{% block listes %}
+	<h4>Profiling</h4>
+	<ul style="padding-left: 35px">
+		<li><a href="{{path('afficher_profiling',{'hyperviseur_num': hyperviseur.id, 'profiling_type': 'cpu'})}}">Mémoire</a></li>
+		<li><a href="{{path('afficher_profiling',{'hyperviseur_num': hyperviseur.id, 'profiling_type': 'cpu'})}}">CPU</a></li>
+		<li>Réseau</li>
+		<li>Disque</li>
+	</ul>
+{% endblock %}
+
+{% block recherches %}
+	<h4>Indicateurs</h4>
+	<ul style="padding-left: 35px">
+	{% for indicateur in liste_indicateurs %}
+		<li>
+			{{indicateur}}{{niveau_detail}}
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block contenu %}
+    
+        <h2 class="titre">Métrologie - Profiling</h2>
+		<h4>Hyperviseur {{hyperviseur.nom}}</h4>
+        {% for indicateur in liste_indicateurs %}
+        <img style="display: inline; width: 88%; margin-bottom: 10px;" src="https://quentin-david.ovh/munin/{{hyperviseur.nom}}/{{hyperviseur.nom}}/{{indicateur}}{{niveau_detail}}.png"/>
+        
+        {% for noeud in liste_noeuds %}
+            <div style="display: inline; width: 32%; margin-bottom: 10px;float: left">
+                <div style="text-align: center;">noeud {{noeud.nom}}</div>
+                <img  style="width: 100%;" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{indicateur}}{{niveau_detail}}.png"/>
+                
+            </div>
+        {% endfor %}
+       {% endfor %}	
+    
+{% endblock %}

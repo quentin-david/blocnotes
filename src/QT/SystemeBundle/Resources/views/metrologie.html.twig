@@ -20,50 +20,61 @@
 
 {% block listes %}
 	<h4>Profiling</h4>
-	<ul style="padding-left: 35px">
-		<li>Mémoire</li>
-		<li>CPU</li>
-		<li>Réseau</li>
-		<li>Disque</li>
-	</ul>
+	<p>cf Hyperviseur</p>
 {% endblock %}
 
 {% block contenu %}
     
         <h2 class="titre">Métrologie</h2>
 		<h4>Par Application</h4>
-        <ul>
-            {% for application in liste_applications %}
-                <h5>Application <b>{{application.nom}}</b></h5>
+
+			<div id="metrologie_colonne_gauche" class="w3-col m3" {#style="width: 35%; float: left;"#}>
 				<ul>
-					{% for noeud in application.noeuds %}
-					<li>
-						<a href="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/index.html" target="_blank">{{noeud.nom}}</a>
-						<a href="#" id="{{noeud.nom}}">(graphs)</a>
-						<br>
-						<script>
-							$("#{{noeud.nom}}").click(function(){
-								$(".{{noeud.nom}}").toggle();
-							});
-						</script>
-						<span style="display: none;" class="{{noeud.nom}}">
-						{% for info in liste_infos %}
-							<img style="display: inline; width: 48%; margin-bottom: 10px;" class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
-						{% endfor %}
-						</span>	
-					</li>
+					{% for application in liste_applications %}
+						<h5>Application <b>{{application.nom}}</b></h5>
+						<ul>
+							{% for noeud in application.noeuds %}
+							<li>
+								<a href="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/index.html" target="_blank">{{noeud.nom}}</a>
+								<a href="#" id="{{noeud.nom}}">(graphs)</a>
+								<br>
+								<script>
+									$("#{{noeud.nom}}").click(function(){
+										$(".{{noeud.nom}}").toggle();
+									});
+								</script>
+							</li>
+							{% endfor %}
+						</ul>
 					{% endfor %}
 				</ul>
-            {% endfor %}
-        </ul>
+			
+			<h4>Par hyperviseur</h4>
+			<ul>
+				{% for hyperviseur in liste_hyperviseurs %}
+					<h5>Hyperviseur <b>
+						<a href="{{path('afficher_metrologie_hyperviseur', {'hyperviseur_num': hyperviseur.id})}}">{{hyperviseur.nom}}</a>
+					</b></h5>
+					<p>
+							  Profilage KVM (CPU,Mémoire)
+					</p>
+				{% endfor %}
+			</ul>	
+			
+		</div>
+			
 		
 		
-		<h4>Par hyperviseur</h4>
-		<ul>
-			{% for hyperviseur in liste_hyperviseurs %}
-				<h5>{{hyperviseur.nom}}</h5>
+		<div id="metrologie_colonne_droite" class="w3-col m8" {#style="width: 63%; float:right;"#}>
+			{% for application in liste_applications %}
+				{% for noeud in application.noeuds %}
+					<span style="display: none;" class="{{noeud.nom}}">
+					{% for info in liste_infos %}
+						<img style="display: block; width: 97%; margin-bottom: 10px;" class=" {{info}}" src="https://quentin-david.ovh/munin/{{noeud.nom}}/{{noeud.nom}}/{{info}}{{niveau_detail}}.png"/>
+					{% endfor %}
+					</span>	
+				{% endfor %}
 			{% endfor %}
-		</ul>
-		
+		</div>
     
 {% endblock %}

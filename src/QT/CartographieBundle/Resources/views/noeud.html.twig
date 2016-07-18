@@ -70,7 +70,9 @@
         <table class="tableau_carto">
 			<tr>
                 <th>Hyperviseur</th>
-                <td>{{ noeud.hyperviseur.nom }}</td>
+                <td>
+					<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': noeud.hyperviseur.id})}}">{{noeud.hyperviseur.nom}}</a>
+				</td>
             </tr>
             <tr>
                 <th>Nb CPU</th>

@@ -56,8 +56,29 @@ class MetrologieController extends Controller
      * Affichage des graphes par hyperviseur et par type de profilage
      * (graphe de l'hyperviseur en grand avec en dessous les graphes de ses VMs)
      */
-    public function afficherProfilingAction($hyperviseur_num, $profiling_type)
+    public function afficherProfilingAction($hyperviseur_num, $profiling_type=null)
     {
-        
+        $em = $this->getDoctrine()->getManager();
+        $hyperviseur = $em->getRepository('QTCartographieBundle:Hyperviseur')->find($hyperviseur_num);
+        $liste_noeuds = $hyperviseur->getNoeuds();
+        $niveauDetail = 'day';
+        switch($profiling_type){
+            case 'cpu':
+                $liste_indicateurs = ['cpu-','load-'];
+                break;
+            case 'memory':
+                $liste_indicateurs = ['memory-'];
+                break;
+            case null:
+                $liste_indicateurs = null;
+                break;
+        }
+                  
+        return $this->render('QTSystemeBundle::profiling.html.twig', array(
+                                        'hyperviseur' => $hyperviseur,
+                                        'liste_noeuds' => $liste_noeuds,
+                                        'liste_indicateurs' => $liste_indicateurs,
+                                        'niveau_detail' => $niveauDetail,
+                                        ));
     }
 }
