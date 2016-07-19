@@ -10,7 +10,7 @@
 {% block listes %}
 	<h4>Profiling</h4>
 	<ul style="padding-left: 35px">
-		<li><a href="{{path('afficher_profiling',{'hyperviseur_num': hyperviseur.id, 'profiling_type': 'cpu'})}}">Mémoire</a></li>
+		<li><a href="{{path('afficher_profiling',{'hyperviseur_num': hyperviseur.id, 'profiling_type': 'memory'})}}">Mémoire</a></li>
 		<li><a href="{{path('afficher_profiling',{'hyperviseur_num': hyperviseur.id, 'profiling_type': 'cpu'})}}">CPU</a></li>
 		<li>Réseau</li>
 		<li>Disque</li>

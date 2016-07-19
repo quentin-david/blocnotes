@@ -1,0 +1,3 @@
+afficher_libvirt:
+    path:     /libvirt
+    defaults: { _controller: QTDeploiementBundle:Libvirt:index }

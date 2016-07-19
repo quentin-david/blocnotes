@@ -19,8 +19,7 @@
 {% endblock %}
 
 {% block listes %}
-	<h4>Profiling</h4>
-	<p>cf Hyperviseur</p>
+	
 {% endblock %}
 
 {% block contenu %}
@@ -31,7 +30,7 @@
 			<div id="metrologie_colonne_gauche" class="w3-col m3" {#style="width: 35%; float: left;"#}>
 				<ul>
 					{% for application in liste_applications %}
-						<h5>Application <b>{{application.nom}}</b></h5>
+						<li><h5>Application <b>{{application.nom}}</b></h5></li>
 						<ul>
 							{% for noeud in application.noeuds %}
 							<li>
@@ -52,12 +51,9 @@
 			<h4>Par hyperviseur</h4>
 			<ul>
 				{% for hyperviseur in liste_hyperviseurs %}
-					<h5>Hyperviseur <b>
-						<a href="{{path('afficher_metrologie_hyperviseur', {'hyperviseur_num': hyperviseur.id})}}">{{hyperviseur.nom}}</a>
-					</b></h5>
-					<p>
-							  Profilage KVM (CPU,Mémoire)
-					</p>
+					<li>
+						<h5>Hyperviseur<b><a href="{{path('afficher_profiling', {'hyperviseur_num': hyperviseur.id, 'profiling_type': 'cpu'})}}">{{hyperviseur.nom}}</a></b> (graphs)</h5>
+					</li>
 				{% endfor %}
 			</ul>	
 			

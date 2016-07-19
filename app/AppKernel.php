@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new QT\CartographieBundle\QTCartographieBundle(),
             new QT\SystemeBundle\QTSystemeBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new QT\DeploiementBundle\QTDeploiementBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

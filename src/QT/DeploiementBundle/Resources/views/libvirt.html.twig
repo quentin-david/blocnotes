@@ -1,0 +1,22 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block conteneur_lanceurs %}
+{% endblock %}
+
+{% block raccourcis %}
+	<div class="raccourci"><a href="https://quentin-david.ovh/munin/"><p>MUNIN</p></a></div>
+{% endblock %}
+
+{% block recherches %}
+	<h4>Libvirt</h4>
+{% endblock %}
+
+{% block listes %}
+	
+{% endblock %}
+
+{% block contenu %} 
+        <h2 class="titre">Libvirt</h2>
+        {{dump(data)}}
+    
+{% endblock %}
