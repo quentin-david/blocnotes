@@ -1,0 +1,49 @@
+{% block contenu %}
+	
+    {% if bug.etat == 'ouvert' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: red">   
+    {% endif %}
+    {% if bug.etat == 'resolu' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: green">
+    {% endif %}
+    {% if bug.etat == 'invalide' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: grey">
+    {% endif %}
+    
+        <div class="topic_header" >
+			{# Boutons edition/suppression #}
+			<span class="w3-right w3-opacity">
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<a href="{{ path('editer_bug', {'bug_num': bug.id}) }}" style="text-decoration: none">
+						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+					</a>
+					{% if app.user == bug.createur.username %}
+						<a href="{{ path('supprimer_bug', {'bug_num': bug.id}) }}" style="text-decoration: none">
+							<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Suppression">
+						</a>
+					{% endif %}
+				{% endif %}
+			</span>
+			{# ------- En-tête -------- #}
+			<span class="topic_header_id">#{{ bug.id }}</span>
+
+			<span class="topic_header_titre">{{bug.application.nom}} - <b>{{ bug.titre }}</b></span>
+			<span class="topic_header_createur" style="">{{ bug.createur }} ({{ bug.dateCreation|date('Y-m-d') }})</span>
+		</div>
+		
+		
+		<hr class="w4-clear" style="margin: 0px">
+		
+		{# ---------- Corps ------- #}
+		<div class="topic_corps">
+			
+			
+			{# ---- Texte ---- #}
+				<div class="bloc_redige">
+					<p>{{ bug.corps|raw }}</p>
+				</div>
+				
+		</div>
+    </div>
+      
+{% endblock %}

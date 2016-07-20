@@ -2,6 +2,9 @@
 
 namespace QT\BlocnotesBundle\Repository;
 
+use QT\BlocnotesBundle\Entity\Bugzilla;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
+
 /**
  * BugzillaRepository
  *
@@ -10,4 +13,37 @@ namespace QT\BlocnotesBundle\Repository;
  */
 class BugzillaRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+   * Formulaire de recherche de Bugzilla
+     */
+    public function search(Bugzilla $search)
+    {
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addRootEntityFromClassMetadata('QT\BlocnotesBundle\Entity\Bugzilla', 'p');
+       
+        $query = 'SELECT * FROM bugzilla ';
+        $query .= 'WHERE 1=1 ';
+        $params = array();
+
+        if ($search->getApplication() != '') {
+            $query .= 'AND application_id = :application ';
+            $params['application'] = $search->getApplication();
+        }
+        if ($search->getCreateur() != '') {
+            $query .= 'AND createur_id = :createur ';
+            $params['createur'] = $search->getCreateur();
+        }
+        if ($search->getEtat() != '') {
+            $query .= 'AND etat = :etat';
+            $params['etat'] = $search->getEtat();
+        }
+        
+        //$query .= ")";
+
+        // Nous pouvons ajouter nos autres champs de recherches ici
+
+        $request = $this->getEntityManager()->createNativeQuery($query, $rsm);
+        $request->setParameters($params);
+        return $request;
+    }
 }

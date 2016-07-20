@@ -23,4 +23,27 @@ supprimer_topic_pj:
     defaults: {_controller: QTBlocnotesBundle:Topic:supprimerPj}
     requirements:
         pj_num: \d+
+ 
+ 
+ 
+ 
+ 
+creer_bug:
+    path:   /bugzilla/edit
+    defaults: {_controller: QTBlocnotesBundle:Bugzilla:editerBug}
+    
+editer_bug:
+    path:   /bugzilla/edit/{bug_num}
+    defaults: {_controller: QTBlocnotesBundle:Bugzilla:editerBug}
+    requirements:
+        bug_num: \d+
+
+supprimer_bug:
+    path:   /bugzilla/suppr/{bug_num}
+    defaults: {_controller: QTBlocnotesBundle:Bugzilla:supprimerBug}
+    requirements:
+        bug_num: \d+
         
+lister_bug:
+    path:   /bugzilla
+    defaults: {_controller: QTBlocnotesBundle:Bugzilla:listerBug}       
