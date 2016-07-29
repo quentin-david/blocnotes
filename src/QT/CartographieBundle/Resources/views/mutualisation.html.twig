@@ -9,18 +9,18 @@
 {% endblock %}
 
 {% block lanceurs %}
-	<p>
+	{#<p>
 		<a href="{{ path('creer_hyperviseur') }}">
 			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout hyperviseur">
 		</a>
 		<a href="{{ path('creer_application') }}">
 			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout application">
 		</a>
-	</p>
+	</p>#}
 {% endblock %}
 
 {% block listes %}
-    <h4>Liste des appli/PF</h4>
+    {#<h4>Liste des appli/PF</h4>
 		<ul style="padding-left: 5px">
 		{% for pf in liste_plateformes %}
 			<li style="list-style-type: none">
@@ -30,35 +30,34 @@
 			</li>
 		{% endfor %}
 		</ul>
+    #}
 {% endblock %}
+
+
+
 
 {% block contenu %}
     
-	<h2 class="titre">Cartographie <u>système</u> mutualisée</h2>
-
-    <div class="w3-card-2 w3-round w3-black bloc_redige">
-        <p>Liste des diférentes  PF, des hyperviseurs...</p>
-    </div>
+	<h2 class="titre">Cartographie mutualisée</h2>
     
-    <h3>Liste des applications/plateformes</h3>
-    <ul>
-    {% for pf in liste_plateformes %}
-        <li>
-			<a href="{{path('afficher_application', {'application_num': pf.id})}}">
-				{{pf.nom}}
-			</a>
-		</li>
-    {% endfor %}
-	</ul>
-    
-    <h3>Liste des hyperviseurs</h3>
-	<ul>
-	{% for hyperviseur in liste_hyperviseurs %}
-		<li>
-			<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': hyperviseur.id})}}">
-				{{hyperviseur.nom}}
-			</a>
-		</li>
-	{% endfor %}
-	</ul>	
+    <h3>Cartographie systeme</h3>
+        <div class="w3-card-2 w3-round w3-black bloc_redige">
+            <p>Liste des PF, des hyperviseurs et des serveurs</p>
+            <p>Caractéristiques physique, système, réseau, stockage</p>
+        </div>
+        
+    <h3>Cartographie fonctionnelle</h3>
+        <div class="w3-card-2 w3-round w3-black bloc_redige">
+            <p>Liste des services et des configurations</p>
+            <p>Fichiers de conf, serveur physique correspondant et inter-connexion entre services</p>
+			<p>Création de modéles :</p>
+			<p>
+				<ul>
+					<li>Apache</li>
+					<li>NFS</li>
+					<li>MySQL</li>
+					<li>Ceph</li>
+				</ul>
+			</p>
+        </div>
 {% endblock %}

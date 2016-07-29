@@ -16,17 +16,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class MutualisationController extends Controller
 {
     /**
-     * Page d'accueil de la cartographie globale des hyperviseurs
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexAction()
     {
+        return $this->render('QTCartographieBundle::mutualisation.html.twig');
+    }
+    
+    
+    
+    /**
+     * Page d'accueil de la cartographie globale des hyperviseurs
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function afficherCartographieSystemeAction()
+    {
         $em = $this->getDoctrine()->getManager();
+        $listeNoeuds = $em->getRepository('QTCartographieBundle:Noeud')->findAll();
         $listePlateformes = $em->getRepository('QTCartographieBundle:Application')->findAll();
         $listeHyperviseurs = $em->getRepository('QTCartographieBundle:Hyperviseur')->findAll();
         
         
-        return $this->render('QTCartographieBundle::mutualisation.html.twig', array(
+        return $this->render('QTCartographieBundle::cartographie_systeme.html.twig', array(
+                                    'liste_noeuds' => $listeNoeuds,
                                     'liste_plateformes' => $listePlateformes,
                                     'liste_hyperviseurs' => $listeHyperviseurs,
                                     ));        

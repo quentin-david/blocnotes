@@ -14,11 +14,15 @@ editer_bundle:
         
         
    
-   
-    
 afficher_mutualisation:
     path:     /mutualisation
     defaults: { _controller: QTCartographieBundle:Mutualisation:index }
+ 
+ 
+    
+afficher_cartographie_systeme:
+    path:     /carto_systeme
+    defaults: { _controller: QTCartographieBundle:Mutualisation:afficherCartographieSysteme }
 
 afficher_hyperviseur:
     path: /hyperviseur/{hyperviseur_num}

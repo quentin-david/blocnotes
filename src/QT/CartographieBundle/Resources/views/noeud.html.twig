@@ -93,7 +93,7 @@
             </tr>
 		</table>
     
-     <h4>Stockage - partionnement</h4>
+     <h4>Stockage - partionnement - montages</h4>
 		<table class="tableau_carto">
 			<tr>
                 <th>Taille disque</th>
@@ -101,10 +101,6 @@
             </tr>
 		</table>
     
-	<h4>Métrologie  <button class="btn_noeud_metrologie">(display)</button></h4>
-		<div class="noeud_metrologie">
-		{% block metrologie_noeud %}
-			{{ render(controller('QTSystemeBundle:Metrologie:afficherMetrologieNoeud', {'noeud_num': noeud.id}))}}
-		{% endblock %}
-		</div>
+	<h4>Services</h4>
+		<p>Liste des services sur ce noeud</p>
 {% endblock %}

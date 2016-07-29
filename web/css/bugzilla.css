@@ -1,0 +1,16 @@
+.etat_ouvert {
+    border-style: solid;
+    border-color: green;
+}
+.etat_resolu {
+    border-style: solid;
+    border-color: grey;
+}
+.etat_invalide {
+    border-style: solid;
+    border-color: orange;
+}
+.legende {
+    margin-bottom: 5px;
+    text-align: center;
+}

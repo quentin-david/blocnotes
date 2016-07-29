@@ -13,7 +13,6 @@
 
 {% block contenu %}
     <h2 class="titre">Liste documents</h2>
-    {{dump(documents)}}
     {% for doc in documents %}
         <img src="{{ asset('uploads/photos/img_avatar2.png') }}"/>
     {% endfor %}

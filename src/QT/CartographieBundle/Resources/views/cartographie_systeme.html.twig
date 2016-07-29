@@ -1,0 +1,98 @@
+{% extends 'QTAppliBundle:Base:base.html.twig' %}
+
+{% block raccourcis %}
+    {% if is_granted('ROLE_ADMIN') %}
+		<div class="raccourci"><a href="{{ path('afficher_mutualisation')}}"><p>PF mutualisées</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_applicatif')}}"><p>Mod. applicatifs</p></a></div>
+		<div class="raccourci"><a href="{{ path('afficher_carto_donnee')}}"><p>BDD</p></a></div>
+	{% endif %}
+{% endblock %}
+
+{% block lanceurs %}
+	<p>
+		<a href="{{ path('creer_hyperviseur') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout hyperviseur">
+		</a>
+		<a href="{{ path('creer_application') }}">
+			<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" title="Ajout application">
+		</a>
+	</p>
+{% endblock %}
+
+{% block listes %}
+    <h4>Liste des appli/PF</h4>
+		<ul style="padding-left: 5px">
+		{% for pf in liste_plateformes %}
+			<li style="list-style-type: none">
+				<a href="{{path('afficher_application', {'application_num': pf.id})}}">
+					{{pf.nom}}
+				</a>
+			</li>
+		{% endfor %}
+		</ul>
+		
+	<h4>Liste des serveurs</h4>
+		<ul style="padding-left: 5px">
+		{% for noeud in liste_noeuds %}
+			<li style="list-style-type: none">
+				<a href="{{path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id})}}">
+					{{noeud.nom}}
+				</a>
+			</li>
+		{% endfor %}
+		</ul>
+{% endblock %}
+
+
+
+
+{% block contenu %}
+    
+	<h2 class="titre">Cartographie <u>système</u> mutualisée</h2>
+
+    <div class="w3-card-2 w3-round w3-black bloc_redige">
+        <p>Liste des diférentes  PF, des hyperviseurs...</p>
+    </div>
+    
+    <h3>Liste des applications/plateformes</h3>
+    <ul>
+    {% for pf in liste_plateformes %}
+        <li>
+			<a href="{{path('afficher_application', {'application_num': pf.id})}}">
+				{{pf.nom}}
+			</a>
+			<ul>
+			{% for noeud in pf.noeuds %}
+				<li>
+					<a href="{{path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': pf.id})}}">
+						{{noeud.nom}}
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+		</li>
+    {% endfor %}
+	</ul>
+    
+    <h3>Liste des hyperviseurs</h3>
+	<ul>
+	{% for hyperviseur in liste_hyperviseurs %}
+		<li>
+			<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': hyperviseur.id})}}">
+				{{hyperviseur.nom}}
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+	
+	{#<h3>Liste des noeuds</h3>
+	<ul>
+	{% for noeud in liste_noeuds %}
+		<li>
+			<a href="{{path('afficher_noeud', {'noeud_num': noeud.id, 'application_num': noeud.application.id})}}">
+				{{noeud.nom}}
+			</a>
+		</li>
+	{% endfor %}
+	</ul>#}	
+{% endblock %}
