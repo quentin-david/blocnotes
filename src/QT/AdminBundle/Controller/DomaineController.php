@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use QT\AdminBundle\Entity\Domaine;
 use Symfony\Component\HttpFoundation\Request;
+use QT\AdminBundle\Form\DomaineType;
 
 class DomaineController extends Controller
 {
@@ -27,13 +28,7 @@ class DomaineController extends Controller
             $domaine = $em->getRepository('QTAdminBundle:Domaine')->find($domaine_num);
         }
         
-        //Creation de l'objet formulaire
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $domaine);
-        $formBuilder
-            //->add('libelle', TextType::class, array('attr'=> array('value'=>'')))
-            ->add('libelle', TextType::class)
-            ->add('save', SubmitType::class);   
-        $formulaire = $formBuilder->getForm();
+        $formulaire = $this->createForm(DomaineType::class,$domaine);
          
         // Liste les domaines
         $liste_domaines = $em->getRepository('QTAdminBundle:Domaine')->findAll();

@@ -463,4 +463,30 @@ class Noeud
     {
         return $this->etat;
     }
+    
+    /**
+     * QT Donne la commande virsh pour creer la VM du noeud
+     */
+    public function getVirshCreateCmd()
+    {
+        $cmd = 'virt-install';
+        $cmd .= ' --name='.$this->getNom();
+        $cmd .= ' --ram='.$this->getNbRam();
+        $cmd .= ' --vcpus='.$this->getNbCpu();
+        $cmd .= ' --description='.$this->getDescriptionCourte();
+        //$cmd .= ' --cdrom=/var/lib/iso/ubuntu-16.04-server-amd64.iso';
+        $cmd .= ' --network network=lan-admin';
+        if($this->getIpData() != '' && $this->getIpData() != '-'){
+            //$cmd .= ' --network=lan-data';
+        }
+        $cmd .= ' --disk path=/var/lib/libvirt/images/'.$this->getNom().'.qcow,size='.$this->getNbDisque();
+        $cmd .= ' --graphics vnc';
+        $cmd .= ' --virt-type kvm';
+        //$cmd .= ' --initrd-inject=/var/lib/iso/qt_kickstart.ks --extra-args "ks=file:/qt_kickstart.ks"';
+        $cmd .= ' --pxe';
+        
+        
+        
+        return $cmd;
+    }
 }

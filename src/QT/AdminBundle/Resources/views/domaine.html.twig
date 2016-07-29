@@ -18,6 +18,10 @@
 					<td>{{ form_label(formulaire.libelle, "Libelle", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 					<td>{{ form_widget(formulaire.libelle) }}</td>
 				</tr>
+				<tr>
+					<td>{{ form_label(formulaire.domaineParent, "Domaine Parent", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+					<td>{{ form_widget(formulaire.domaineParent) }}</td>
+				</tr>
 			</table>
 		</fieldset>	
 		{{ form_end(formulaire) }}
@@ -38,17 +42,39 @@
         <h4>Liste des domaines</h4>
         <ul>
             {% for domaine in liste_domaines %}
-                <li>
-                    <a href="{{ path('lister_topic', {'topic_recherche[domaines][]': domaine.id}) }}">
-						{{ domaine.libelle }}
-					</a>
-					<a href="{{ path('editer_domaine', {'domaine_num': domaine.id}) }}">
-						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
-					</a>
-					<a href="{{ path('supprimer_domaine', {'domaine_num': domaine.id}) }}">
-							<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+				{% if domaine.domaineParent == null %}
+					<li>
+						<a href="{{ path('lister_topic', {'topic_recherche[domaines][]': domaine.id}) }}">
+							{{ domaine.libelle }}
 						</a>
-                </li>
+						<a href="{{ path('editer_domaine', {'domaine_num': domaine.id}) }}">
+							<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+						</a>
+						<a href="{{ path('supprimer_domaine', {'domaine_num': domaine.id}) }}">
+							<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+						</a>		
+				{% endif %}
+					<ul>
+					{% for sous_domaine in liste_domaines %}
+						{% if domaine.domaineParent != null %}
+							{% if domaine.domaineParent.id == sous_domaine.id %}
+							<li>
+								<a href="{{ path('lister_topic', {'topic_recherche[domaines][]': domaine.id}) }}">
+									{{ domaine.libelle }}
+								</a>
+								<a href="{{ path('editer_domaine', {'domaine_num': domaine.id}) }}">
+									<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+								</a>
+								<a href="{{ path('supprimer_domaine', {'domaine_num': domaine.id}) }}">
+									<img src="{{ asset('pictures/DeleteRed.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
+								</a>
+							</li>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					</ul>						
+				</li>
+				
             {% endfor %}
         </ul>
     </div>

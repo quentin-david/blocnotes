@@ -33,6 +33,11 @@ class Domaine
      * @ORM\JoinTable(name="topic_domaine")
      */
     private $topics;
+    
+    /**
+    * @ORM\OneToOne(targetEntity="QT\AdminBundle\Entity\Domaine")
+    */
+    private $domaineParent;
 
 
     /**
@@ -108,5 +113,29 @@ class Domaine
     public function getTopics()
     {
         return $this->topics;
+    }
+
+    /**
+     * Set domaineParent
+     *
+     * @param \QT\AdminBundle\Entity\Domaine $domaineParent
+     *
+     * @return Domaine
+     */
+    public function setDomaineParent(\QT\AdminBundle\Entity\Domaine $domaineParent = null)
+    {
+        $this->domaineParent = $domaineParent;
+
+        return $this;
+    }
+
+    /**
+     * Get domaineParent
+     *
+     * @return \QT\AdminBundle\Entity\Domaine
+     */
+    public function getDomaineParent()
+    {
+        return $this->domaineParent;
     }
 }
