@@ -23,15 +23,19 @@
 							<td>{{ form_label(formulaire.application, "Application", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 							<td>{{ form_widget(formulaire.application) }}</td>
 						</tr>
-                    </table>
+					 </table>
 					</div>
 					<div class="w3-col m6"> {# cadre d'upload de fichier #}
-                    <table>
-                        <tr>
-							<td>{{ form_label(formulaire.etat, "Etat", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-							<td>{{ form_widget(formulaire.etat) }}</td>
+					<table>
+						<tr>
+						    <td>{{ form_label(formulaire.etat, "Etat", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						    <td>{{ form_widget(formulaire.etat) }}</td>
 						</tr>
-                    </table>
+						<tr>
+						    <td>{{ form_label(formulaire.categorie, "Categorie", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						    <td>{{ form_widget(formulaire.categorie) }}</td>
+						</tr>
+					</table>
 					</div>
 				</div>
 				

@@ -35,6 +35,13 @@ class BugzillaType extends AbstractType
                             'invalide' => 'invalide',
                         )
             ))
+            ->add('categorie', ChoiceType::class, array(
+                        'choices' => array(
+                            'concept' => 'concept',
+                            'bug' => 'bug',
+                            'amelioration' => 'amelioration',
+                        )
+            ))
             ->add('save', SubmitType::class);
         ;
     }

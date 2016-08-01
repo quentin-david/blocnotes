@@ -65,6 +65,13 @@ class Bugzilla
      * @ORM\Column(name="etat", type="string", length=20, nullable=true)
      */
     private $etat;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=20, nullable=true)
+     */
+    private $categorie;
 
     
     /**
@@ -251,5 +258,29 @@ class Bugzilla
     public function getEtat()
     {
         return $this->etat;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     *
+     * @return Bugzilla
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }
