@@ -68,6 +68,11 @@ class Topic
     private $intervention;
     
     /**
+     * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Bugzilla", cascade={"persist"})
+     */
+    private $bugzilla;
+    
+    /**
      * @ORM\OneToMany(targetEntity="QT\BlocnotesBundle\Entity\PieceJointe", mappedBy="topic", cascade={"persist"})
      */
     private $pjs;
@@ -312,4 +317,28 @@ class Topic
         return $this->pjs;
     }
     
+
+    /**
+     * Set bugzilla
+     *
+     * @param \QT\BlocnotesBundle\Entity\Bugzilla $bugzilla
+     *
+     * @return Topic
+     */
+    public function setBugzilla(\QT\BlocnotesBundle\Entity\Bugzilla $bugzilla = null)
+    {
+        $this->bugzilla = $bugzilla;
+
+        return $this;
+    }
+
+    /**
+     * Get bugzilla
+     *
+     * @return \QT\BlocnotesBundle\Entity\Bugzilla
+     */
+    public function getBugzilla()
+    {
+        return $this->bugzilla;
+    }
 }

@@ -20,37 +20,16 @@ class Bugzilla
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
-     * @ORM\ManyToOne(targetEntity="QT\AdminBundle\Entity\Utilisateur")
+     * @ORM\OneToOne(targetEntity="QT\BlocnotesBundle\Entity\Topic", cascade={"persist"})
      */
-    private $createur;
+    //private $topic;
     
     /**
      * @ORM\ManyToOne(targetEntity="QT\CartographieBundle\Entity\Application")
      */
     private $application;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255)
-     */
-    private $titre;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="corps", type="text", nullable=true)
-     */
-    private $corps;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateCreation", type="datetime")
-     */
-    private $dateCreation;
 
     /**
      * @var \DateTime
@@ -93,78 +72,6 @@ class Bugzilla
     }
 
     /**
-     * Set titre
-     *
-     * @param string $titre
-     *
-     * @return Bugzilla
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * Set corps
-     *
-     * @param string $corps
-     *
-     * @return Bugzilla
-     */
-    public function setCorps($corps)
-    {
-        $this->corps = $corps;
-
-        return $this;
-    }
-
-    /**
-     * Get corps
-     *
-     * @return string
-     */
-    public function getCorps()
-    {
-        return $this->corps;
-    }
-
-    /**
-     * Set dateCreation
-     *
-     * @param \DateTime $dateCreation
-     *
-     * @return Bugzilla
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreation
-     *
-     * @return \DateTime
-     */
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
-    }
-
-    /**
      * Set dateResolution
      *
      * @param \DateTime $dateResolution
@@ -188,29 +95,6 @@ class Bugzilla
         return $this->dateResolution;
     }
 
-    /**
-     * Set createur
-     *
-     * @param \QT\AdminBundle\Entity\Utilisateur $createur
-     *
-     * @return Bugzilla
-     */
-    public function setCreateur(\QT\AdminBundle\Entity\Utilisateur $createur = null)
-    {
-        $this->createur = $createur;
-
-        return $this;
-    }
-
-    /**
-     * Get createur
-     *
-     * @return \QT\AdminBundle\Entity\Utilisateur
-     */
-    public function getCreateur()
-    {
-        return $this->createur;
-    }
 
     /**
      * Set application

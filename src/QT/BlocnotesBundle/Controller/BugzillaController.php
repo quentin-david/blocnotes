@@ -7,9 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use QT\AdminBundle\Entity\Utilisateur;
 use QT\AdminBundle\Entity\Domaine;
 use QT\BlocnotesBundle\Entity\Bugzilla;
+use QT\BlocnotesBundle\Entity\Topic;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Form\BugzillaType;
+use QT\BlocnotesBundle\Form\Type\TopicBugzillaType;
 use QT\BlocnotesBundle\Form\BugzillaRechercheType;
 
 class BugzillaController extends Controller
@@ -70,13 +72,14 @@ class BugzillaController extends Controller
 
 		// Creation du formulaire générique de création d'un topic
 		$formulaire = $this->createForm(BugzillaType::class, $bug); // topic classique
+		//$formulaire = $this->createForm(TopicBugzillaType::class, $bug);
 		
         
         //Enregistrement en base
         if($request->isMethod('POST')){
             $formulaire->handleRequest($request);
             if($formulaire->isValid()){
-				$bug->setCreateur($this->getUser());
+				$bug->getTopic()->setCreateur($this->getUser());
                 $em->persist($bug);
                 $em->flush();
                 

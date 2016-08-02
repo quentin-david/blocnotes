@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use QT\BlocnotesBundle\Form\Type\TopicType;
 
 class BugzillaType extends AbstractType
 {
@@ -19,11 +20,6 @@ class BugzillaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('corps')
-            //->add('dateCreation', DateTimeType::class)
-            //->add('dateResolution', DateTimeType::class)
-            //->add('createur')
             ->add('application', EntityType::class, array(
                         'class' => 'QTCartographieBundle:Application',
                         'choice_label' => 'nom',
@@ -42,7 +38,6 @@ class BugzillaType extends AbstractType
                             'amelioration' => 'amelioration',
                         )
             ))
-            ->add('save', SubmitType::class);
         ;
     }
     

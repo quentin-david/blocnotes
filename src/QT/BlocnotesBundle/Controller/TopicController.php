@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Form\Type\TopicType;
 use QT\BlocnotesBundle\Form\Type\TopicInterventionType;
+use QT\BlocnotesBundle\Form\TopicBugzillaType;
 
 class TopicController extends Controller
 {
@@ -24,6 +25,10 @@ class TopicController extends Controller
 		if($topic->getIntervention() != ''){
 			return $this->render('QTBlocnotesBundle:Topic:topic_di.html.twig', array(
 										'topic' => $topic
+									));
+		}elseif($topic->getIntervention() != ''){
+			return $this->render('QTBlocnotesBundle:Bugzilla:bugzilla.html.twig', array(
+										'bug' => $topic
 									));
 		}else{
 			return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array(
@@ -55,6 +60,9 @@ class TopicController extends Controller
 				break;
 			case "DI":
 				$formulaire = $this->createForm(TopicInterventionType::class, $topic); // DI
+				break;
+			case "bug":
+				$formulaire = $this->createForm(TopicBugzillaType::class, $topic); // Bugzilla
 				break;
 		}			
         

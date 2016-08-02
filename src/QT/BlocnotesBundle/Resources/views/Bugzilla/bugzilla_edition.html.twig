@@ -40,9 +40,9 @@
 				</div>
 				
 				<div id="bug_textarea" class="col-sm-10">
-					{{ form_widget(formulaire.corps) }}
+					{{ form_widget(formulaire.topic.corps) }}
 				</div>
-				{{ form_widget(formulaire.save) }}
+				{{ form_widget(formulaire.topic.save) }}
 				<a href="{{ path('lister_bug') }}"><button type="button" class="cancel">Cancel</button></a>
 			{{ form_end(formulaire) }}						
  
@@ -50,7 +50,7 @@
       <br>
       
 	<script type="text/javascript">
-		CKEDITOR.replace( 'bugzilla_corps' );
+		CKEDITOR.replace( 'bugzilla_topic_corps' );
 	</script>
 	
 	

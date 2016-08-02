@@ -31,7 +31,7 @@
 	{% if application.nom is defined %}
 		<h2 class="titre">Application {{application.nom }}</h2>
 	
-		<h3>******** APPLICATIF ********</h3>
+		<h3>I - APPLICATIF</h3>
 		<h4>Description
 			<a href="{{ path('editer_application', {'application_num': application.id}) }}">
 				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:25px;width:25px;margin-left:10px" title="editer application">
@@ -44,8 +44,10 @@
 			
 		<h4>Bundles utilisés</h4>
 
+
+		<br><h3>II - SERVICES</h3>
 		
-		<br><h3>******** SYSTEME ********</h3>
+		<br><h3>III - SYSTEME</h3>
 		<h4>Liste des serveurs</h4>
 
 		{% for noeud in liste_noeuds %}
@@ -59,10 +61,12 @@
 			
 			<table class="tableau_carto">
 				<tr>
-					<th>Description</th>
-					<td>{{ noeud.descriptionCourte|raw }}</td>
+					<th colspan="2">Description</th>
+					<td colspan="2">{{ noeud.descriptionCourte|raw }}</td>
 				</tr>
 				<tr>
+					<th>Service</th>
+					<td>--</td>
 					<th>Hyperviseur</th>
 					<td>
 						<a href="{{path('afficher_hyperviseur', {'hyperviseur_num': noeud.hyperviseur.id})}}"> {{ noeud.hyperviseur.nom }}</a>
@@ -71,16 +75,12 @@
 				<tr>
 					<th>IP admin</th>
 					<td>{{ noeud.ipAdmin }}</td>
-				</tr>
-				<tr>
 					<th>IP data</th>
 					<td>{{ noeud.ipData }}</td>
 				</tr>
 				<tr>
 					<th>Nb CPU</th>
 					<td>{{ noeud.nbCpu }}</td>
-				</tr>
-				<tr>
 					<th>Nb RAM</th>
 					<td>{{ noeud.nbRam }}</td>
 				</tr>

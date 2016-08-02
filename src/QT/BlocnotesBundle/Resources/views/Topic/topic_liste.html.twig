@@ -16,6 +16,9 @@
 			<a href="{{ path('creer_topic', {'topic_type': 'DI'}) }}">
 				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout DI">
 			</a>
+			<a href="{{ path('creer_topic', {'topic_type': 'bug'}) }}">
+				<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:35px;width:35px;margin-left:10px" alt="Ajout Bug">
+			</a>
 		</p>
 	{% else %}
 		<p><a href="{{path('fos_user_security_login')}}">Authentifiez vous</a></p>
