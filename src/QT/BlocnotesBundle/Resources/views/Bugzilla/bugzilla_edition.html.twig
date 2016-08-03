@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block contenu_full_page %}
+	<h2 class="titre">BUGZILLA</h2>
 	<div class="w3-card-2 w3-white w3-round">					
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				
@@ -20,29 +21,29 @@
 							<td>{{ form_widget(formulaire.titre) }}</td>
 						</tr>
 						<tr>
-							<td>{{ form_label(formulaire.application, "Application", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-							<td>{{ form_widget(formulaire.application) }}</td>
+							<td>{{ form_label(formulaire.bugzilla.application, "Application", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.bugzilla.application) }}</td>
 						</tr>
 					 </table>
 					</div>
 					<div class="w3-col m6"> {# cadre d'upload de fichier #}
 					<table>
 						<tr>
-						    <td>{{ form_label(formulaire.etat, "Etat", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-						    <td>{{ form_widget(formulaire.etat) }}</td>
+						    <td>{{ form_label(formulaire.bugzilla.etat, "Etat", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						    <td>{{ form_widget(formulaire.bugzilla.etat) }}</td>
 						</tr>
 						<tr>
-						    <td>{{ form_label(formulaire.categorie, "Categorie", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
-						    <td>{{ form_widget(formulaire.categorie) }}</td>
+						    <td>{{ form_label(formulaire.bugzilla.categorie, "Categorie", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+						    <td>{{ form_widget(formulaire.bugzilla.categorie) }}</td>
 						</tr>
 					</table>
 					</div>
 				</div>
 				
 				<div id="bug_textarea" class="col-sm-10">
-					{{ form_widget(formulaire.topic.corps) }}
+					{{ form_widget(formulaire.corps) }}
 				</div>
-				{{ form_widget(formulaire.topic.save) }}
+				{{ form_widget(formulaire.save) }}
 				<a href="{{ path('lister_bug') }}"><button type="button" class="cancel">Cancel</button></a>
 			{{ form_end(formulaire) }}						
  
@@ -50,7 +51,7 @@
       <br>
       
 	<script type="text/javascript">
-		CKEDITOR.replace( 'bugzilla_topic_corps' );
+		CKEDITOR.replace( 'topic_bugzilla_corps' );
 	</script>
 	
 	

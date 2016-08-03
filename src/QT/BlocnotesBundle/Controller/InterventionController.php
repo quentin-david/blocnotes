@@ -11,32 +11,31 @@ use QT\BlocnotesBundle\Entity\Topic;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use QT\BlocnotesBundle\Form\BugzillaType;
-use QT\BlocnotesBundle\Form\Type\TopicBugzillaType;
+use QT\BlocnotesBundle\Form\Type\TopicInterventionType;
 use QT\BlocnotesBundle\Form\BugzillaRechercheType;
 
-class BugzillaController extends Controller
+class InterventionController extends Controller
 {
 	/**
 	 * Affichage d'un bug
 	 */
-    public function afficherBugAction($bug)
+    public function afficherInterventionAction($intervention)
     {
-        // affichage d'un bug
-		return $this->render('QTBlocnotesBundle:Bugzilla:bugzilla.html.twig', array(
-										'bug' => $bug
+        // affichage d'une demande d'intervention
+		return $this->render('QTBlocnotesBundle:Intervention:intervention.html.twig', array(
+										'topic' => $intervention
 									));
     }
     
      /**
      * 
      */
-    public function listerBugAction(Request $request)
+    public function listerInterventAction(Request $request)
     {
         $bug = new Bugzilla;
         $em = $this->getDoctrine()->getManager();
-        // Recherche des topic de type Bugzilla
-		$liste_bugs_ouverts = $em->getRepository('QTBlocnotesBundle:Bugzilla')->findByEtat('ouvert');
-		$liste_bugs = $em->getRepository('QTBlocnotesBundle:Bugzilla')->search()->getResult();
+        // Par défaut affichage de tous les topics
+        $liste_bugs = $em->getRepository('QTBlocnotesBundle:Bugzilla')->findAll();
         
         $formulaire_recherche = $this->createForm(BugzillaRechercheType::class, $bug, array('csrf_protection' => false));
         // Récupération des valeurs passées par le formulaire de recherche
@@ -45,43 +44,43 @@ class BugzillaController extends Controller
             // SI des paramètres ont été passés
             if($formulaire_recherche->getData() != ''){
                 // Methode par pseudo SQL
-                $liste_bugs = $em->getRepository('QTBlocnotesBundle:Bugzilla')->search($formulaire_recherche->getData())->getResult();
+                $query = $em->getRepository('QTBlocnotesBundle:Bugzilla')->search($formulaire_recherche->getData());
+                $liste_bugs = $query->getResult();                
             }
         }
         
         return $this->render('QTBlocnotesBundle:Bugzilla:bugzilla_liste.html.twig', array(
                                         'formulaire_recherche' => $formulaire_recherche->createView(),
                                         'liste_bugs' => $liste_bugs,
-										'liste_bugs_ouverts' => $liste_bugs_ouverts,
                             ));
     }
     
     /**
      * Editer ou creer un topic/DI
      */ 
-    public function editerBugAction(Request $request, $bug_num=null)
+    public function editerInterventionAction(Request $request, $intervention_num=null)
     {
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
         
         // Objet Emplacement pour le formulaire
-        if($bug_num === null){
-			$bug = new Topic; // Creation
+        if($intervention_num === null){
+			$intervention = new Topic; // Creation
 		}else{
-			$bug = $em->getRepository('QTBlocnotesBundle:Topic')->find($bug_num); //Edition
+			$intervention = $em->getRepository('QTBlocnotesBundle:Topic')->find($intervention_num); //Edition
 		}
 
 		// Creation du formulaire générique de création d'un topic
 		//$formulaire = $this->createForm(BugzillaType::class, $bug); // topic classique
-		$formulaire = $this->createForm(TopicBugzillaType::class, $bug);
+		$formulaire = $this->createForm(TopicInterventionType::class, $intervention);
 		
         
         //Enregistrement en base
         if($request->isMethod('POST')){
             $formulaire->handleRequest($request);
             if($formulaire->isValid()){
-				$bug->setCreateur($this->getUser());
-                $em->persist($bug);
+				$intervention->setCreateur($this->getUser());
+                $em->persist($intervention);
                 $em->flush();
                 
 				// Redirection vers les topics du meme domaine
@@ -89,11 +88,10 @@ class BugzillaController extends Controller
             }
         }
 		
-		// Affichage du template d'edition du topic/DI
-    	return $this->render('QTBlocnotesBundle:Bugzilla:bugzilla_edition.html.twig', array(
+		// Affichage du template d'edition de la DI
+    	return $this->render('QTBlocnotesBundle:Intervention:intervention_edition.html.twig', array(
                                     'formulaire' => $formulaire->createView(),
-									'bug_num' => $bug_num,
-									'bug' => $bug,							
+									'topic' => $intervention,			
 							));
     }
 	

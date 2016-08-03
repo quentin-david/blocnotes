@@ -2,6 +2,7 @@
 
 namespace QT\BlocnotesBundle\Repository;
 
+use QT\BlocnotesBundle\Entity\Topic;
 use QT\BlocnotesBundle\Entity\Bugzilla;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
@@ -13,34 +14,33 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class BugzillaRepository extends \Doctrine\ORM\EntityRepository
 {
+  
     /**
    * Formulaire de recherche de Bugzilla
      */
-    public function search(Bugzilla $search)
+    public function search(Bugzilla $search=null)
     {
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
-        $rsm->addRootEntityFromClassMetadata('QT\BlocnotesBundle\Entity\Bugzilla', 'p');
+        $rsm->addRootEntityFromClassMetadata('QT\BlocnotesBundle\Entity\Topic', 'p');
        
-        $query = 'SELECT * FROM bugzilla ';
-        $query .= 'WHERE 1=1 ';
+        $query = 'SELECT * FROM topic, bugzilla ';
+        $query .= 'WHERE bugzilla.id = topic.bugzilla_id ';
+        $query .= 'AND topic.bugzilla_id is not null ';
         $params = array();
-
-        if ($search->getApplication() != '') {
-            $query .= 'AND application_id = :application ';
-            $params['application'] = $search->getApplication();
+        if($search != ''){
+            if ($search->getApplication() != '') {
+                $query .= 'AND application_id = :application ';
+                $params['application'] = $search->getApplication();
+            }
+            if ($search->getEtat() != '') {
+                $query .= 'AND etat = :etat ';
+                $params['etat'] = $search->getEtat();
+            }
+            if ($search->getCategorie() != '') {
+                $query .= 'AND categorie = :categorie ';
+                $params['categorie'] = $search->getCategorie();
+            }
         }
-        if ($search->getCreateur() != '') {
-            $query .= 'AND createur_id = :createur ';
-            $params['createur'] = $search->getCreateur();
-        }
-        if ($search->getEtat() != '') {
-            $query .= 'AND etat = :etat';
-            $params['etat'] = $search->getEtat();
-        }
-        
-        //$query .= ")";
-
-        // Nous pouvons ajouter nos autres champs de recherches ici
 
         $request = $this->getEntityManager()->createNativeQuery($query, $rsm);
         $request->setParameters($params);

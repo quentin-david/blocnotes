@@ -47,4 +47,6 @@ class TopicRepository extends \Doctrine\ORM\EntityRepository
         $request->setParameters($params);
         return $request;
     }
+    
+    
 }

@@ -21,11 +21,11 @@
 
 {% block listes %}
 	<h4 class="titre">Légende</h4>
+	<div class="legende etat_ouvert">
+		<a href="{{path('lister_bug', {'bugzilla_recherche[etat]': 'ouvert'})}}"><b>En cours ({{liste_bugs_ouverts|length}})</b></a>
+	</div>
 	<div class="legende etat_resolu">
 		<a href="{{path('lister_bug', {'bugzilla_recherche[etat]': 'resolu'})}}"><b>Terminé</b></a>
-	</div>
-	<div class="legende etat_ouvert">
-		<a href="{{path('lister_bug', {'bugzilla_recherche[etat]': 'ouvert'})}}"><b>En cours</b></a>
 	</div>
 	<div class="legende etat_invalide">
 		<a href="{{path('lister_bug', {'bugzilla_recherche[etat]': 'invalide'})}}"><b>Invalide</b></a>
@@ -34,7 +34,7 @@
 
 {% block contenu %}
      <h2 class="titre">Bugzilla</h2>
-     
+	 
     {% for bug in liste_bugs %}
       	{{ render(controller('QTBlocnotesBundle:Bugzilla:afficherBug', { 'bug' : bug })) }}
     {% endfor %}

@@ -4,7 +4,7 @@
 		<div class="topic_header" style="height: 30px">
 			{# Boutons edition/suppression #}
 			<span class="w3-right w3-opacity">
-				<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'DI'}) }}">
+				<a href="{{ path('editer_intervention', {'intervention_num': topic.id}) }}">
 					<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
 				</a>
 				<a href="{{ path('supprimer_topic', {'topic_num': topic.id}) }}">

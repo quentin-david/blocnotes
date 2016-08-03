@@ -1,9 +1,9 @@
 creer_topic:
-    path:   /topic/edit/{topic_type}
+    path:   /topic/edit
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
     
 editer_topic:
-    path:   /topic/edit/{topic_type}/{topic_num}
+    path:   /topic/edit/{topic_num}
     defaults: {_controller: QTBlocnotesBundle:Topic:editerTopic}
     requirements:
         num_topic: \d
@@ -27,7 +27,22 @@ supprimer_topic_pj:
  
  
  
- 
+creer_intervention:
+    path:   /intervention/edit
+    defaults: {_controller: QTBlocnotesBundle:Intervention:editerIntervention}
+    
+editer_intervention:
+    path:   /intervention/edit/{intervention_num}
+    defaults: {_controller: QTBlocnotesBundle:Intervention:editerIntervention}
+    requirements:
+        intervention_num: \d+
+
+
+
+
+
+
+
 creer_bug:
     path:   /bugzilla/edit
     defaults: {_controller: QTBlocnotesBundle:Bugzilla:editerBug}

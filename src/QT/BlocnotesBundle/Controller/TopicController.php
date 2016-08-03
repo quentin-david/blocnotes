@@ -21,26 +21,16 @@ class TopicController extends Controller
 	 */
     public function afficherTopicAction($topic)
     {
-        // execution du template topic ou DI
-		if($topic->getIntervention() != ''){
-			return $this->render('QTBlocnotesBundle:Topic:topic_di.html.twig', array(
-										'topic' => $topic
-									));
-		}elseif($topic->getIntervention() != ''){
-			return $this->render('QTBlocnotesBundle:Bugzilla:bugzilla.html.twig', array(
-										'bug' => $topic
-									));
-		}else{
-			return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array(
-										'topic' => $topic
-									));
-		}
+        // execution du template topic 
+		return $this->render('QTBlocnotesBundle:Topic:topic.html.twig', array(
+									'topic' => $topic
+								));
     }
     
     /**
      * Editer ou creer un topic/DI
      */ 
-    public function editerTopicAction(Request $request, $topic_num=null, $topic_type=null)
+    public function editerTopicAction(Request $request, $topic_num=null)
     {
 		//ENtity Manager
         $em = $this->getDoctrine()->getManager();
@@ -53,18 +43,7 @@ class TopicController extends Controller
 		}
 
 		// Creation du formulaire générique de création d'un topic
-		// en fonction du type de topic
-		switch($topic_type){
-			case "topic":
-				$formulaire = $this->createForm(TopicType::class, $topic); // topic classique
-				break;
-			case "DI":
-				$formulaire = $this->createForm(TopicInterventionType::class, $topic); // DI
-				break;
-			case "bug":
-				$formulaire = $this->createForm(TopicBugzillaType::class, $topic); // Bugzilla
-				break;
-		}			
+		$formulaire = $this->createForm(TopicType::class, $topic); // topic classique	
         
         //Enregistrement en base
         if($request->isMethod('POST')){
@@ -76,7 +55,8 @@ class TopicController extends Controller
                 $em->flush();
                 
 				// Redirection vers les topics du meme domaine
-                return $this->redirectToRoute('lister_topic', array('topic_recherche[domaines]' => $request->get('topic')['domaines']));
+                //return $this->redirectToRoute('lister_topic', array('topic_recherche[domaines]' => $request->get('topic')['domaines']));
+				return $this->redirectToRoute('lister_topic');
             }
         }
 		
@@ -84,7 +64,6 @@ class TopicController extends Controller
     	return $this->render('QTBlocnotesBundle:Topic:topic_edition.html.twig', array(
 									'topic_num' => $topic_num,
 									'topic' => $topic,
-									'topic_type' => $topic_type,
 									'formulaire' => $formulaire->createView(),							
 							));
     }

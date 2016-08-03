@@ -6,7 +6,7 @@
 			{# Boutons edition/suppression #}
 			<span class="w3-right w3-opacity">
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-					<a href="{{ path('editer_topic', {'topic_num': topic.id, 'topic_type': 'topic'}) }}" style="text-decoration: none">
+					<a href="{{ path('editer_topic', {'topic_num': topic.id}) }}" style="text-decoration: none">
 						<img src="{{ asset('pictures/EditBlack.png') }}" class="w3-circle" style="height:15px;width:15px;margin-left:10px" alt="Ajout">
 					</a>
 					{% if app.user == topic.createur.username %}
@@ -46,16 +46,6 @@
 				
 			{# affichage des pieces jointes #}
 			{% if topic.pjs|length > 0 %}
-				{#<span class="topic_pjs">
-					<button class="btn_afficher_liste_pjs {{topic.id}}">Afficher {{topic.pjs|length}} PJs</button>
-					<ul class="liste_pjs {{topic.id}}" style="display: none">
-					{% for pj in topic.pjs %}
-						<li><a href="{{ asset(pj.webPath) }}">
-							{{ pj.alt }}
-						</a></li>
-					{% endfor %}
-					</ul>
-				</span>#}
 				{{ include("QTBlocnotesBundle:Topic:topic_cartouche_pjs.html.twig") }}
 			{% endif %}
 		</div>

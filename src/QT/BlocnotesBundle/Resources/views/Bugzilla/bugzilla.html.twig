@@ -1,13 +1,13 @@
 {% block contenu %}
 	
-    {% if bug.etat == 'ouvert' %}
-        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: red">   
+    {% if bug.bugzilla.etat == 'ouvert' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic etat_ouvert">   
     {% endif %}
-    {% if bug.etat == 'resolu' %}
-        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: green">
+    {% if bug.bugzilla.etat == 'resolu' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic etat_resolu">
     {% endif %}
-    {% if bug.etat == 'invalide' %}
-        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic" style="border-style: solid; border-color: grey">
+    {% if bug.bugzilla.etat == 'invalide' %}
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin-left w3-margin-bottom topic etat_invalide">
     {% endif %}
     
         <div class="topic_header" >
@@ -27,7 +27,7 @@
 			{# ------- En-tête -------- #}
 			<span class="topic_header_id">#{{ bug.id }}</span>
 
-			<span class="topic_header_titre">{{bug.application.nom}} - <b>{{ bug.titre }}</b></span>
+			<span class="topic_header_titre">{{bug.bugzilla.application.nom}} - <b>{{ bug.titre }}</b></span>
 			<span class="topic_header_createur" style="">{{ bug.createur }} ({{ bug.dateCreation|date('Y-m-d') }})</span>
 		</div>
 		

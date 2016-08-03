@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block contenu_full_page %}
-	<div class="w3-card-2 w3-white w3-round">					
+	 <h2 class="titre">DI</h2>
+	<div class="w3-card-2 w3-white w3-round">
 			{{ form_start(formulaire, {'attr': {'class': 'formulaire'}}) }}
 				
 				<div id="topic_formulaire" class="w3-row" style="margin-bottom: 10px">
@@ -22,6 +23,15 @@
 						<tr>
 							<td>{{ form_label(formulaire.domaines, "Domaines", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
 							<td>{{ form_widget(formulaire.domaines) }}</td>
+						</tr>
+
+						<tr>
+							<td>{{ form_label(formulaire.intervention.numDi, "DI", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.intervention.numDi) }}</td>
+						</tr>
+						<tr>
+							<td>{{ form_label(formulaire.intervention.dateIntervention, "Date intervention", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}</td>
+							<td>{{ form_widget(formulaire.intervention.dateIntervention) }}</td>
 						</tr>
 					</table>
 					</div>
@@ -44,7 +54,7 @@
       <br>
       
 	<script type="text/javascript">
-		CKEDITOR.replace( 'topic_corps' );
+		CKEDITOR.replace( 'topic_intervention_corps' );
 	</script>
 	
 	
